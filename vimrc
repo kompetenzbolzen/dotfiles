@@ -6,11 +6,11 @@ filetype plugin indent on
 "Autostart NERDtree
 autocmd vimenter * NERDTree
 
-"Switch windows with Alt+Arrow keys
-nmap <silent> <A-Up> :wincmd k<CR>
-nmap <silent> <A-Down> :wincmd j<CR>
-nmap <silent> <A-Left> :wincmd h<CR>
-nmap <silent> <A-Right> :wincmd l<CR>
+"Switch windows with keys
+nmap <silent> <C-k> :wincmd k<CR>
+nmap <silent> <C-j> :wincmd j<CR>
+nmap <silent> <C-h> :wincmd h<CR>
+nmap <silent> <C-l> :wincmd l<CR>
 
 nmap <F5> :NERDTree<CR>
 nmap <F6> :TlistToggle<CR>
