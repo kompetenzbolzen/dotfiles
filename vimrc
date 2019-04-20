@@ -1,4 +1,10 @@
-let mapleader = ","
+set nocompatible
+
+"Search in all of the project tree
+set path+=**
+set wildmenu
+
+"??let mapleader = ","
 execute pathogen#infect()
 syntax on
 filetype plugin indent on
@@ -12,7 +18,7 @@ nmap <silent> <C-j> :wincmd j<CR>
 nmap <silent> <C-h> :wincmd h<CR>
 nmap <silent> <C-l> :wincmd l<CR>
 
-nmap <F5> :NERDTree<CR>
+nmap <F5> :NERDTreeToggle<CR>
 nmap <F6> :TlistToggle<CR>
 
 "Tab mgmt
@@ -20,6 +26,9 @@ nmap <F1> :tabclose<CR>
 nmap <F2> :tabprevious<CR>
 nmap <F3> :tabnext<CR>
 nmap <F4> :tabnew<CR>
+
+"^] Jump to tag, ^t jump back
+command! MakeTags !ctags -R .
 
 "Line number Highlight
 set nu
