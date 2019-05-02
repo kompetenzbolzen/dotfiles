@@ -30,10 +30,10 @@ font pango:monospace 9
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec "xterm -fa 'Monospace' -fs 12 -bg black -fg white"
+bindsym $mod+Return exec "xterm -fa 'Monospace' -fs 12 -bg black -fg white -ls -xrm 'XTerm*selectToClipboard: true'"
 
 #start ranger
-bindsym $mod+o exec "xterm -fa 'Monospace' -fs 11 -bg black -fg white ranger"
+bindsym $mod+o exec "xterm -fa 'Monospace' -fs 11 -bg black -fg white -ls -xrm 'XTerm*selectToClipboard: true' ranger"
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -195,9 +195,11 @@ exec --no-startup-id feh --bg-fill .i3/wp.jpg
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-        status_command i3status
-}
+#bar {
+#        status_command i3status
+#}
+
+exec_always --no-startup-id ~/.i3/start_polybar.sh jonny
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl -- set-sink-volume 0 +5% #increase sound volume
