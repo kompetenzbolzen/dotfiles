@@ -30,7 +30,7 @@ font pango:monospace 9
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec konsole #"xterm -fa 'Monospace' -fs 12 -bg black -fg white"
+bindsym $mod+Return exec "xterm -fa 'Monospace' -fs 12 -bg black -fg white"
 
 #start ranger
 bindsym $mod+o exec "xterm -fa 'Monospace' -fs 11 -bg black -fg white ranger"
@@ -205,8 +205,12 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl -- set-sink-volume 0 -5%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5 # increase screen brightness
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5 # decrease screen brightness
+# Use acpilight with arch!!
+# https://gitlab.com/wavexx/acpilight
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5 -fps 30 # increase screen brightness
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5 -fps 30 # decrease screen brightness
+
+exec "setxkbmap -layout de"
 
 #start autostart.sh
 exec --no-startup-id ~/autostart.sh
