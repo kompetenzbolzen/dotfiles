@@ -1,5 +1,8 @@
 #!/bin/bash 
 
+git submodule init
+git submodule update
+
 mv ~/.config/i3/ ~/.config/i3.old
 mv ~/.vim ~/.vim.old
 mv ~/.xinitrc ~/.xinitrc.old
