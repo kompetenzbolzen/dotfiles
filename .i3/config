@@ -190,7 +190,7 @@ client.placeholder       $bg     $bg         $bg     $bg
 client.background $black
 
 exec --no-startup-id nm-applet
-exec --no-startup-id feh --bg-fill .i3/wp.jpg
+exec --no-startup-id feh --bg-fill ~/.i3/wp.jpg
 
 
 # Start i3bar to display a workspace bar (plus the system information i3status
@@ -211,6 +211,8 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute s
 # https://gitlab.com/wavexx/acpilight
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5 -fps 30 # increase screen brightness
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5 -fps 30 # decrease screen brightness
+
+bindsym $mod+p exec "scrot ~/Downloads/Screenshot%Y-%m-%d%H:%M:%S.png"
 
 exec "setxkbmap -layout de"
 
