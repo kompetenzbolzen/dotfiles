@@ -1,15 +1,29 @@
 #!/bin/bash 
 
+# Programs:
+# compton: Compositor
+# xterm fo default terminal
+# transset-df for xterm transparency
+
+#Configs for home dir
+MODULES=(.i3 .vim .xinitrc .compton.conf .bashrc)
+
+#Configs for .config
+CFGFOLDER=(polybar)
+
+echo Configs to install: ${MODULES[@]} ${CFGFOLDER[@]}
+
 git submodule init
 git submodule update
 
-mv ~/.config/i3/ ~/.config/i3.old
-mv ~/.vim ~/.vim.old
-mv ~/.xinitrc ~/.xinitrc.old
-mv ~/.config/polybar ~/.config/polybar.old
+for mod in ${MODULES[@]}; do
+	echo Linking $mod
+	mv ~/$mod ~/$mod.old
+	ln -s $(pwd)/$mod ~/$mod
+done
 
-ln -s $(pwd)/.vim ~/.vim
-ln -s $(pwd)/.i3 ~/.i3
-ln -s $(pwd)/.xinitrc ~/.xinitrc
-ln -s $(pwd)/polybar ~/.config/polybar
+for mod in ${CFGFOLDER[@]}; do
+	mv ~/.config/$mod ~/.config/$mod.old
+	ln -s $(pwd)/$mod ~/.config/$mod
+done
 
