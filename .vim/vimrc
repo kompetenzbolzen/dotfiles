@@ -1,4 +1,7 @@
 set nocompatible
+"Disable bell
+set vb
+set t_vb=
 
 "Search in all of the project tree
 set path+=**
@@ -10,7 +13,7 @@ syntax on
 filetype plugin indent on
 
 "Autostart NERDtree
-autocmd vimenter * NERDTree
+"autocmd vimenter * NERDTree
 
 "Switch windows with keys
 nmap <silent> <C-k> :wincmd k<CR>
