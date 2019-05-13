@@ -1,8 +1,9 @@
+Xcursor.size: 16
 XTerm*foreground: white
 XTerm*background: black        
 XTerm*faceName: Monospace
 XTerm*faceSize: 12.0 
 XTerm*selectToClipboard: true
-XTerm*bell: false
-XTerm*visualBell: true
+#XTerm*bell: false
+#XTerm*visualBell: true
 #XTerm*loginShell: true 

@@ -6,7 +6,7 @@
 # transset-df for xterm transparency
 
 #Configs for home dir
-MODULES=(.i3 .vim .xinitrc .compton.conf .bashrc .Xdefaults)
+MODULES=(.i3 .vim .xinitrc .compton.conf .bashrc .Xresources)
 
 #Configs for .config
 CFGFOLDER=(polybar)
