@@ -9,7 +9,7 @@
 MODULES=(.i3 .vim .xinitrc .compton.conf .bashrc .Xresources)
 
 #Configs for .config
-CFGFOLDER=(polybar)
+CFGFOLDER=(polybar powerline)
 
 echo Configs to install: ${MODULES[@]} ${CFGFOLDER[@]}
 
