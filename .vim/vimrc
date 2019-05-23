@@ -7,6 +7,11 @@ set t_vb=
 set path+=**
 set wildmenu
 
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#whitespace#enabled = 1
+let g:airline_powerline_fonts = 1
+
 "??let mapleader = ","
 execute pathogen#infect()
 syntax on
