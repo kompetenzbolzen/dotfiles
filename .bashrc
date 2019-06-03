@@ -9,6 +9,9 @@
 #[ -n "$XTERM_VERSION" ] && transset-df --id "$WINDOWID" >/dev/null
 #MOVED TO COMPTON CONF
 
+export EDITOR=nvim
+export VISUAL=nvim
+
 alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
 

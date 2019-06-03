@@ -3,13 +3,12 @@
 # Programs:
 # compton: Compositor
 # xterm fo default terminal
-# transset-df for xterm transparency
 
 #Configs for home dir
 MODULES=(.i3 .vim .xinitrc .compton.conf .bashrc .Xresources)
 
 #Configs for .config
-CFGFOLDER=(polybar powerline)
+CFGFOLDER=(polybar powerline nvim)
 
 echo Configs to install: ${MODULES[@]} ${CFGFOLDER[@]}
 

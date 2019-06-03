@@ -1,0 +1,10 @@
+base-devel
+htop
+i3gaps
+neovim
+xorg-xinit
+xorg-server
+compton
+xterm
+powerline
+xf86-input-libinput
