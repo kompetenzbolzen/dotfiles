@@ -2,6 +2,6 @@ Xcursor.size: 16
 XTerm*foreground: white
 XTerm*background: black        
 XTerm*faceName: DejaVu\ Sans\ Mono\ for\ Powerline
-XTerm*faceSize: 12.0 
+XTerm*faceSize: 10.0 
 XTerm*selectToClipboard: true
 XTerm.vt100.locale: true

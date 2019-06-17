@@ -9,6 +9,8 @@
 #[ -n "$XTERM_VERSION" ] && transset-df --id "$WINDOWID" >/dev/null
 #MOVED TO COMPTON CONF
 
+alias vim=nvim
+
 export EDITOR=nvim
 export VISUAL=nvim
 
