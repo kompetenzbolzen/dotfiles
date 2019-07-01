@@ -27,14 +27,15 @@ nmap <silent> <C-w-j> :wincmd j<CR>
 nmap <silent> <C-w-h> :wincmd h<CR>
 nmap <silent> <C-w-l> :wincmd l<CR>
 
-nmap <F5> :NERDTreeToggle<CR>
-nmap <F6> :TlistToggle<CR>
+nmap <silent> <F5> :NERDTreeToggle<CR>
+nmap <silent> <F6> :TlistToggle<CR>
+nmap <silent> <F7> :terminal<CR>
 
 "Tab mgmt
-nmap <F1> :tabclose<CR>
-nmap <F2> :tabprevious<CR>
-nmap <F3> :tabnext<CR>
-nmap <F4> :tabnew<CR>
+nmap <silent> <F1> :tabclose<CR>
+nmap <silent> <F2> :tabprevious<CR>
+nmap <silent> <F3> :tabnext<CR>
+nmap <silent> <F4> :tabnew<CR>
 
 "^] Jump to tag, ^t jump back
 command! MakeTags !ctags -R .
