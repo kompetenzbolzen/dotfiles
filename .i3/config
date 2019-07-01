@@ -41,6 +41,8 @@ bindsym  $mod+b exec "brave"
 # kill focused window
 bindsym $mod+Shift+q kill
 
+bindsym $mod+Shift+w exec "i3lock -i ~/vimconfig/lock.png"
+
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications
