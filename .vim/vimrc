@@ -22,19 +22,20 @@ filetype plugin indent on
 "autocmd vimenter * NERDTree
 
 "Switch windows with keys
-nmap <silent> <C-k> :wincmd k<CR>
-nmap <silent> <C-j> :wincmd j<CR>
-nmap <silent> <C-h> :wincmd h<CR>
-nmap <silent> <C-l> :wincmd l<CR>
+nmap <silent> <C-w-k> :wincmd k<CR>
+nmap <silent> <C-w-j> :wincmd j<CR>
+nmap <silent> <C-w-h> :wincmd h<CR>
+nmap <silent> <C-w-l> :wincmd l<CR>
 
-nmap <F5> :NERDTreeToggle<CR>
-nmap <F6> :TlistToggle<CR>
+nmap <silent> <F5> :NERDTreeToggle<CR>
+nmap <silent> <F6> :TlistToggle<CR>
+nmap <silent> <F7> :terminal<CR>
 
 "Tab mgmt
-nmap <F1> :tabclose<CR>
-nmap <F2> :tabprevious<CR>
-nmap <F3> :tabnext<CR>
-nmap <F4> :tabnew<CR>
+nmap <silent> <F1> :tabclose<CR>
+nmap <silent> <F2> :tabprevious<CR>
+nmap <silent> <F3> :tabnext<CR>
+nmap <silent> <F4> :tabnew<CR>
 
 "^] Jump to tag, ^t jump back
 command! MakeTags !ctags -R .
@@ -42,3 +43,46 @@ command! MakeTags !ctags -R .
 "Line number Highlight
 set nu
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
+
+" Command HEXMODE 
+command -bar Hexmode call ToggleHex()
+
+" helper function to toggle hex mode
+function ToggleHex()
+  " hex mode should be considered a read-only operation
+  " save values for modified and read-only for restoration later,
+  " and clear the read-only flag for now
+  let l:modified=&mod
+  let l:oldreadonly=&readonly
+  let &readonly=0
+  let l:oldmodifiable=&modifiable
+  let &modifiable=1
+  if !exists("b:editHex") || !b:editHex
+    " save old options
+    let b:oldft=&ft
+    let b:oldbin=&bin
+    " set new options
+    setlocal binary " make sure it overrides any textwidth, etc.
+    silent :e " this will reload the file without trickeries 
+              "(DOS line endings will be shown entirely )
+    let &ft="xxd"
+    " set status
+    let b:editHex=1
+    " switch to hex editor
+    %!xxd
+  else
+    " restore old options
+    let &ft=b:oldft
+    if !b:oldbin
+      setlocal nobinary
+    endif
+    " set status
+    let b:editHex=0
+    " return to normal editing
+    %!xxd -r
+  endif
+  " restore values for modified and read only state
+  let &mod=l:modified
+  let &readonly=l:oldreadonly
+  let &modifiable=l:oldmodifiable
+endfunction
