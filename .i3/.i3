@@ -1,0 +1,1 @@
+/home/jonas/vimconfig/.i3
