@@ -1,6 +1,7 @@
 base-devel
 htop
 i3gaps
+i3lock
 neovim
 xorg-xinit
 xorg-server
@@ -8,3 +9,6 @@ compton
 xterm
 powerline
 xf86-input-libinput
+mupdf
+ranger
+pamixer
