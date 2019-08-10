@@ -11,4 +11,4 @@ powerline
 xf86-input-libinput
 mupdf
 ranger
-pamixer
+rofi
