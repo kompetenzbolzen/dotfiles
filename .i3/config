@@ -339,8 +339,6 @@ bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5 -fps 30 # increase screen brightness
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5 -fps 30 # decrease screen brightness
 
-#Screenshot on win+p
-bindsym $mod+p exec "scrot ~/Screenshots/Screenshot%Y-%m-%d%H:%M:%S.png"
 #bindsym XF86RFKill exec --no-startup-id i3-nagbar -t warning -m asdf
 
 exec --no-startup-id "setxkbmap -layout de"
