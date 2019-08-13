@@ -341,11 +341,5 @@ bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5 -fps 30 # d
 
 #bindsym XF86RFKill exec --no-startup-id i3-nagbar -t warning -m asdf
 
-exec --no-startup-id "setxkbmap -layout de"
-exec --no-startup-id "compton"
-exec --no-startup-id "xrdb ~/.Xresources"
-
-exec --no-startup-id "lxqt-policykit-agent"
-
 #start autostart.sh
 exec --no-startup-id ~/autostart.sh
