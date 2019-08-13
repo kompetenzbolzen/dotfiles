@@ -9,6 +9,8 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
+#force_xinerama yes
+
 set $mod Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -364,7 +366,7 @@ bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5 -fps 30 # inc
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5 -fps 30 # decrease screen brightness
 
 #Screenshot on win+p
-bindsym $mod+p exec "scrot ~/Downloads/Screenshot%Y-%m-%d%H:%M:%S.png"
+bindsym $mod+p exec "scrot ~/Screenshots/Screenshot%Y-%m-%d%H:%M:%S.png"
 
 #Layout de
 exec --no-startup-id "setxkbmap -layout de"

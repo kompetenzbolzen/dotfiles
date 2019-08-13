@@ -5,3 +5,5 @@ XTerm*faceName: DejaVu\ Sans\ Mono\ for\ Powerline
 XTerm*faceSize: 10.0 
 XTerm*selectToClipboard: true
 XTerm.vt100.locale: true
+
+Xft.dpi: 96

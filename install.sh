@@ -5,7 +5,7 @@
 # xterm fo default terminal
 
 #Configs for home dir
-MODULES=(.i3 .vim .xinitrc .compton.conf .bashrc .Xresources)
+MODULES=(.i3 .vim .xinitrc .compton.conf .bashrc .Xresources .radare2rc)
 
 #Configs for .config
 CFGFOLDER=(polybar powerline nvim)
