@@ -2,9 +2,20 @@
 	"segments": {
 		"right": [
 			{
-				"function": "powerline.segments.common.time.date",
+				"function" : "powerline.segments.common.players.spotify",
+				"name" : "player",
 				"args" : {
-					"format" : "%d.%m.%Y"
+					"format" : "{state_symbol} {artist} - {title} ({elapsed})"
+				}
+			},
+			{
+				"function" : "powerline.segments.common.net.network_load"
+			},
+			{
+				"function" : "powerline.segments.common.sys.system_load",
+				"name" : "load",
+				"args" : {
+					"short" : true
 				}
 			},
 			{
@@ -16,10 +27,10 @@
 				}
 			},
 			{
-				"function" : "powerline.segments.common.sys.system_load"
-			},
-			{
-				"function" : "powerline.segments.common.net.network_load"
+				"function": "powerline.segments.common.time.date",
+				"args" : {
+					"format" : "%d.%m.%Y"
+				}
 			},
 			{
 				"function" : "powerline.segments.common.bat.battery",
