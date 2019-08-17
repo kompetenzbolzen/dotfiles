@@ -18,7 +18,7 @@ bindsym  $mod+b exec "brave"
 # kill focused window
 bindsym $mod+Shift+q kill
 
-bindsym $mod+Shift+w exec "i3lock -p win -i ~/vimconfig/lock.png"
+bindsym $mod+Shift+w exec "i3lock -p win -i ~/vimconfig/pictures/lock.png"
 
 #Screenshot on mod+p
 bindsym $mod+p exec "scrot ~/Screenshots/Screenshot%Y-%m-%d%H:%M:%S.png"
