@@ -5,10 +5,13 @@
 # xterm fo default terminal
 
 #Configs for home dir
-MODULES=(.i3 .vim .xinitrc .compton.conf .bashrc .Xresources .radare2rc)
+MODULES=(.i3 .vim .xinitrc .compton.conf .bashrc .Xresources .radare2rc .bash_profile)
 
 #Configs for .config
 CFGFOLDER=(polybar powerline nvim)
+
+#Scripts
+SCRIPTS=()
 
 #1: message
 yes_no()
