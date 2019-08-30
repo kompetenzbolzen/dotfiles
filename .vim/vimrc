@@ -18,18 +18,25 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 
-"Autostart NERDtree
-"autocmd vimenter * NERDTree
-
 "Switch windows with keys
 nmap <silent> <C-w-k> :wincmd k<CR>
 nmap <silent> <C-w-j> :wincmd j<CR>
 nmap <silent> <C-w-h> :wincmd h<CR>
 nmap <silent> <C-w-l> :wincmd l<CR>
 
+nmap <silent> <C-m> :make<CR>
+
 nmap <silent> <F5> :NERDTreeToggle<CR>
 nmap <silent> <F6> :TlistToggle<CR>
-nmap <silent> <F7> :terminal<CR>
+nmap <silent> <F7> :Newterm<CR>
+
+command -bar Newterm call Create_term()
+
+function Create_term()
+	tabnew
+	terminal
+	startinsert
+endfunction
 
 "Tab mgmt
 nmap <silent> <F1> :tabclose<CR>
