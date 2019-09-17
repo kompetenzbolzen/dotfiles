@@ -22,3 +22,6 @@
 [submodule "bash-it"]
 	path = bash-it
 	url = https://github.com/Bash-it/bash-it.git
+[submodule ".vim/bundle/todo.txt-vim"]
+	path = .vim/bundle/todo.txt-vim
+	url = https://github.com/dbeniamine/todo.txt-vim.git
