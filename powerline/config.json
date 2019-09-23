@@ -45,7 +45,7 @@
 			}
 		},
 		"wm": {
-			"colorscheme": "default",
+			"colorscheme": "jonas",
 			"theme": "default",
 			"update_interval": 2
 		}

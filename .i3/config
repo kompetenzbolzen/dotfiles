@@ -7,10 +7,10 @@ font pango:monospace 9
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec "xterm"
+bindsym $mod+Return exec "termite"
 
 #start ranger
-bindsym $mod+o exec "xterm -e ranger"
+bindsym $mod+o exec "termite -e ranger"
 
 #start browser
 bindsym  $mod+b exec "brave"
@@ -123,7 +123,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 #bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
-bindsym $mod+Shift+e exec $(printf "shutdown now\nreboot\ni3-msg exit" | rofi -dmenu -mesg "Exit?")
+bindsym $mod+Shift+e exec $(printf "shutdown now\nreboot\ni3-msg exit\nkillall compton" | rofi -dmenu -mesg "Exit?")
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -293,7 +293,7 @@ set $black #000000
 set $grey #151515
 
 #                        border  background  text  indicator
-client.focused           $grey     $black     $tf     $black
+client.focused           $grey   $black      $tf     $black
 client.unfocused         $bg     $bg         $tf     $id
 client.focused_inactive  $bg     $bg         $pk     $id
 client.urgent            $yw     $yw         $tx     $id
@@ -301,6 +301,10 @@ client.placeholder       $bg     $bg         $bg     $bg
 client.background $black
 
 default_border none
+default_floating_border none
+
+for_window [class="feh"] floating enable
+
 gaps inner 15
 
 bar {

@@ -51,6 +51,12 @@ command! MakeTags !ctags -R .
 set nu
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
+command -bar InsertHeader call Fileheader()
+
+function Fileheader()
+  cursor(1,1)
+endfunction
+
 " Command HEXMODE 
 command -bar Hexmode call ToggleHex()
 
