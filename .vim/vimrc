@@ -1,3 +1,8 @@
+" ===========
+" VARIABLES
+" ===========
+
+
 set nocompatible
 "Disable bell
 set vb
@@ -13,10 +18,31 @@ let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#whitespace#enabled = 1
 let g:airline_powerline_fonts = 1
 
-"??let mapleader = ","
+" Use todo#Complete as the omni complete function for todo files
+au filetype todo setlocal omnifunc=todo#Complete
+
+" Auto complete projects
+au filetype todo imap <buffer> + +<C-X><C-O>
+
+" Auto complete contexts
+au filetype todo imap <buffer> @ @<C-X><C-O>
+
+" leader
+let mapleader = "-"
+let leader = "-"
+let maplocalleader = "-"
+
 execute pathogen#infect()
 syntax on
 filetype plugin indent on
+
+"Line number Highlight
+set nu
+highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
+
+" ==============
+" SHORTCUTS
+" ==============
 
 "Switch windows with keys
 nmap <silent> <C-w-k> :wincmd k<CR>
@@ -24,19 +50,11 @@ nmap <silent> <C-w-j> :wincmd j<CR>
 nmap <silent> <C-w-h> :wincmd h<CR>
 nmap <silent> <C-w-l> :wincmd l<CR>
 
-nmap <silent> <C-m> :make<CR>
+nmap <silent> <F8> :make<CR>
 
 nmap <silent> <F5> :NERDTreeToggle<CR>
 nmap <silent> <F6> :TlistToggle<CR>
 nmap <silent> <F7> :Newterm<CR>
-
-command -bar Newterm call Create_term()
-
-function Create_term()
-	tabnew
-	terminal
-	startinsert
-endfunction
 
 "Tab mgmt
 nmap <silent> <F1> :tabclose<CR>
@@ -44,12 +62,10 @@ nmap <silent> <F2> :tabprevious<CR>
 nmap <silent> <F3> :tabnext<CR>
 nmap <silent> <F4> :tabnew<CR>
 
-"^] Jump to tag, ^t jump back
-command! MakeTags !ctags -R .
 
-"Line number Highlight
-set nu
-highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
+" ===========
+" COMMANDS
+" ===========
 
 command -bar InsertHeader call Fileheader()
 
@@ -59,6 +75,21 @@ endfunction
 
 " Command HEXMODE 
 command -bar Hexmode call ToggleHex()
+
+"^] Jump to tag, ^t jump back
+command! MakeTags !ctags -R .
+
+command -bar Newterm call Create_term()
+
+" ===========
+" FUNCTIONS
+" ===========
+
+function Create_term()
+	tabnew
+	terminal
+	startinsert
+endfunction
 
 " helper function to toggle hex mode
 function ToggleHex()
