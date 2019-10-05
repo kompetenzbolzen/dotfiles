@@ -2,7 +2,6 @@
 " VARIABLES
 " ===========
 
-
 set nocompatible
 "Disable bell
 set vb
@@ -40,15 +39,23 @@ filetype plugin indent on
 set nu
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
+set foldmethod=syntax
+
 " ==============
 " SHORTCUTS
 " ==============
 
 "Switch windows with keys
-nmap <silent> <C-w-k> :wincmd k<CR>
-nmap <silent> <C-w-j> :wincmd j<CR>
-nmap <silent> <C-w-h> :wincmd h<CR>
-nmap <silent> <C-w-l> :wincmd l<CR>
+"nmap <silent> <C-w-k> :wincmd k<CR>
+"nmap <silent> <C-w-j> :wincmd j<CR>
+"nmap <silent> <C-w-h> :wincmd h<CR>
+"nmap <silent> <C-w-l> :wincmd l<CR>
+
+nmap <silent> <C-s> :vsplit<CR>
+nmap <silent> <C-e> :e .<CR>
+
+nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+vnoremap <Space> zf
 
 nmap <silent> <F8> :make<CR>
 
