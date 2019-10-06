@@ -8,7 +8,7 @@
 MODULES=(.i3 .vim .xinitrc .compton.conf .bashrc .Xresources .radare2rc .bash_profile)
 
 #Configs for .config
-CFGFOLDER=(polybar powerline nvim termite)
+CFGFOLDER=(polybar powerline nvim termite twmn)
 
 #Scripts
 SCRIPTS=()
