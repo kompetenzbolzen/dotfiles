@@ -19,7 +19,6 @@ setterm -blank 0 -powerdown 0
 xset s off
 
 #Screen background feh
->>>>>>> Stashed changes
 shopt -s nullglob
 
 pics=(~/vimconfig/pictures/b_*)
