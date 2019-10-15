@@ -11,7 +11,15 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
   unset f
 fi
 
-#Select random background image
+# turn off Display Power Management Service (DPMS)
+xset -dpms
+setterm -blank 0 -powerdown 0
+
+# turn off black Screensaver
+xset s off
+
+#Screen background feh
+>>>>>>> Stashed changes
 shopt -s nullglob
 
 pics=(~/vimconfig/pictures/b_*)
@@ -25,6 +33,9 @@ xrdb .Xresources
 
 setxkbmap -layout de
 compton &
-lxqt-policykit-agent &
+
+if [ $DISPLAY -e ":0" ]; then
+	lxqt-policykit-agent &
+fi
 
 exec i3
