@@ -6,7 +6,15 @@ XTerm*faceSize: 10.0
 XTerm*selectToClipboard: true
 XTerm.vt100.locale: true
 
+URxvt.font: xft:DejaVu\ Sans\ Mono\ for\ Powerline:size=10
+URxvt.foreground: white
+URxvt.background: #aaaaaaaa
+URxvt.perl-ext-common: default,matcher
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.matcher.button: 1
+
 Xft.dpi: 96
+
 ! State:           'bg',       'fg',       'bgalt',    'hlbg',     'hlfg'
 rofi.color-normal: #000000AA,  #FFFFFFFF,  #000000AA,  #333333AA,  #FFFFFF
 rofi.color-urgent: #000000AA,  #FFFFFFFF,  #000000AA,  #333333AA,  #FFFFFF
