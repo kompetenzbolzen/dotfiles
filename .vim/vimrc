@@ -57,7 +57,9 @@ nmap <silent> <C-e> :e .<CR>
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
 
-nmap <silent> <F8> :make<CR>
+au filetype c* nmap <silent> <F8> :make<CR>
+au filetype sh nmap <silent> <F8> :Runbuffer<CR>
+au filetype python nmap <silent> <F8> :Runbuffer<CR>
 
 nmap <silent> <F5> :NERDTreeToggle<CR>
 nmap <silent> <F6> :TlistToggle<CR>
@@ -87,6 +89,7 @@ command -bar Hexmode call ToggleHex()
 command! MakeTags !ctags -R .
 
 command -bar Newterm call Create_term()
+command -bar Runbuffer call Run_buffer()
 
 " ===========
 " FUNCTIONS
@@ -95,6 +98,13 @@ command -bar Newterm call Create_term()
 function Create_term()
 	tabnew
 	terminal
+	startinsert
+endfunction
+
+function Run_buffer()
+	let filename = expand("%:p")
+	tabnew
+	execute "terminal" . filename
 	startinsert
 endfunction
 
