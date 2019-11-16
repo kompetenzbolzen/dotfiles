@@ -8,6 +8,7 @@ xorg-server
 compton
 xterm
 powerline
+python-i3ipc
 xf86-input-libinput
 mupdf
 ranger
