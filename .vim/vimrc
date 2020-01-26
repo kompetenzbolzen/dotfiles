@@ -17,6 +17,9 @@ let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#whitespace#enabled = 1
 let g:airline_powerline_fonts = 1
 
+"show line endings and tabs
+set list
+
 " Use todo#Complete as the omni complete function for todo files
 au filetype todo setlocal omnifunc=todo#Complete
 
@@ -51,7 +54,7 @@ set foldmethod=syntax
 "nmap <silent> <C-w-h> :wincmd h<CR>
 "nmap <silent> <C-w-l> :wincmd l<CR>
 
-nmap <silent> <C-s> :vsplit<CR>
+nmap <silent> <C-s> :vsplit<CR>:e .<CR>
 nmap <silent> <C-e> :e .<CR>
 
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
@@ -69,7 +72,7 @@ nmap <silent> <F7> :Newterm<CR>
 nmap <silent> <F1> :tabclose<CR>
 nmap <silent> <F2> :tabprevious<CR>
 nmap <silent> <F3> :tabnext<CR>
-nmap <silent> <F4> :tabnew<CR>
+nmap <silent> <F4> :tabnew<CR>:e .<CR>
 
 
 " ===========
