@@ -1,0 +1,44 @@
+#!/bin/bash
+
+if [ $# -ne 2 ]
+then
+	echo Usage: $0 SOURCE SINK
+	exit 1
+fi
+
+if [ ! -e $1 -o ! -e $2 ]
+then
+	echo "Filename(s) invalid."
+	exit 2
+fi
+
+if grep $2 /etc/mtab > /dev/null
+then
+	echo Device is mounted. Aborting
+	exit 3
+fi
+
+read -p "Writing $1 to $2. Continue? (y/N)" cont
+case $cont in
+	[yY]);;
+	*)
+		echo Aborting.
+		exit 4;;
+esac
+
+sudo -v
+
+FILESIZE=$(du -b $1 | cut -f 1)
+BLOCKSIZE=$(sudo blockdev --getsize64 $2)
+
+if [ $FILESIZE -gt $BLOCKSIZE ]
+then
+	echo $1 is too large for $2.
+	exit 5
+fi
+
+echo Writing $FILESIZE Bytes to $2
+
+dd if=$1 | pv --size $FILESIZE | sudo dd of=$2
+
+exit 0
