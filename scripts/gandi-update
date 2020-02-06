@@ -1,0 +1,15 @@
+#!/bin/bash
+
+APIKEY=
+TTL=1800
+DOMAIN=
+RECORD=
+TYPE=A
+
+IP=$(dig -4 +short myip.opendns.com @resolver1.opendns.com)
+
+REQUEST="{\"rrset_ttl\": $TTL, \"rrset_values\": [\"$IP\"]}"
+URL="https://dns.api.gandi.net/api/v5/domains/$DOMAIN/records/$RECORD/$TYPE"
+
+curl -D- -X PUT -H "Content-Type: application/json" -H "X-Api-Key: $APIKEY" -d "$REQUEST" $URL
+
