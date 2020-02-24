@@ -6,15 +6,22 @@ case $- in
     *) return;;
 esac
 
-export BASH_IT_CUSTOM="/home/jonas/vimconfig"
+if [ -e ".files" ]
+then
+	source .files
+else
+	DOTFILEBASE="/home/jonas/vimconfig"
+fi
+
+export BASH_IT_CUSTOM=$DOTFILEBASE
 
 # Path to the bash it configuration
-export BASH_IT="/home/jonas/vimconfig/bash-it"
+export BASH_IT="$DOTFILEBASE/bash-it"
 
 # Lock and Load a custom theme file.
 # Leave empty to disable theming.
 # location /.bash_it/themes/
-export BASH_IT_THEME='/home/jonas/vimconfig/theme.bash'
+export BASH_IT_THEME="$DOTFILEBASE/theme.bash"
 
 # (Advanced): Change this to the name of your remote repo if you
 # cloned bash-it with a remote other than origin such as `bash-it`.
