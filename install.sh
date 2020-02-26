@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash
 
 #Configs for home dir
 CFGS=(.i3 .vim .xinitrc .compton.conf .bashrc .Xresources .radare2rc .bash_profile)
@@ -22,9 +22,9 @@ yes_no()
 selector()
 {
 	local cnt=0
-	for i in "$@"
+	for selection in "$@"
 	do
-		echo "$cnt) $i"
+		echo "$cnt) $selection"
 		((cnt=$cnt + 1))
 	done
 
@@ -73,18 +73,19 @@ then
 			selector "~" "~/.config" "Custom location" "Abort"
 			case $? in
 			0)
-				echo "~"
-				break;;
+				export INSTPATH="$HOME";;
 			1)
-				echo .config
-				break;;
+				export INSTPATH="$HOME/.config";;
 			2)
 				echo custom
-				break;;
+				continue;;
 			*)
 				echo Abort.
-				break;;
+				continue;;
 			esac
+			echo aaa $INSTPATH/$i
+			link $(pwd)/$i $INSTPATH/$(basename $i)
+			unset INSTPATH
 		else
 			echo $i does not exist. Skipping.
 		fi
@@ -118,6 +119,6 @@ done
 
 #.files is used to tell scripts where to look for the dotfiles
 if yes_no "Generate '.files'?"; then
-	echo "DOTFILEBASE=\"$(pwd)\"" > $HOME/.files
+	echo "DOTFILEBASE=\"$WORKDIR\"" > $HOME/.files
 fi
 
