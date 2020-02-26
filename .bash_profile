@@ -1,13 +1,18 @@
+# vi:syntax=sh
 #
-# ~/.bash_profile
+# .bash_profile
 #
 
-alias vim=nvim
+if [[ -f ~/.files ]]; then
+	source ~/.files
+else
+	DOTFILEBASE="/home/jonas/dotfiles"
+fi
 
-export EDITOR=nvim
-export VISUAL=nvim
+for f in $DOTFILEBASE/bash/*.profile ; do
+	source $f
+done
 
-PATH=~/bin:$PATH
-[[ -f ~/.files ]] && source ~/.files && PATH="$DOTFILEBASE/scripts:$PATH"
-
-[[ -f ~/.bashrc ]] && . ~/.bashrc
+if [[ -f ~/.bashrc ]]; then
+	source ~/.bashrc
+fi
