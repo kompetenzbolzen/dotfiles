@@ -14,4 +14,4 @@ appendpath "$DOTFILEBASE/scripts"
 export PATH
 unset appendpath
 
-export EDITOR=vim
+export EDITOR=nvim
