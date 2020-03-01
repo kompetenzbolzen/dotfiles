@@ -1,0 +1,14 @@
+#!/bin/bash
+
+#Screen background feh
+shopt -s nullglob
+
+pics=(~/vimconfig/pictures/b_*)
+#echo $pics
+len=${#pics[*]}
+ran=$(($RANDOM % len))
+
+
+echo  ${pics[$ran]}
+killall swaybg
+swaybg -i ${pics[$ran]} &
