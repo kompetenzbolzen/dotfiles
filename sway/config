@@ -308,7 +308,7 @@ default_floating_border none
 
 for_window [class="feh"] floating enable
 
-gaps inner 15
+gaps inner 5
 
 bar {
 	#i3bar_command i3bar -t
