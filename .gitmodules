@@ -19,9 +19,6 @@
 [submodule ".vim/bundle/Conque-shell"]
 	path = .vim/bundle/Conque-shell
 	url = https://github.com/vim-scripts/Conque-Shell.git
-[submodule "bash-it"]
-	path = bash-it
-	url = https://github.com/Bash-it/bash-it.git
 [submodule ".vim/bundle/todo.txt-vim"]
 	path = .vim/bundle/todo.txt-vim
 	url = https://github.com/dbeniamine/todo.txt-vim.git
