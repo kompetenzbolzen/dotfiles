@@ -2,7 +2,6 @@
 
 function appendpath() {
 	local regex="[:^]${1//'/'/'\/'}[:$]"
-	echo $regex
 	if [[ ! ${PATH} =~ $regex ]]; then
 		PATH=$PATH:$1
 	fi
