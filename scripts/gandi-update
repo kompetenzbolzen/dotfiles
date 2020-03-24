@@ -1,4 +1,6 @@
 #!/bin/bash
+# DNS Record update script for gandi.net API
+# for use as DynDNS
 
 APIKEY=
 TTL=1800

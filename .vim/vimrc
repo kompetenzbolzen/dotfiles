@@ -85,6 +85,8 @@ function Fileheader()
   cursor(1,1)
 endfunction
 
+command -bar Suw :w !SUDO_ASKPASS="/usr/lib/ssh/ssh-askpass" sudo -A  tee %
+
 " Command HEXMODE 
 command -bar Hexmode call ToggleHex()
 
