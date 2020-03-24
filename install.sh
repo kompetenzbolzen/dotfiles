@@ -1,13 +1,22 @@
 #!/bin/bash
 
-#Configs for home dir
-CFGS=(.i3 .vim .xinitrc .compton.conf .bashrc .Xresources .radare2rc .bash_profile)
-
-#Configs for .config
-CFGFOLDER=(polybar powerline nvim termite twmn fish)
-
-#Scripts
-SCRIPTS=()
+#['name']='install location'
+declare -A CONFIGS
+CONFIGS=( 	["sway"]=".config"
+		["alacritty"]=".config"
+		["polybar"]=".config"
+		["powerline"]=".config"
+		["nvim"]=".config"
+		["termite"]=".config"
+		["twmn"]=".config"
+		[".i3"]="."
+		[".vim"]="."
+		[".xinitrc"]="."
+		[".compton.conf"]="."
+		[".bashrc"]="."
+		[".Xresources"]="."
+		[".radare2rc"]="."
+		[".bash_profile"]="." )
 
 #1: message
 yes_no()
@@ -19,8 +28,49 @@ yes_no()
 	esac
 }
 
+#interface on sterr
+multiselector() {
+	local argc=$#
+	local argv=($@)
+	local cnt=0
+	local ret=""
+
+	for entry in "$@"; do
+		>&2 echo "$cnt) $entry"
+		((cnt=$cnt + 1))
+	done
+
+	>&2 echo "Select entry(s)"
+	>&2 echo "eg. '1 3' '1-4' 'a'"
+	>&2 read -p " > " inp
+
+	for sel in $inp; do
+		local reg_range="^[0-9]+\-[0-9]+$"
+		local reg_single="^[0-9]+$"
+		local reg_all="^[aA]*"
+
+		if [[ $sel =~ $reg_range ]]; then
+			range=($(echo $sel | tr "-" " "))
+			for (( i=${range[0]}; i<=${range[1]}; i++ )); do
+				ret="$ret ${argv[$i]}"
+			done
+		elif [[ $sel =~ $reg_single ]]; then
+			ret="$ret ${argv[$sel]}"
+		elif [[ $sel =~ $reg_all ]]; then
+			ret=$@
+			break;
+		else
+			>&2 echo "Wrong input at \"$sel\""
+			ret=""
+			break
+		fi
+	done
+	echo $ret
+}
+
 selector()
 {
+	local regex="^-?[0-9]+\$"
 	local cnt=0
 	for selection in "$@"
 	do
@@ -29,39 +79,35 @@ selector()
 	done
 
 	read -p "(default=0) >" inp
-	if [[ "$inp" =~ ^-?[0-9]+\$ ]] && [ $inp -ge 0 -a $inp -le $# ]
+	if [[ "$inp" =~ $regex ]] && [ $inp -ge 0 -a $inp -le $# ]
 	then
+		echo $inp
 		return $inp
 	elif [ -z $inp ]
 	then
 		return 0
 	else
-		return -1
+		return 2
 	fi
-
 }
 
 #1: source 2: destination
 link()
 {
-	if [ -e $2 ]
-	then
-		if yes_no "$(basename $2) exists. Overwrite?"
-		then
-			return
-		fi
-
-		if [ -d $2 ]
-		then
-			rm -R $2
+	if [ -e $2 ]; then
+		if yes_no "$(basename $2) exists. Overwrite?"; then
+			if [ -d $2 ]; then
+				rm -R $2
+			else
+				rm $2
+			fi
 		else
-			rm $2
+			return
 		fi
 	fi
 
 	ln -s "$1" "$2"
 }
-
 
 if [ $# -gt 0 ]
 then
@@ -98,27 +144,19 @@ WORKDIR=$(dirname $0)
 cd $WORKDIR
 echo Working in $WORKDIR
 echo Homedir is $HOME
-echo Available: ${CFGS[@]} ${CFGFOLDER[@]}
 
 git submodule init
 git submodule update
 
-for mod in "${CFGS[@]}"; do
-	if yes_no "Install $mod?"
-	then
-		link "$(pwd)/$mod" "$HOME/$mod"
-	fi
-done
+selected=( $(multiselector ${!CONFIGS[@]}) )
 
-for mod in "${CFGFOLDER[@]}"; do
-	if yes_no "Install $mod?"
-	then
-		link "$(pwd)/$mod" "$HOME/.config/$mod"
-	fi
+for cnf in "${selected[@]}"; do
+	echo "$(pwd)/$cnf  $HOME/${CONFIGS[$cnf]}/$cnf"
+	link "$(pwd)/$cnf" "$HOME/${CONFIGS[$cnf]}/$cnf"
 done
 
 #.files is used to tell scripts where to look for the dotfiles
 if yes_no "Generate '.files'?"; then
-	echo "DOTFILEBASE=\"$WORKDIR\"" > $HOME/.files
+	echo "DOTFILEBASE=\"$(pwd)\"" > $HOME/.files
 fi
 
