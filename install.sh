@@ -113,29 +113,12 @@ if [ $# -gt 0 ]
 then
 	for i in "$@"
 	do
-		echo "Install $i to"
-		if [ -e $i ]
-		then
-			selector "~" "~/.config" "Custom location" "Abort"
-			case $? in
-			0)
-				export INSTPATH="$HOME";;
-			1)
-				export INSTPATH="$HOME/.config";;
-			2)
-				echo custom
-				continue;;
-			*)
-				echo Abort.
-				continue;;
-			esac
-			echo aaa $INSTPATH/$i
-			link $(pwd)/$i $INSTPATH/$(basename $i)
-			unset INSTPATH
+		if [ ! -z ${CONFIGS[$i]} ]; then
+			echo "Install $(pwd)/$i to $HOME/${CONFIGS[$i]}/$i"
+			link "$(pwd)/$i" "$HOME/${CONFIGS[$i]}/$i"
 		else
-			echo $i does not exist. Skipping.
+			echo $i Not found. Skipping.
 		fi
-
 	done
 	exit 0
 fi
@@ -151,7 +134,7 @@ git submodule update
 selected=( $(multiselector ${!CONFIGS[@]}) )
 
 for cnf in "${selected[@]}"; do
-	echo "$(pwd)/$cnf  $HOME/${CONFIGS[$cnf]}/$cnf"
+	echo "Install $(pwd)/$cnf to $HOME/${CONFIGS[$cnf]}/$cnf"
 	link "$(pwd)/$cnf" "$HOME/${CONFIGS[$cnf]}/$cnf"
 done
 
