@@ -2,20 +2,11 @@
 
 #['name']='install location'
 declare -A CONFIGS
-CONFIGS=( 	["sway"]=".config"
-		["alacritty"]=".config"
-		["polybar"]=".config"
-		["powerline"]=".config"
-		["nvim"]=".config"
-		["termite"]=".config"
-		["twmn"]=".config"
-		[".i3"]="."
+CONFIGS=( UU	["nvim"]=".config"
 		[".vim"]="."
 		[".xinitrc"]="."
 		[".compton.conf"]="."
 		[".bashrc"]="."
-		[".Xresources"]="."
-		[".radare2rc"]="."
 		[".bash_profile"]="." )
 
 #1: message
