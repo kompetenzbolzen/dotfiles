@@ -2,7 +2,7 @@
 
 #['name']='install location'
 declare -A CONFIGS
-CONFIGS=( UU	["nvim"]=".config"
+CONFIGS=(	["nvim"]=".config"
 		[".vim"]="."
 		[".xinitrc"]="."
 		[".compton.conf"]="."
