@@ -1,7 +1,0 @@
-#!/bin/bash 
-cd ~
-
-sudo -b pulseaudio --system
-
-startx -- :0 -seat seat0 -layout Layout0 &
-startx -- :1 -seat seat1 -layout Layout1  
