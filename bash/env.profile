@@ -13,7 +13,7 @@ appendpath "$DOTFILEBASE/scripts"
 export PATH
 unset appendpath
 
-export EDITOR=nvim
+#export EDITOR=nvim
 
 #Java Gradle hopme PATH
-export GRADLE_USER_HOME=~/.gradle
+#export GRADLE_USER_HOME=~/.gradle

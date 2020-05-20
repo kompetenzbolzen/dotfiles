@@ -4,8 +4,8 @@ alias ls="ls --color"
 alias la="ls -a"
 alias ll="ls -lh"
 
-alias vim="nvim"
+#alias vim="nvim"
 
-alias ssh="TERM=xterm-color ssh"
+#alias ssh="TERM=xterm-color ssh"
 
-alias gradle="./gradlew"
+#alias gradle="./gradlew"
