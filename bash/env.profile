@@ -14,3 +14,6 @@ export PATH
 unset appendpath
 
 export EDITOR=nvim
+
+#Java Gradle hopme PATH
+export GRADLE_USER_HOME=~/.gradle

@@ -32,6 +32,7 @@ xrdb .Xresources
 
 setxkbmap -layout de
 compton &
+dunst &
 
 if [ $DISPLAY -e ":0" ]; then
 	lxqt-policykit-agent &

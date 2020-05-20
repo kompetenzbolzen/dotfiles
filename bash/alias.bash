@@ -7,3 +7,5 @@ alias ll="ls -lh"
 alias vim="nvim"
 
 alias ssh="TERM=xterm-color ssh"
+
+alias gradle="./gradlew"
