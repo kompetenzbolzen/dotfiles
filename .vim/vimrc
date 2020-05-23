@@ -60,7 +60,7 @@ nmap <silent> <C-e> :e .<CR>
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
 
-au filetype c* nmap <silent> <F8> :make<CR>
+au filetype c* nmap <silent> <F8> :Make<CR>
 au filetype sh nmap <silent> <F8> :Runbuffer<CR>
 au filetype python nmap <silent> <F8> :Runbuffer<CR>
 
@@ -81,10 +81,6 @@ nmap <silent> <F4> :tabnew<CR>:e .<CR>
 
 command -bar InsertHeader call Fileheader()
 
-function Fileheader()
-  cursor(1,1)
-endfunction
-
 command -bar Suw :w !SUDO_ASKPASS="/usr/lib/ssh/ssh-askpass" sudo -A  tee %
 
 " Command HEXMODE 
@@ -93,23 +89,17 @@ command -bar Hexmode call ToggleHex()
 "^] Jump to tag, ^t jump back
 command! MakeTags !ctags -R .
 
-command -bar Newterm call Create_term()
-command -bar Runbuffer call Run_buffer()
+command -bar Newterm call Run_in_terminal("")
+command -bar Runbuffer call Run_in_terminal(expand("%:p"))
+command -bar Make call Run_in_terminal("make")
 
 " ===========
 " FUNCTIONS
 " ===========
 
-function Create_term()
+function Run_in_terminal(prog)
 	tabnew
-	terminal
-	startinsert
-endfunction
-
-function Run_buffer()
-	let filename = expand("%:p")
-	tabnew
-	execute "terminal" . filename
+	execute "terminal " . a:prog
 	startinsert
 endfunction
 
