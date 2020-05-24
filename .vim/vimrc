@@ -60,19 +60,18 @@ nmap <silent> <C-e> :e .<CR>
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
 
-au filetype c* nmap <silent> <F8> :Make<CR>
-au filetype sh nmap <silent> <F8> :Runbuffer<CR>
-au filetype python nmap <silent> <F8> :Runbuffer<CR>
+au filetype c* nmap <silent> <F4> :Make<CR>
+au filetype sh nmap <silent> <F4> :Runbuffer<CR>
+au filetype python nmap <silent> <F4> :Runbuffer<CR>
+
+nmap <silent> <F3> :Newterm<CR>
 
 nmap <silent> <F5> :NERDTreeToggle<CR>
 nmap <silent> <F6> :TlistToggle<CR>
-nmap <silent> <F7> :Newterm<CR>
 
 "Tab mgmt
-nmap <silent> <F1> :tabclose<CR>
-nmap <silent> <F2> :tabprevious<CR>
-nmap <silent> <F3> :tabnext<CR>
-nmap <silent> <F4> :tabnew<CR>:e .<CR>
+nmap <silent> gc :tabclose<CR>
+nmap <silent> gn :tabnew<CR>:e .<CR>
 
 
 " ===========
