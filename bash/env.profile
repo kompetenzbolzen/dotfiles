@@ -9,6 +9,7 @@ function appendpath() {
 
 appendpath "$HOME/bin"
 appendpath "$DOTFILEBASE/scripts"
+appendpath "$HOME/.local/bin"
 
 export PATH
 unset appendpath
