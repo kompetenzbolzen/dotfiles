@@ -78,8 +78,6 @@ nmap <silent> gn :tabnew<CR>:e .<CR>
 " COMMANDS
 " ===========
 
-command -bar InsertHeader call Fileheader()
-
 command -bar Suw :w !SUDO_ASKPASS="/usr/lib/ssh/ssh-askpass" sudo -A  tee %
 
 " Command HEXMODE 
@@ -91,10 +89,17 @@ command! MakeTags !ctags -R .
 command -bar Newterm call Run_in_terminal("")
 command -bar Runbuffer call Run_in_terminal(expand("%:p"))
 command -bar Make call Run_in_terminal("make")
+command -bar Fileheader call Insert_Header(expand("%"))
 
 " ===========
 " FUNCTIONS
 " ===========
+
+function Insert_Header(name)
+	let l:year=system("date +%Y")
+	call append("0", ["/*", " * ".a:name, " * (c) ".strftime("%Y"), " * License: ", "*/"])
+	startinsert
+endfunction
 
 function Run_in_terminal(prog)
 	tabnew
