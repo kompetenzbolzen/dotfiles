@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [ $# -eq 0 ]; then
+	echo No arguments
+	exit 1
+fi
+
+FILES=()
+
+for arg in $@; do
+	[ -d $arg ] && FILES+=($(find $arg -type f))
+	[ -f $arg ] && FILES+=($arg)
+done
+
+grep -IHn -e ".*\s$" ${FILES[@]}
