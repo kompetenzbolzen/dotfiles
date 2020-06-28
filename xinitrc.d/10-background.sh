@@ -1,12 +1,15 @@
 #!/bin/sh
 
 #Screen background feh
-shopt -s nullglob
+if [ -f ~/.files ]; then
+	source ~/.files
+	shopt -s nullglob
 
-pics=(~/vimconfig/pictures/b_*)
-len=${#pics[*]}
-ran=$(($RANDOM % len))
+	pics=($DOTFILEBASE/pictures/b_*)
+	len=${#pics[*]}
+	ran=$(($RANDOM % len))
 
-feh --bg-fill ${pics[$ran]}
+	feh --bg-fill ${pics[$ran]}
 
-unset pics len ran
+	unset pics len ran
+fi
