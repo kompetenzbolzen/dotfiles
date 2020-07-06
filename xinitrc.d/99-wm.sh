@@ -1,6 +1,6 @@
 #!/bin/sh
 
-compton &
+picom --experimental-backends &
 twmnd &
 
 keepassxc &
