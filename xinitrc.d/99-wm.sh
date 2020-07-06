@@ -1,7 +1,8 @@
 #!/bin/sh
 
-
 compton &
-dunst &
+twmnd &
+
+keepassxc &
 
 exec i3
