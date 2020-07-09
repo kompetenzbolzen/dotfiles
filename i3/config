@@ -32,6 +32,8 @@ bindsym $mod+Shift+BackSpace move scratchpad
 bindsym $mod+BackSpace scratchpad show
 bindsym $mod+minus [class="KeePassXC"] scratchpad show
 
+bindsym $mod+g exec "mouse-switchscreen"
+
 # Applications
 
 for_window [class="KeePassXC"] move scratchpad
