@@ -1,3 +1,3 @@
 # vi: ft=sh
 
-[ -z $SSH_AGENT_PID ] && eval `ssh-agent`
+[ -z $SSH_AUTH_SOCK ] && eval `ssh-agent`
