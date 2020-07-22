@@ -20,6 +20,7 @@ let g:airline#extensions#whitespace#enabled = 1
 let g:airline_powerline_fonts = 1
 
 "show line endings and tabs
+set listchars=tab:>\ ,trail:~,extends:>,precedes:<
 set list
 
 " Use todo#Complete as the omni complete function for todo files
@@ -103,8 +104,12 @@ function Insert_Header(name)
 endfunction
 
 function Run_in_terminal(prog)
+	if !has('terminal')
+		return
+	endif
+
 	tabnew
-	execute "terminal " . a:prog
+	execute "terminal ++curwin" . a:prog
 	startinsert
 endfunction
 
