@@ -1,6 +1,8 @@
 " ===========
 " VARIABLES
 " ===========
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+execute pathogen#infect()
 
 set nocompatible
 "Disable bell
@@ -34,7 +36,6 @@ let mapleader = "-"
 let leader = "-"
 let maplocalleader = "-"
 
-execute pathogen#infect()
 syntax on
 filetype plugin indent on
 

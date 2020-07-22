@@ -22,3 +22,6 @@
 [submodule ".vim/bundle/todo.txt-vim"]
 	path = .vim/bundle/todo.txt-vim
 	url = https://github.com/dbeniamine/todo.txt-vim.git
+[submodule ".vim/bundle/vim-pathogen"]
+	path = .vim/bundle/vim-pathogen
+	url = https://github.com/tpope/vim-pathogen.git
