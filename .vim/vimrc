@@ -19,6 +19,19 @@ let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#whitespace#enabled = 1
 let g:airline_powerline_fonts = 1
 
+"All things cursor
+set guicursor+=a:blinkon0 "disable blinking
+if &term =~ "xterm\\|rxvt"
+	" 1 or 0 -> blinking block
+	" 2 -> solid block
+	" 3 -> blinking underscore
+	" 4 -> solid underscore
+	" 5 -> blinking vertical bar
+	" 6 -> solid vertical bar
+	let &t_SI .= "\<Esc>[6 q" " Normal
+	let &t_EI .= "\<Esc>[2 q" " Insert
+endif
+
 "show line endings and tabs
 set listchars=tab:>\ ,trail:~,extends:>,precedes:<
 set list
@@ -109,7 +122,7 @@ function Run_in_terminal(prog)
 	endif
 
 	tabnew
-	execute "terminal ++curwin" . a:prog
+	execute "terminal ++curwin " . a:prog
 	startinsert
 endfunction
 
