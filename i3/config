@@ -25,7 +25,7 @@ bindsym $mod+Shift+w exec "i3lock -p win -i ~/vimconfig/pictures/lock.png"
 bindsym $mod+p exec "scrot ~/Screenshots/Screenshot%Y-%m-%d%H:%M:%S.png"
 
 # rofi
-bindsym $mod+d exec rofi -show run
+bindsym $mod+d exec rofi -show run -run-command "bash -i -c '{cmd}'"
 
 # Scratchpad
 bindsym $mod+Shift+BackSpace move scratchpad
@@ -42,6 +42,7 @@ for_window [class="feh"] floating enable
 #titanfall
 for_window [class="steam_app_1182480"] floating enable
 for_window [title="termite_floating"] floating enable
+for_window [title="termite_floating"] resize set 1000 700
 
 # change focus
 bindsym $mod+j focus left
