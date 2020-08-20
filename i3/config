@@ -36,7 +36,7 @@ bindsym $mod+g exec "mouse-switchscreen"
 
 # Applications
 
-for_window [class="KeePassXC"] move scratchpad
+for_window [class="KeePassXC" title="^.*KeePassXC$"] move scratchpad
 
 for_window [class="feh"] floating enable
 #titanfall
