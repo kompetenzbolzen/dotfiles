@@ -12,12 +12,21 @@ CONFIGS=( 	["sway"]=".config"
 		["picom"]=".config"
 		["i3"]=".config"
 		["termux.properties"]=".termux"
+		["bspwm"]=".config"
+		["sxhkd"]=".config"
 		[".vim"]="."
 		[".xinitrc"]="."
 		[".bashrc"]="."
 		[".Xresources"]="."
 		[".radare2rc"]="."
-		[".bash_profile"]="." )
+		[".bash_profile"]="."
+	)
+
+declare -A SETS
+SETS=(		["base"]=".vim .bashrc .bash_profile"
+		["desktop"]="base termite twmn picom i3 powerline .xinitrc .Xresources"
+	)
+
 
 #1: message
 yes_no()
@@ -48,7 +57,7 @@ multiselector() {
 	for sel in $inp; do
 		local reg_range="^[0-9]+\-[0-9]+$"
 		local reg_single="^[0-9]+$"
-		local reg_all="^[aA]*"
+		local reg_all="^[aA]+"
 
 		if [[ $sel =~ $reg_range ]]; then
 			range=($(echo $sel | tr "-" " "))
@@ -110,17 +119,35 @@ link()
 	ln -s "$1" "$2"
 }
 
+choose_target(){
+	if [ ! -z ${CONFIGS[$1]} ]; then
+		echo "Install $(pwd)/$1 to $HOME/${CONFIGS[$1]}/$1"
+		link "$(pwd)/$1" "$HOME/${CONFIGS[$1]}/$1"
+	elif [ ! -z "${SETS[$1]}" ]; then
+		for f in ${SETS[$1]}; do
+			choose_target $f
+		done
+	else
+		echo Target $1 not found. skipping.
+	fi
+}
+
+housekeeping(){
+	git submodule init
+	git submodule update
+
+	#.files is used to tell scripts where to look for the dotfiles
+	if yes_no "Generate '.files'?"; then
+		echo "DOTFILEBASE=\"$(pwd)\"" > $HOME/.files
+	fi
+}
+
 if [ $# -gt 0 ]
 then
-	for i in "$@"
-	do
-		if [ ! -z ${CONFIGS[$i]} ]; then
-			echo "Install $(pwd)/$i to $HOME/${CONFIGS[$i]}/$i"
-			link "$(pwd)/$i" "$HOME/${CONFIGS[$i]}/$i"
-		else
-			echo $i Not found. Skipping.
-		fi
+	for i in "$@"; do
+		choose_target "$i"
 	done
+	housekeeping
 	exit 0
 fi
 
@@ -129,18 +156,10 @@ cd $WORKDIR
 echo Working in $WORKDIR
 echo Homedir is $HOME
 
-git submodule init
-git submodule update
-
-selected=( $(multiselector ${!CONFIGS[@]}) )
+selected=( $(multiselector ${!CONFIGS[@]} ${!SETS[@]}) )
 
 for cnf in "${selected[@]}"; do
-	echo "Install $(pwd)/$cnf to $HOME/${CONFIGS[$cnf]}/$cnf"
-	link "$(pwd)/$cnf" "$HOME/${CONFIGS[$cnf]}/$cnf"
+	choose_target "$cnf"
 done
 
-#.files is used to tell scripts where to look for the dotfiles
-if yes_no "Generate '.files'?"; then
-	echo "DOTFILEBASE=\"$(pwd)\"" > $HOME/.files
-fi
-
+housekeeping
