@@ -320,21 +320,6 @@ default_floating_border none
 
 gaps inner 5
 
-bar {
-	i3bar_command i3bar -t
-	status_command python /usr/share/powerline/bindings/i3/powerline-i3.py
-	#status_command i3status
-	font pango:DejaVu Sans Mono for Powerline 12
-
-	colors {
-		background 		#00000000
-		focused_workspace	#00000000 #00000000 #FFFFFF
-		active_workspace	#00000000 #00000000 #FFFFFF
-		inactive_workspace	#00000000 #00000000 #555555
-		urgent_workspace	#00000000 #FF000033 #555555
-	}
-}
-
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl -- set-sink-volume 0 +5%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl -- set-sink-volume 0 -5%
@@ -352,3 +337,5 @@ bindsym XF86AudioNext exec --no-startup-id playerctl next
 # https://gitlab.com/wavexx/acpilight
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5 -fps 30 # increase screen brightness
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5 -fps 30 # decrease screen brightness
+
+exec --no-startup-id "launch-polybar.sh"

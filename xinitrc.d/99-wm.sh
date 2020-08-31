@@ -1,8 +1,8 @@
 #!/bin/sh
 
 picom --experimental-backends &
-twmnd &
+deadd-notification-center &
 
 keepassxc &
 
-exec i3
+i3
