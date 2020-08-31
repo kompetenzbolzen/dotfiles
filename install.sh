@@ -14,6 +14,7 @@ CONFIGS=( 	["sway"]=".config"
 		["termux.properties"]=".termux"
 		["bspwm"]=".config"
 		["sxhkd"]=".config"
+		["deadd"]=".config"
 		[".vim"]="."
 		[".xinitrc"]="."
 		[".bashrc"]="."
@@ -24,7 +25,7 @@ CONFIGS=( 	["sway"]=".config"
 
 declare -A SETS
 SETS=(		["base"]=".vim .bashrc .bash_profile"
-		["desktop"]="base termite twmn picom i3 powerline .xinitrc .Xresources"
+		["desktop"]="base termite twmn picom i3 powerline deadd .xinitrc .Xresources"
 	)
 
 
