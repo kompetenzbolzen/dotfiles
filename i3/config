@@ -338,4 +338,4 @@ bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5 -fps 30 # increase screen brightness
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5 -fps 30 # decrease screen brightness
 
-exec --no-startup-id "launch-polybar.sh"
+exec --no-startup-id "launch_polybar.sh"
