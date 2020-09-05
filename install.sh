@@ -25,7 +25,7 @@ CONFIGS=( 	["sway"]=".config"
 
 declare -A SETS
 SETS=(		["base"]=".vim .bashrc .bash_profile"
-		["desktop"]="base termite twmn picom i3 powerline deadd .xinitrc .Xresources"
+		["desktop"]="base termite picom i3 deadd polybar .xinitrc .Xresources"
 	)
 
 
