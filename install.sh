@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#['name']='install location'
+#['name']='install location relative to $HOME'
 declare -A CONFIGS
 CONFIGS=( 	["sway"]=".config"
 		["alacritty"]=".config"
@@ -30,8 +30,7 @@ SETS=(		["base"]=".vim .bashrc .bash_profile"
 
 
 #1: message
-yes_no()
-{
+yes_no() {
 	read -p "$1 (y/[n])" inp
 	case $inp in
 		[yY]* ) return 0;;
@@ -79,8 +78,7 @@ multiselector() {
 	echo $ret
 }
 
-selector()
-{
+selector() {
 	local regex="^-?[0-9]+\$"
 	local cnt=0
 	for selection in "$@"
@@ -103,8 +101,7 @@ selector()
 }
 
 #1: source 2: destination
-link()
-{
+link() {
 	if [ -e $2 ]; then
 		if yes_no "$(basename $2) exists. Overwrite?"; then
 			if [ -d $2 ]; then
@@ -120,7 +117,7 @@ link()
 	ln -s "$1" "$2"
 }
 
-choose_target(){
+choose_target() {
 	if [ ! -z ${CONFIGS[$1]} ]; then
 		echo "Install $(pwd)/$1 to $HOME/${CONFIGS[$1]}/$1"
 		link "$(pwd)/$1" "$HOME/${CONFIGS[$1]}/$1"
@@ -133,7 +130,7 @@ choose_target(){
 	fi
 }
 
-housekeeping(){
+housekeeping() {
 	git submodule init
 	git submodule update
 
