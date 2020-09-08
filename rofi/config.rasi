@@ -1,0 +1,6 @@
+configuration {
+ modi: "window,drun,ssh";
+ theme: "sidebar";
+ combi-modi: "window,drun,ssh";
+ show-icons: true;
+}

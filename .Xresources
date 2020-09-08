@@ -14,10 +14,3 @@ URxvt.url-launcher: /usr/bin/xdg-open
 URxvt.matcher.button: 1
 
 Xft.dpi: 96
-
-! State:           'bg',       'fg',       'bgalt',    'hlbg',     'hlfg'
-rofi.color-normal: #000000AA,  #FFFFFFFF,  #000000AA,  #333333AA,  #FFFFFF
-rofi.color-urgent: #000000AA,  #FFFFFFFF,  #000000AA,  #333333AA,  #FFFFFF
-rofi.color-active: #000000AA,  #FFFFFFFF,  #000000AA,  #333333AA,  #FFFFFF
-!                  'background', 'border', 'separator'
-rofi.color-window: #000000AA,    #00000000,  #aaaaaa
