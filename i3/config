@@ -26,7 +26,7 @@ bindsym $mod+Shift+w exec "XSECURELOCK_PASSWORD_PROMPT=kaomoji xsecurelock"
 bindsym $mod+p exec "scrot ~/Screenshots/Screenshot%Y-%m-%d%H:%M:%S.png"
 
 # rofi
-bindsym $mod+d exec rofi -show run -run-command "bash -i -c '{cmd}'"
+bindsym $mod+d exec "rofi window,drun,ssh -show drun -terminal termite"
 
 # Scratchpad
 bindsym $mod+Shift+BackSpace move scratchpad
