@@ -321,8 +321,9 @@ label-charging = %percentage%% %time% %consumption%W
 format-charging = <animation-charging> <label-charging>
 format-charging-underline = 
 
+; <animation-discharging>
 label-discharging = %percentage%% %time% %consumption%W
-format-discharging = <animation-discharging> <label-discharging>
+format-discharging = <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
 
 format-full-prefix = "F "
@@ -339,7 +340,7 @@ animation-charging-1 = :
 animation-charging-foreground = ${colors.foreground-alt}
 animation-charging-framerate = 750
 
-animation-discharging-0 = :
+animation-discharging-0 = :
 animation-discharging-1 = -
 animation-discharging-foreground = ${colors.foreground-alt}
 animation-discharging-framerate = 750
