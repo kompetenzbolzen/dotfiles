@@ -111,8 +111,9 @@ command -bar Fileheader call Insert_Header(expand("%"))
 " ===========
 
 function Insert_Header(name)
-	let l:year=system("date +%Y")
-	call append("0", ["/*", " * ".a:name, " * (c) ".strftime("%Y"), " * License: ", "*/"])
+	let l:name=systemlist("git config --global --get user.name")[0]
+	let l:mail=systemlist("git config --global --get user.email")[0]
+	call append("0", ["/*", " * ".a:name, " * (c) ".strftime("%Y")." ".l:name." <".l:mail.">", " * License: ", "*/"])
 	startinsert
 endfunction
 
