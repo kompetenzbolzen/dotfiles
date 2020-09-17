@@ -136,7 +136,8 @@ housekeeping() {
 	git submodule update
 
 	#.files is used to tell scripts where to look for the dotfiles
-	if yes_no "Generate '.files'?"; then
+	[ -f "$HOME/.files" ] && source "$HOME/.files"
+	if [ $DOTFILEBASE != "$(pwd)" ] && yes_no "'.files' out of date. Regenerate?"; then
 		echo "DOTFILEBASE=\"$(pwd)\"" > $HOME/.files
 	fi
 }
