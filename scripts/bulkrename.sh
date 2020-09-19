@@ -5,9 +5,7 @@
 
 EDITOR=${EDITOR=:vi}
 
-while [ -z "$TMPFILE" -o -e "$TMPFILE" ]; do
-	TMPFILE="/tmp/bulkrename.$RANDOM"
-done
+TMPFILE="$(mktemp)"
 touch "$TMPFILE"
 
 FILES=( )
@@ -31,7 +29,7 @@ while read line; do
 		if [ -e "${FILES[$i]}" -a ! -e "$line" ]; then
 			mv "${FILES[$i]}" "$line"
 		else
-			echo Error. does target already exist?
+			echo "Skipping ${FILES[$i]} -> $line . Target already exists."
 		fi
 	fi
 
