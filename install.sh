@@ -151,7 +151,7 @@ then
 	exit 0
 fi
 
-WORKDIR=$(dirname $0)
+WORKDIR=$(realpath $(dirname $0))
 cd $WORKDIR
 echo Working in $WORKDIR
 echo Homedir is $HOME
