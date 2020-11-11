@@ -4,7 +4,7 @@
 
 # Set this to your (stylus) device. Find it by running:
 # xsetwacom --list devices
-DEVICE='Wacom Intuos PT S Pen stylus'
+DEVICES=("Wacom Intuos PT S Pen stylus" "Wacom Intuos PT S Pen eraser")
 
 # These numbers are specific for each device. Get them by running:
 # xsetwacom --set "Your device name here" ResetArea
@@ -68,8 +68,10 @@ else
  NEWAREAY="$AREAY"
 fi
 
-xsetwacom --set "$DEVICE" Area 0 0 "$NEWAREAX" "$NEWAREAY"
-xsetwacom --set "$DEVICE" MapToOutput "$POSITION"
+for DEVICE in "${DEVICES[@]}"; do
+ xsetwacom --set "$DEVICE" Area 0 0 "$NEWAREAX" "$NEWAREAY"
+ xsetwacom --set "$DEVICE" MapToOutput "$POSITION"
+done
 
 
 # $ xsetwacom --list devices
