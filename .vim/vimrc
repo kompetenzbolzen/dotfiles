@@ -2,16 +2,12 @@
 " VARIABLES
 " ===========
 runtime bundle/vim-pathogen/autoload/pathogen.vim
-execute pathogen#infect()
+execute pathogen#infect('bundle-active/{}')
 
 set nocompatible
 "Disable bell
 set vb
 set t_vb=
-
-"Search in all of the project tree
-set path+=**
-set wildmenu
 
 set ttimeoutlen=10
 let g:airline#extensions#tabline#enabled = 1
