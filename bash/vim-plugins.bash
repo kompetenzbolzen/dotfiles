@@ -3,6 +3,7 @@ function vim-add() {
 
 	local NAME=$(basename "$1")
 	
+	[ -d "$DOTFILEBASE/.vim/bundle-active" ] || mkdir "$DOTFILEBASE/.vim/bundle-active"
 	[ -d "$DOTFILEBASE/.vim/bundle/$NAME" ] || return 1 # no such plugin
 	[ -L "$DOTFILEBASE/.vim/bundle-active/$NAME" ] && return 2 # Already exists
 
