@@ -1,6 +1,6 @@
 [colors]
 foreground = #ffffff
-background  = rgba (0,0,0,0.6)
+background  = rgba (0,0,0,0.8)
 
 [options]
-font = DejaVu Sans Mono for Powerline 10
+font = DejaVu Sans Mono for Powerline 12
