@@ -22,6 +22,7 @@ CONFIGS=( 	["sway"]=".config"
 		[".Xresources"]="."
 		[".radare2rc"]="."
 		[".bash_profile"]="."
+		["gpg-agent.conf"]=".gnupg"
 	)
 
 declare -A SETS
