@@ -2,7 +2,7 @@
 
 function options() {
 	cat << EOF
-supspend
+suspend
 shutdown
 reboot
 Xit
@@ -14,10 +14,10 @@ if [ $# -gt 0 ]; then
 		suspend)
 			systemctl suspend;;
 		shutdown)
-			systemctl shutdown;;
+			systemctl poweroff;;
 		reboot)
 			systemctl reboot;;
-		"exit i3")
+		Xit)
 			i3-msg exit;;
 		*)
 			options;;
