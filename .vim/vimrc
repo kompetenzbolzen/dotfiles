@@ -85,11 +85,11 @@ nmap <silent> gc :tabclose<CR>
 nmap <silent> gn :tabnew<CR>:e .<CR>
 
 " Smart brackets
-inoremap " ""<left>
-inoremap ' ''<left>
-inoremap ( ()<left>
-inoremap [ []<left>
-inoremap { {}<left>
+inoremap "" ""<left>
+inoremap '' ''<left>
+inoremap () ()<left>
+inoremap [] []<left>
+inoremap {} {}<left>
 inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
 
