@@ -28,3 +28,6 @@
 [submodule ".vim/bundle/completor.vim"]
 	path = .vim/bundle/completor.vim
 	url = https://github.com/maralla/completor.vim.git
+[submodule ".vim/bundle/icinga2.vim"]
+	path = .vim/bundle/icinga2.vim
+	url = https://github.com/crazy-canux/icinga2.vim.git
