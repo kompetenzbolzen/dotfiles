@@ -50,7 +50,7 @@ syntax on
 filetype plugin indent on
 
 "Line number Highlight
-set nu
+set nu rnu
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
 set foldmethod=syntax
