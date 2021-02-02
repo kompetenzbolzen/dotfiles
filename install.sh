@@ -16,6 +16,7 @@ CONFIGS=( 	["sway"]=".config"
 		["sxhkd"]=".config"
 		["deadd"]=".config"
 		["rofi"]=".config"
+		["autoload.cfg"]=".local/share/Steam/steamapps/common/Counter-Strike Global Offensive/csgo/cfg/"
 		[".vim"]="."
 		[".xinitrc"]="."
 		[".bashrc"]="."
@@ -104,12 +105,12 @@ selector() {
 
 #1: source 2: destination
 link() {
-	if [ -e $2 ]; then
+	if [ -e "$2" ]; then
 		if yes_no "$(basename $2) exists. Overwrite?"; then
-			if [ -d $2 ]; then
-				rm -R $2
+			if [ -d "$2" ]; then
+				rm -R "$2"
 			else
-				rm $2
+				rm "$2"
 			fi
 		else
 			return
@@ -120,7 +121,7 @@ link() {
 }
 
 choose_target() {
-	if [ ! -z ${CONFIGS[$1]} ]; then
+	if [ ! -z "${CONFIGS[$1]}" ]; then
 		echo "Install $(pwd)/$1 to $HOME/${CONFIGS[$1]}/$1"
 		link "$(pwd)/$1" "$HOME/${CONFIGS[$1]}/$1"
 	elif [ ! -z "${SETS[$1]}" ]; then
