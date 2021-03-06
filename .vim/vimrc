@@ -74,6 +74,8 @@ vnoremap <Space> zf
 au filetype c* nmap <silent> <F4> :Make<CR>
 au filetype sh nmap <silent> <F4> :Runbuffer<CR>
 au filetype python nmap <silent> <F4> :Runbuffer<CR>
+au filetype *tex nmap <silent> <F4> :Makelatex<CR>
+au filetype *tex nmap <silent> <F2> :Openpdf<CR>
 
 nmap <silent> <F3> :Newterm<CR>
 
@@ -107,8 +109,11 @@ command! MakeTags !ctags -R .
 
 command -bar Newterm call Run_in_terminal("")
 command -bar Runbuffer call Run_in_terminal(expand("%:p"))
-command -bar Make call Run_in_terminal("make")
+command -bar Make call Run_in_terminal("make run")
 command -bar Fileheader call Insert_Header(expand("%"))
+
+command -bar Makelatex silent! execute "!pdflatex % > /dev/null 2>&1 &" | redraw!
+command Openpdf silent! execute "!mupdf " . (join(split(expand("%"), '\.')[:-2], ".") . ".pdf") . " > /dev/null 2>&1 &" | redraw!
 
 " ===========
 " FUNCTIONS
@@ -117,7 +122,7 @@ command -bar Fileheader call Insert_Header(expand("%"))
 function Insert_Header(name)
 	let l:name=systemlist("git config --global --get user.name")[0]
 	let l:mail=systemlist("git config --global --get user.email")[0]
-	call append("0", ["/*", " * ".a:name, " * (c) ".strftime("%Y")." ".l:name." <".l:mail.">", " * License: ", " */"])
+	call append("0", ["/*", " * ".a:name, " * (c) ".strftime("%Y")." ".l:name." <".l:mail.">", " * License: All rights reserved.", " */"])
 	startinsert
 endfunction
 
