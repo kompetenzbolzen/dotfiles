@@ -17,6 +17,8 @@ let g:airline_powerline_fonts = 1
 
 let g:completor_clang_binary = '/usr/bin/clang'
 
+let g:rainbow_active = 1
+
 "All things cursor
 set guicursor+=a:blinkon0 "disable blinking
 if &term =~ "xterm\\|rxvt"
