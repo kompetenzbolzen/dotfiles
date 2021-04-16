@@ -13,3 +13,5 @@ alias gradle="./gradlew"
 alias gitls="git status --short ."
 
 alias reload="source $HOME/.bashrc"
+
+alias pip-upgrade-venv="pip freeze | cut -d'=' -f1 | xargs -n1 pip install -U"
