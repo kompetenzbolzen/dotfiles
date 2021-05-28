@@ -5,19 +5,39 @@ runtime bundle/vim-pathogen/autoload/pathogen.vim
 execute pathogen#infect('bundle-active/{}')
 
 set nocompatible
+
+" Tabs
+set tabstop=8
+set softtabstop=8
+set shiftwidth=8
+set noexpandtab
+
 "Disable bell
 set vb
 set t_vb=
 
 set ttimeoutlen=10
+
+" Flashy statusline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#whitespace#enabled = 1
+let g:airline#extensions#ale#enabled = 1
 let g:airline_powerline_fonts = 1
 
+" Completor config
 let g:completor_clang_binary = '/usr/bin/clang'
 
+" Enable colored brackets
 let g:rainbow_active = 1
+
+" ALE config
+let g:ale_completion_enabled = 1
+let g:ale_set_highlights = 0 "Highlights are annoying
+let g:ale_set_signs = 1
+"let g:ale_virtualtext_cursor = 1 " Only use one of the following
+let g:ale_cursor_detail = 1
+let g:ale_close_preview_on_insert = 1
 
 "All things cursor
 set guicursor+=a:blinkon0 "disable blinking
@@ -57,7 +77,7 @@ filetype plugin indent on
 set nu rnu
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
-set foldmethod=syntax
+"set foldmethod=syntax
 
 " ==============
 " SHORTCUTS
@@ -102,10 +122,9 @@ inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
 
 " completor
-
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <Tab> Tab_Or_Complete()
+"inoremap <expr> <Tab> Tab_Or_Complete()
 
 " ===========
 " COMMANDS
