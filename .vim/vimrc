@@ -27,10 +27,13 @@ set ttimeoutlen=10
 
 " Flashy statusline
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#whitespace#enabled = 1
+"let g:airline#extensions#branch#enabled = 1
+"let g:airline#extensions#whitespace#enabled = 1
 let g:airline#extensions#ale#enabled = 1
 let g:airline_powerline_fonts = 1
+let g:airline_highlighting_cache = 1
+
+set omnifunc=ale#completion#OmniFunc
 
 " Completor config
 let g:completor_clang_binary = '/usr/bin/clang'
@@ -133,7 +136,7 @@ inoremap {;<CR> {<CR>};<ESC>O
 " completor
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap  <C-CR> :ALEComplete<CR>
+"inoremap  <C-CR> :ALEComplete<CR>
 "inoremap <expr> <Tab> Tab_Or_Complete()
 
 " ===========
@@ -168,12 +171,18 @@ function Insert_Header(name)
 endfunction
 
 function Run_in_terminal(prog)
-	if !has('terminal')
-		return
+	let l:args = " "
+
+	if !has('nvim')
+		if !has('terminal')
+			return
+		endif
+
+		let l:args='++curwin'
 	endif
 
 	tabnew
-	execute "terminal ++curwin " . a:prog
+	execute "terminal " . l:args . " " . a:prog
 	startinsert
 endfunction
 
