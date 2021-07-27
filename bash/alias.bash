@@ -5,6 +5,8 @@ alias la="ls -a"
 alias ll="ls -lh"
 alias lla="ls -lha"
 
+alias vim="nvim"
+
 # Termite compat
 alias ssh="TERM=xterm-color ssh"
 
