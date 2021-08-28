@@ -1,6 +1,6 @@
 #!/bin/sh
 
-picom --experimental-backends &
+picom &
 deadd-notification-center &
 
 keepassxc &
