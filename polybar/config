@@ -158,8 +158,10 @@ label-urgent-padding = ${module/bspwm.label-urgent-padding}
 [module/xbacklight]
 type = internal/xbacklight
 
-format = <label> <bar>
-label = BL
+format = <label>
+label = %percentage%%
+format-prefix = "BL "
+format-prefix-foreground = ${colors.foreground-alt}
 
 bar-width = 10
 bar-indicator = |
