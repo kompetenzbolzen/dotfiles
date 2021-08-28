@@ -44,13 +44,13 @@ yes_no() {
 #interface on sterr
 multiselector() {
 	local argc=$#
-	local argv=($@)
+	local argv=( "$@" )
 	local cnt=0
 	local ret=""
 
 	for entry in "$@"; do
 		>&2 echo "$cnt) $entry"
-		((cnt=$cnt + 1))
+		((cnt=cnt + 1))
 	done
 
 	>&2 echo "Select entry(s)"
@@ -154,11 +154,11 @@ then
 fi
 
 WORKDIR=$(realpath $(dirname $0))
-cd $WORKDIR
-echo Working in $WORKDIR
-echo Homedir is $HOME
+cd "$WORKDIR" || (echo cd failed; exit 1)
+echo "Working in $WORKDIR"
+echo "Homedir is $HOME"
 
-selected=( $(multiselector ${!CONFIGS[@]} ${!SETS[@]}) )
+selected=( $(multiselector "${!CONFIGS[@]}" "${!SETS[@]}" ) )
 
 for cnf in "${selected[@]}"; do
 	choose_target "$cnf"
