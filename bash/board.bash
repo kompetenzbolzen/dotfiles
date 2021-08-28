@@ -3,11 +3,12 @@
 BB_HIST_DIR="$HOME/.cache/bashboard/"
 BB_SHORTCUT=()
 BB_LIST_LEN=5
+BB_PRUNE_DAYS=5
 
 [ ! -d "$BB_HIST_DIR" ] && mkdir -p "$BB_HIST_DIR"
 
 # format
-# NUM YYYY-MM-DD PATH
+# NUM EPOCH PATH
 
 # add ssh targets
 
@@ -69,7 +70,16 @@ function bb_prune {
 	# Older than...
 	# Folder exists?
 	# shorten list
-	return 1
+	local COUNT FILEDATE FILEPATH COMP
+	COMP=$(date -d "-${BB_PRUNE_DAYS}days" +%s)
+
+	echo -n > "$BB_HIST_DIR/history.new"
+
+	while read -r COUNT FILEDATE FILEPATH; do
+		[ $FILEDATE -ge $COMP ] && echo "$COUNT $FILEDATE $FILEPATH" >> "$BB_HIST_DIR/history.new"
+	done < "$BB_HIST_DIR/history"
+
+	mv "$BB_HIST_DIR/history.new" "$BB_HIST_DIR/history"
 }
 
 bashboard
