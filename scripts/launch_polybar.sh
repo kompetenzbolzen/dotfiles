@@ -1,7 +1,13 @@
 #!/bin/bash
 
-killall polybar
+killall polybar > /dev/null 2>&1
 
-for m in $(polybar --list-monitors | cut -d":" -f1); do
-    MONITOR=$m polybar --reload jonny &
-done
+while read -r MON RES PRIM; do
+	if [ -n "$PRIM" ]; then
+		BAR=main
+	else
+		BAR=secondary
+	fi
+
+	MONITOR=$MON polybar --reload $BAR &
+done <<< "$(polybar --list-monitors | tr -d ':')"

@@ -1,3 +1,5 @@
+; vim:ft=dosini
+
 [colors]
 background = #000000
 background-alt = #222222ff
@@ -7,13 +9,10 @@ primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
 
-[bar/jonny]
+[bar/main]
 monitor = ${env:MONITOR:}
 width = 100%
 height = 25
-;offset-x = 1%
-;offset-y = 1%
-;radius = 6.0
 fixed-center = true
 
 background = ${colors.background}
@@ -35,8 +34,8 @@ font-0 = DejaVu Sans Mono for Powerline:pixelsize=10;3
 font-1 = unifont:fontformat=truetype:size=10:antialias=false;0
 font-2 = siji:pixelsize=10;1
 
-modules-left = xwindow i3 powermenu
-modules-center = date
+modules-left = xwindow date powermenu
+modules-center = i3
 modules-right = filesystem backlight-acpi pulseaudio memory cpu wlan eth battery temperature
 
 separator = |
@@ -46,7 +45,45 @@ tray-padding = 2
 
 wm-restack = i3
 bottom = true
-;override-redirect = true
+
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+
+[bar/secondary]
+monitor = ${env:MONITOR:}
+width = 100%
+height = 25
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = #f00
+
+;border-size = 4
+Iborder-color = #00000000
+
+padding-left = 0
+padding-right = 2
+
+module-margin-left = 1
+module-margin-right = 1
+
+font-0 = DejaVu Sans Mono for Powerline:pixelsize=10;3
+font-1 = unifont:fontformat=truetype:size=10:antialias=false;0
+font-2 = siji:pixelsize=10;1
+
+modules-left = xwindow
+modules-center = i3
+modules-right =
+
+separator = |
+
+wm-restack = i3
+bottom = true
 
 scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
@@ -238,7 +275,7 @@ interval = 3.0
 ;format-connected-underline = 
 ;format-connected-prefix = "ETH "
 format-connected-prefix-foreground = ${colors.foreground-alt}
-label-connected = %downspeed:10% \/ %upspeed:10% /\
+label-connected = %downspeed:10%↓ %upspeed:10%↑
 label-connected-font = 0
 
 format-disconnected =
@@ -310,11 +347,6 @@ format-full-prefix = "F "
 format-full-prefix-foreground = ${colors.foreground-alt}
 format-full-underline = ${self.format-charging-underline}
 
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-foreground = ${colors.foreground-alt}
-
 animation-charging-0 = -+
 animation-charging-1 = +-
 animation-charging-foreground = ${colors.foreground-alt}
@@ -330,19 +362,14 @@ type = internal/temperature
 thermal-zone = 0
 warn-temperature = 60
 
-format = <ramp> <label>
+format = <label>
 format-underline = 
-format-warn = <ramp> <label-warn>
+format-warn = <label-warn>
 format-warn-underline = ${self.format-underline}
 
 label = %temperature-c%
 label-warn = %temperature-c%
 label-warn-foreground = ${colors.secondary}
-
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-foreground = ${colors.foreground-alt}
 
 [module/powermenu]
 type = custom/menu
@@ -385,4 +412,3 @@ screenchange-reload = true
 margin-top = 5
 margin-bottom = 5
 
-; vim:ft=dosini
