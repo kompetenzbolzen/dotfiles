@@ -54,7 +54,7 @@ tray-padding = 2
 
 [bar/secondary]
 inherit = bar/template
-modules-left = xwindow
+modules-left = xwindow date
 modules-center = i3
 modules-right =
 
@@ -117,8 +117,8 @@ label-visible-padding = ${self.label-focused-padding}
 
 ; urgent = Workspace with urgency hint set
 label-urgent = %index%
-label-urgent-background = ${module/bspwm.label-urgent-background}
-label-urgent-padding = ${module/bspwm.label-urgent-padding}
+label-urgent-background = ${colors.alert}
+label-urgent-padding = ${self.label-focused-padding}
 
 ; Separator in between workspaces
 ; label-separator = |
@@ -231,16 +231,9 @@ type = internal/date
 interval = 1
 
 date = %d.%m.%Y
-;date-alt = " %Y-%m-%d"
-
 time = %H:%M:%S
-;time-alt = %H:%M:%S
-
-format-prefix =
-format-prefix-foreground = ${colors.foreground-alt}
-;format-underline = ${colors.secondary}
-
-label = %date% %time%
+format = <label>
+label = %{F#555} %date% %{F-} %time%
 
 [module/pulseaudio]
 type = internal/pulseaudio
