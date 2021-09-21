@@ -33,8 +33,6 @@ let g:airline#extensions#ale#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline_highlighting_cache = 1
 
-set omnifunc=ale#completion#OmniFunc
-
 " Completor config
 let g:completor_clang_binary = '/usr/bin/clang'
 
@@ -42,7 +40,10 @@ let g:completor_clang_binary = '/usr/bin/clang'
 let g:rainbow_active = 1
 
 " ALE config
-let g:ale_set_highlights = 0 "Highlights are annoying
+set omnifunc=ale#completion#OmniFunc
+let g:ale_completion_enabled = 1
+let g:ale_completion_autoimport = 1
+let g:ale_set_highlights = 1 "Highlights are annoying
 let g:ale_set_signs = 1
 "let g:ale_virtualtext_cursor = 1 " Only use one of the following
 let g:ale_cursor_detail = 1
