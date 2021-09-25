@@ -12,9 +12,11 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
 fi
 
 if [ -f ~/.files ]; then
-	source ~/.files
+	. "$HOME/.files"
 	for f in $DOTFILEBASE/xinitrc.d/*; do
-		[ -x "$f" ] && . "$f"
+		# Some scripts require bash, but .xinitrc is sourced from sh.
+		# If a script is marked executable, it is executed instead of sourced.
+		[ -x "$f" ] && exec "$f" || . "$f"
 	done
 	unset f
 fi
