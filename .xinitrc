@@ -16,7 +16,7 @@ if [ -f ~/.files ]; then
 	for f in $DOTFILEBASE/xinitrc.d/*; do
 		# Some scripts require bash, but .xinitrc is sourced from sh.
 		# If a script is marked executable, it is executed instead of sourced.
-		[ -x "$f" ] && exec "$f" || . "$f"
+		[ -x "$f" ] && "$f" || . "$f"
 	done
 	unset f
 fi
