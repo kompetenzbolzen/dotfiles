@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #Screen background feh
 if [ -f ~/.files ]; then
