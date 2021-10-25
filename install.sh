@@ -23,6 +23,7 @@ CONFIGS=( 	["sway"]=".config"
 		[".Xresources"]="."
 		[".radare2rc"]="."
 		[".bash_profile"]="."
+		[".stack"]="."
 		["gpg-agent.conf"]=".gnupg"
 	)
 
