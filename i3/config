@@ -11,10 +11,11 @@ bindsym $mod+Return exec "termite -t termite"
 bindsym $mod+Shift+Return exec "termite -t termite_floating"
 
 #start ranger
-bindsym $mod+o exec "termite -e ranger"
+bindsym $mod+o exec "dolphin"
 
 #start browser
 bindsym  $mod+b exec "firefox"
+bindsym  $mod+Shift+b exec "firefox --private-window"
 
 # kill focused window
 bindsym $mod+Shift+q kill
