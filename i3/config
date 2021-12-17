@@ -7,8 +7,9 @@ font pango:monospace 9
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec "termite -t termite"
-bindsym $mod+Shift+Return exec "termite -t termite_floating"
+bindsym $mod+Return exec "alacritty -t termite"
+#bindsym $mod+Return exec "xterm"
+bindsym $mod+Shift+Return exec "alacritty -t termite_floating"
 
 #start ranger
 bindsym $mod+o exec "dolphin"
