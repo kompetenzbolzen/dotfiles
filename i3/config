@@ -54,6 +54,9 @@ for_window [class="steam_app_1182480"] floating enable
 for_window [title="termite_floating"] floating enable
 for_window [title="termite_floating"] resize set 1000 700
 
+for_window [title="Nextcloud"] floating enable
+
+
 # change focus
 bindsym $mod+j focus left
 bindsym $mod+k focus down
