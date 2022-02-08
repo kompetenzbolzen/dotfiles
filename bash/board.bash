@@ -7,6 +7,9 @@ BB_PRUNE_DAYS=5
 
 [ ! -d "$BB_HIST_DIR" ] && mkdir -p "$BB_HIST_DIR"
 
+BB_COLOR_HIGHLIGHT="\e[0;34m"
+BB_COLOR_RESET="\e[39m"
+
 # format
 # NUM EPOCH PATH
 
@@ -45,9 +48,21 @@ function bashboard {
 
 	cnt=0
 	while read -r line; do
+		local DIR BNAME DNAME
 		read -r BB_NUM BB_DATE BB_DIR <<< "$line"
+
 		# Trailing / in $HOME
-		echo "[$cnt] ${BB_DIR##$HOME}"
+		DIR="${BB_DIR##"$HOME"}"
+		BNAME="$(basename "$DIR")"
+		DNAME="$(dirname "$DIR")"
+
+		if [ "$DNAME" = "." ]; then
+			DNAME=""
+		else
+			DNAME="$DNAME/"
+		fi
+
+		printf "[$cnt] $DNAME$BB_COLOR_HIGHLIGHT$BNAME$BB_COLOR_RESET\n"
 
 		BB_SHORTCUT+=("$BB_DIR")
 
