@@ -7,9 +7,9 @@ font pango:monospace 9
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec "alacritty -t termite"
+bindsym $mod+Return exec "termite -t termite"
 #bindsym $mod+Return exec "xterm"
-bindsym $mod+Shift+Return exec "alacritty -t termite_floating"
+bindsym $mod+Shift+Return exec "termite -t termite_floating"
 
 #start ranger
 bindsym $mod+o exec "dolphin"
@@ -54,7 +54,7 @@ for_window [class="steam_app_1182480"] floating enable
 for_window [title="termite_floating"] floating enable
 for_window [title="termite_floating"] resize set 1000 700
 
-for_window [title="Nextcloud"] floating enable
+for_window [class="Nextcloud"] floating enable
 
 
 # change focus
@@ -244,3 +244,4 @@ bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5 -fps 30 # inc
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5 -fps 30 # decrease screen brightness
 
 exec --no-startup-id "launch_polybar.sh"
+exec --no-startup-id "autotiling"
