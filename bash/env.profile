@@ -11,6 +11,8 @@ appendpath "$HOME/bin"
 appendpath "$DOTFILEBASE/scripts"
 appendpath "$HOME/.local/bin"
 appendpath "$HOME/go/bin"
+appendpath "$HOME/.cabal/bin"
+appendpath "$HOME/.ghcup/bin"
 
 export PATH
 unset appendpath
