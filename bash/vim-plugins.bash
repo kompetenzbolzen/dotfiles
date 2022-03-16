@@ -24,6 +24,21 @@ function vim-remove {
 	rm "$DOTFILEBASE/.vim/bundle-active/$NAME"
 }
 
+# 1: git clone url
+function vim-install {
+	source ~/.files
+
+	test $# -eq 1 || exit 1
+
+	echo "Installing $1"
+
+	(
+	cd "$DOTFILEBASE/.vim/bundle" || exit 1
+	git submodule add "$1" || exit 2
+	git commit -m "Added vim plugin module $1"
+	)
+}
+
 function _vim_plugins {
 	source ~/.files
 	local cur prev opts plugin
