@@ -43,3 +43,6 @@
 [submodule ".vim/bundle/haskell-vim"]
 	path = .vim/bundle/haskell-vim
 	url = https://github.com/neovimhaskell/haskell-vim.git
+[submodule ".vim/bundle/vim-beancount"]
+	path = .vim/bundle/vim-beancount
+	url = https://github.com/nathangrigg/vim-beancount
