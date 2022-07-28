@@ -1,14 +1,15 @@
 #!/bin/bash
 
-BB_HIST_DIR="$HOME/.cache/bashboard/"
-BB_SHORTCUT=()
-BB_LIST_LEN=5
-BB_PRUNE_DAYS=5
+# config in ~/.files.config
+
+if [ "$BB_ENABLE"="yes" ]; then
+	return
+fi
 
 [ ! -d "$BB_HIST_DIR" ] && mkdir -p "$BB_HIST_DIR"
 
-BB_COLOR_HIGHLIGHT="\e[0;34m"
-BB_COLOR_RESET="\e[39m"
+# Public var, not config
+BB_SHORTCUT=()
 
 # format
 # NUM EPOCH PATH
