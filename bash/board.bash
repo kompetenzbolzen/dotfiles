@@ -2,7 +2,7 @@
 
 # config in ~/.files.config
 
-if [ "$BB_ENABLE"="yes" ]; then
+if [ "$BB_ENABLE" = "yes" ]; then
 	return
 fi
 
