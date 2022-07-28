@@ -143,6 +143,10 @@ housekeeping() {
 	if [ "$DOTFILEBASE" != "$(pwd)" ] && yes_no "'.files' out of date. Regenerate?"; then
 		echo "DOTFILEBASE=\"$(pwd)\"" > $HOME/.files
 	fi
+
+	if [ ! -f "$HOME/.files.config" ] && yes_no ".files.config does not exist. Populate with defaults?"; then
+		cp "config.default" "$HOME/.files.config"
+	fi
 }
 
 if [ $# -gt 0 ]

@@ -8,6 +8,11 @@ else
 	DOTFILEBASE="/home/jonas/dotfiles"
 fi
 
+source "$DOTFILEBASE/config.default"
+if [ -f "$HOME/.files.config" ]; then
+	source "$HOME/.files.config"
+fi
+
 for f in $DOTFILEBASE/bash/*.bash; do
 	source $f
 done

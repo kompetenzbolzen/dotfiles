@@ -1,0 +1,21 @@
+# vi: ft=sh
+
+# Configuration variables are sourced in .bashrc and
+# bash_profile
+#
+# Booleans are case-sensitive. only "yes" counts as true,
+# everything else is false.
+
+# SSH Agent
+SA_SSH_AGENT_STATIC='no'
+SA_SSH_SOCKET="/var/run/user/$UID/ssh-agent.sock"
+SA_SSH_PIDFILE="/var/run/user/$UID/ssh-agent.pid"
+
+# BashBoard
+BB_ENABLE="no"
+BB_HIST_DIR="$HOME/.cache/bashboard/"
+BB_LIST_LEN=5
+BB_PRUNE_DAYS=5
+BB_COLOR_HIGHLIGHT="\e[0;34m"
+BB_COLOR_RESET="\e[39m"
+
