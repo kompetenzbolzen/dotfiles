@@ -9,7 +9,7 @@
 # $ flatpak override org.keepassxc.KeePassXC --user --filesystem=/run/user/$UID/ssh-agent.sock
 # Caution: /var/run symlinks to /run. Flatpak for some reason does not resolve symlinks.
 
-if [ "$SA_SSH_AGENT_STATIC"="yes" ]; then
+if [ "$SA_SSH_AGENT_STATIC" = "yes" ]; then
 	AGENT_PID=''
 	if [ -e "$SA_SSH_PIDFILE" ]; then
 		AGENT_PID=$(cat $SA_SSH_PIDFILE)
