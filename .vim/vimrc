@@ -108,13 +108,10 @@ nmap <silent> <C-e> :e .<CR>
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
 
+nmap <silent> <F4> :Runbuffer<CR>
 au filetype c* nmap <silent> <F4> :Make<CR>
-au filetype sh nmap <silent> <F4> :Runbuffer<CR>
-au filetype python nmap <silent> <F4> :Runbuffer<CR>
 au filetype *tex nmap <silent> <F4> :Makelatex<CR>
 au filetype *tex nmap <silent> <F2> :Openpdf<CR>
-
-"nmap <silent> <F3> :Newterm<CR>
 
 nmap <silent> <F5> :NERDTreeToggle<CR>
 nmap <silent> <F6> :TlistToggle<CR>
@@ -135,7 +132,8 @@ inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
 
 " vterminal
-nmap <silent> <F3> :VTermOpen<CR>
+nmap <silent> <S-F3> :Newterm<CR>
+nmap <silent> <F3> :VTermToggle<CR>
 tnoremap <silent> <S-Tab> <C-W>:VTermSwitch<CR>
 nnoremap <silent> <S-Tab> :VTermSwitch<CR>
 "let g:vterminal_coverage = '0.33'
@@ -143,7 +141,7 @@ nnoremap <silent> <S-Tab> :VTermSwitch<CR>
 " completor
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-"inoremap  <C-CR> :ALEComplete<CR>
+inoremap  <C-CR> :ALEComplete<CR>
 "inoremap <expr> <Tab> Tab_Or_Complete()
 
 " reload vimrc
@@ -154,9 +152,6 @@ nmap <silent> <S-F12> :so $MYVIMRC<CR>
 " ===========
 
 command -bar Suw :w !SUDO_ASKPASS="/usr/lib/ssh/ssh-askpass" sudo -A  tee %
-
-" Command HEXMODE 
-command -bar Hexmode call ToggleHex()
 
 "^] Jump to tag, ^t jump back
 command! MakeTags !ctags -R .
@@ -215,44 +210,4 @@ function! Tab_Or_Complete() abort
     " action.
     return "\<Tab>"
   endif
-endfunction
-
-" helper function to toggle hex mode
-function ToggleHex()
-  " hex mode should be considered a read-only operation
-  " save values for modified and read-only for restoration later,
-  " and clear the read-only flag for now
-  let l:modified=&mod
-  let l:oldreadonly=&readonly
-  let &readonly=0
-  let l:oldmodifiable=&modifiable
-  let &modifiable=1
-  if !exists("b:editHex") || !b:editHex
-    " save old options
-    let b:oldft=&ft
-    let b:oldbin=&bin
-    " set new options
-    setlocal binary " make sure it overrides any textwidth, etc.
-    silent :e " this will reload the file without trickeries 
-              "(DOS line endings will be shown entirely )
-    let &ft="xxd"
-    " set status
-    let b:editHex=1
-    " switch to hex editor
-    %!xxd
-  else
-    " restore old options
-    let &ft=b:oldft
-    if !b:oldbin
-      setlocal nobinary
-    endif
-    " set status
-    let b:editHex=0
-    " return to normal editing
-    %!xxd -r
-  endif
-  " restore values for modified and read only state
-  let &mod=l:modified
-  let &readonly=l:oldreadonly
-  let &modifiable=l:oldmodifiable
 endfunction
