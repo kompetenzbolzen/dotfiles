@@ -52,8 +52,8 @@ function bashboard {
 		local DIR BNAME DNAME
 		read -r BB_NUM BB_DATE BB_DIR <<< "$line"
 
-		# Trailing / in $HOME
 		DIR="${BB_DIR##"$HOME"}"
+		DIR="${DIR##"/"}"
 		BNAME="$(basename "$DIR")"
 		DNAME="$(dirname "$DIR")"
 
