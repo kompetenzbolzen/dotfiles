@@ -114,7 +114,7 @@ au filetype python nmap <silent> <F4> :Runbuffer<CR>
 au filetype *tex nmap <silent> <F4> :Makelatex<CR>
 au filetype *tex nmap <silent> <F2> :Openpdf<CR>
 
-nmap <silent> <F3> :Newterm<CR>
+"nmap <silent> <F3> :Newterm<CR>
 
 nmap <silent> <F5> :NERDTreeToggle<CR>
 nmap <silent> <F6> :TlistToggle<CR>
@@ -134,11 +134,20 @@ inoremap {} {}<left>
 inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
 
+" vterminal
+nmap <silent> <F3> :VTermOpen<CR>
+tnoremap <silent> <S-Tab> <C-W>:VTermSwitch<CR>
+nnoremap <silent> <S-Tab> :VTermSwitch<CR>
+"let g:vterminal_coverage = '0.33'
+
 " completor
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 "inoremap  <C-CR> :ALEComplete<CR>
 "inoremap <expr> <Tab> Tab_Or_Complete()
+
+" reload vimrc
+nmap <silent> <S-F12> :so $MYVIMRC<CR>
 
 " ===========
 " COMMANDS
