@@ -3,6 +3,6 @@
 for dir in ./*/; do 
 	cd $dir
 	git pull
-	git checkout master
+	git checkout origin/HEAD
 	cd ..
 done
