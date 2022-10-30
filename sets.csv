@@ -1,0 +1,2 @@
+base;.vim .bashrc .bash_profile
+desktop;base termite picom i3 deadd polybar .xinitrc .Xresources

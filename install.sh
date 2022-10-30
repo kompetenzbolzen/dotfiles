@@ -1,45 +1,39 @@
 #!/bin/bash
 
-#['name']='install location relative to $HOME'
-declare -A CONFIGS
-CONFIGS=( 	["sway"]=".config"
-		["alacritty"]=".config"
-		["polybar"]=".config"
-		["powerline"]=".config"
-		["nvim"]=".config"
-		["termite"]=".config"
-		["twmn"]=".config"
-		["picom"]=".config"
-		["i3"]=".config"
-		["termux.properties"]=".termux"
-		["bspwm"]=".config"
-		["sxhkd"]=".config"
-		["deadd"]=".config"
-		["rofi"]=".config"
-		["autoload.cfg"]=".local/share/Steam/steamapps/common/Counter-Strike Global Offensive/csgo/cfg/"
-		[".vim"]="."
-		[".xinitrc"]="."
-		[".bashrc"]="."
-		[".Xresources"]="."
-		[".radare2rc"]="."
-		[".bash_profile"]="."
-		[".stack"]="."
-		["gpg-agent.conf"]=".gnupg"
-	)
-
-declare -A SETS
-SETS=(		["base"]=".vim .bashrc .bash_profile"
-		["desktop"]="base termite picom i3 deadd polybar .xinitrc .Xresources"
-	)
+function fail(){
+	EXCODE=$1
+	shift
+	echo "$@" >&2
+	exit "$EXCODE"
+}
 
 WORKDIR=$(realpath "$(dirname "$0")")
-cd "$WORKDIR" || (echo cd failed; exit 1)
+cd "$WORKDIR" || fail 1 "The working directory could not be determined."
 echo "Working in $WORKDIR"
 echo "Homedir is $HOME"
 
 # === CODE BELOW HERE ===
 
-source "lib/funcs.sh" || exit 1
+source "lib/funcs.sh" || fail 1 "Failed to load components"
+
+if [ ! -f "config.csv" ] || [ ! -f "sets.csv" ]; then
+	# TODO Create them
+	fail 1 "Configuration files do not exist"
+fi
+
+#['name']='install location relative to $HOME'
+declare -A CONFIGS
+while IFS=";" read -r CFG DEST _; do
+	CONFIGS[$CFG]="$DEST"
+done < config.csv
+unset CFG DEST
+
+#['name']='list of keys of CONFIGS (or SETS; Beware of BRB)'
+declare -A SETS
+while IFS=";" read -r SET PKGS _; do
+	SETS[$SET]="$PKGS"
+done < sets.csv
+unset SET PKGS
 
 if [ $# -eq 0 ]; then
 	cat << EOF
