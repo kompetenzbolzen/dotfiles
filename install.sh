@@ -42,6 +42,8 @@ COMMANDS
 	install [CONFIG ...]
 		install configurations. if none are provided,
 		a selection menu is showm.
+	add	PATH
+		Add PATH to managed configs
 	hk
 		perform housekeeping functions
 EOF
@@ -64,6 +66,25 @@ case $CMD in
 		housekeeping;;
 	hk)
 		housekeeping;;
+	add)
+		test -e "$1" || fail 1 "Target file not found: $1"
+
+		TARGET=$(realpath "--relative-to=$HOME" "$1")
+		NAME=$(basename "$TARGET")
+		RELPATH=$(dirname "$TARGET")
+
+		# NOTE: This does not check SETS. Could be a problem
+		test -n "${CONFIGS[$NAME]}" && fail 1 "An object with the same name is already managed."
+
+		cp -r "$1" ./ || fail 1 "Failed to copy configuration"
+		echo "$NAME;$RELPATH" >> config.csv
+		# This would need a reload
+		#choose_target "$NAME"
+
+		echo "Config was isntalled successfully."
+		echo "It can now be installed with $0 install $NAME"
+		echo "The following files were changed: config.csv $NAME"
+		;;
 	*)
 		echo Invalid command: "$CMD"
 		exit 1
