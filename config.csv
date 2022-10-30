@@ -21,3 +21,4 @@ picom;.config
 .stack;.
 sway;.config
 gpg-agent.conf;.gnupg
+.vuescan;.
