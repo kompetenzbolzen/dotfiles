@@ -1,6 +1,10 @@
 [colors]
 foreground = #ffffff
 background  = rgba (0,0,0,0.8)
+# Blue
+color4  = #FF1493
+color12 = #FF1493
 
 [options]
-font = DejaVu Sans Mono for Powerline 10
+#font = DejaVu Sans Mono for Powerline 10
+font = Comic Shanns 10
