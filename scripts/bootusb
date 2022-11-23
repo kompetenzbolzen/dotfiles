@@ -39,6 +39,6 @@ fi
 
 echo Writing $FILESIZE Bytes to $2
 
-dd iflag=direct if=$1 2>/dev/null | pv --size $FILESIZE | sudo dd oflag=direct of=$2 2>/dev/null
+dd iflag=direct if=$1 2>/dev/null | pv --size $FILESIZE | sudo dd bs=4K oflag=direct of=$2 2>/dev/null
 
 exit 0
