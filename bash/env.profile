@@ -17,7 +17,11 @@ appendpath "$HOME/.ghcup/bin"
 export PATH
 unset appendpath
 
-export EDITOR=nvim
+if which nvim > /dev/null 2>&1 && [ ! "$FORCE_VANILLA_VIM" = "yes" ] ; then
+	export EDITOR=nvim
+else
+	export EDITOR=vim
+fi
 
 #Java Gradle hopme PATH
 export GRADLE_USER_HOME=~/.gradle
