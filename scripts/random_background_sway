@@ -1,9 +1,11 @@
 #!/bin/bash
 
+. $HOME/.files
+
 #Screen background feh
 shopt -s nullglob
 
-pics=(~/vimconfig/pictures/b_*)
+pics=($DOTFILEBASE/pictures/b_*)
 #echo $pics
 len=${#pics[*]}
 ran=$(($RANDOM % len))
