@@ -1,6 +1,7 @@
 # vi: ft=i3config
 
 set $mod Mod1
+set $term alacritty
 floating_modifier $mod
 
 include config.d/*.conf
