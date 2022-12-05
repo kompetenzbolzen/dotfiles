@@ -84,6 +84,11 @@ link() {
 		fi
 	fi
 
+	if [ ! -d "$(dirname $2)" ]; then
+		debug "$(dirname $2) does not exit. Creating it."
+		mkdir -p "$(dirname $2)"
+	fi
+
 	ln -s "$1" "$2"
 }
 
