@@ -100,17 +100,12 @@ choose_target() {
 	fi
 }
 
-housekeeping() {
-	git submodule init
-	git submodule update
-
-	#.files is used to tell scripts where to look for the dotfiles
-	[ -f "$HOME/.files" ] && source "$HOME/.files"
-	if [ "$DOTFILEBASE" != "$(pwd)" ] && yes_no "'.files' out of date. Regenerate?"; then
-		echo "DOTFILEBASE=\"$(pwd)\"" > $HOME/.files
+debug() {
+	if [ "$DEBUG" = "yes" ]; then
+		echo "[DEBUG] $@"
 	fi
+}
 
-	if [ ! -f "$HOME/.files.config" ] && yes_no ".files.config does not exist. Populate with defaults?"; then
-		cp "config.default" "$HOME/.files.config"
-	fi
+warning() {
+	echo "[WARNING] $@"
 }

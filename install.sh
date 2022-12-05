@@ -12,9 +12,14 @@ cd "$WORKDIR" || fail 1 "The working directory could not be determined."
 echo "Working in $WORKDIR"
 echo "Homedir is $HOME"
 
+# For hooks
+export WORKDIR
+
 # === CODE BELOW HERE ===
 
-source "lib/funcs.sh" || fail 1 "Failed to load components"
+for f in lib/*.sh; do
+	source "$f" || fail 1 "Failed to load $f"
+done
 
 if [ ! -f "config.csv" ] || [ ! -f "sets.csv" ]; then
 	# TODO Create them
@@ -44,8 +49,8 @@ COMMANDS
 		a selection menu is showm.
 	add	PATH
 		Add PATH to managed configs
-	hk
-		perform housekeeping functions
+	hook	HOOK
+		manually call a hook
 EOF
 	exit 1
 fi
@@ -63,9 +68,10 @@ case $CMD in
 		for cnf in "${selected[@]}"; do
 			choose_target "$cnf"
 		done
-		housekeeping;;
-	hk)
-		housekeeping;;
+
+		call_hook housekeeping;;
+	hook)
+		call_hook "$1";;
 	add)
 		test -e "$1" || fail 1 "Target file not found: $1"
 
