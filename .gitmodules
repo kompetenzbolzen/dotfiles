@@ -49,3 +49,6 @@
 [submodule ".vim/bundle/vterminal"]
 	path = .vim/bundle/vterminal
 	url = https://github.com/meisterfischy/vterminal.git
+[submodule ".vim/bundle/coc.nvim"]
+	path = .vim/bundle/coc.nvim
+	url = https://github.com/neoclide/coc.nvim.git

@@ -33,14 +33,11 @@ let g:airline#extensions#ale#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline_highlighting_cache = 1
 
-" Completor config
-let g:completor_clang_binary = '/usr/bin/clang'
-
 " Enable colored brackets
 let g:rainbow_active = 1
 
 " ALE config
-set omnifunc=ale#completion#OmniFunc
+"set omnifunc=ale#completion#OmniFunc
 let g:ale_completion_enabled = 1
 let g:ale_completion_autoimport = 1
 let g:ale_set_highlights = 1 "Highlights are annoying
@@ -51,6 +48,7 @@ let g:ale_close_preview_on_insert = 1
 let g:ale_floating_preview = 1
 "let g:ale_hover_to_floating_preview  = 1
 let g:ale_floating_window_border = []
+let g:ale_linters = {'rust': ['rustc', 'analyzer']}
 
 "All things cursor
 set guicursor+=a:blinkon0 "disable blinking
@@ -68,15 +66,6 @@ endif
 "show line endings and tabs
 set listchars=tab:>\ ,trail:~,extends:>,precedes:<
 set list
-
-" Use todo#Complete as the omni complete function for todo files
-au filetype todo setlocal omnifunc=todo#Complete
-
-" Auto complete projects
-au filetype todo imap <buffer> + +<C-X><C-O>
-
-" Auto complete contexts
-au filetype todo imap <buffer> @ @<C-X><C-O>
 
 " leader
 let mapleader = "-"
@@ -138,12 +127,6 @@ tnoremap <silent> <S-Tab> <C-W>:VTermSwitch<CR>
 nnoremap <silent> <S-Tab> :VTermSwitch<CR>
 "let g:vterminal_coverage = '0.33'
 
-" completor
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap  <C-CR> :ALEComplete<CR>
-"inoremap <expr> <Tab> Tab_Or_Complete()
-
 " reload vimrc
 nmap <silent> <S-F12> :so $MYVIMRC<CR>
 
@@ -189,25 +172,4 @@ function Run_in_terminal(prog)
 	tabnew
 	execute "terminal " . l:args . " " . a:prog
 	startinsert
-endfunction
-
-" Use TAB to complete when typing words, else inserts TABs as usual.  Uses
-" dictionary, source files, and completor to find matching words to complete.
-
-" Note: usual completion is on <C-n> but more trouble to press all the time.
-" Never type the same word twice and maybe learn a new spellings!
-" Use the Linux dictionary when spelling is in doubt.
-function! Tab_Or_Complete() abort
-  " If completor is already open the `tab` cycles through suggested completions.
-  if pumvisible()
-    return "\<C-N>"
-  " If completor is not open and we are in the middle of typing a word then
-  " `tab` opens completor menu.
-  elseif col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^[[:keyword:][:ident:]]'
-    return "\<C-R>=completor#do('complete')\<CR>"
-  else
-    " If we aren't typing a word and we press `tab` simply do the normal `tab`
-    " action.
-    return "\<Tab>"
-  endif
 endfunction
