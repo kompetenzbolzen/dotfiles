@@ -38,8 +38,7 @@ let g:rainbow_active = 1
 
 " ALE config
 "set omnifunc=ale#completion#OmniFunc
-let g:ale_completion_enabled = 1
-let g:ale_completion_autoimport = 1
+"let g:ale_completion_autoimport = 1
 let g:ale_set_highlights = 1 "Highlights are annoying
 let g:ale_set_signs = 1
 "let g:ale_virtualtext_cursor = 1 " Only use one of the following
@@ -48,7 +47,10 @@ let g:ale_close_preview_on_insert = 1
 let g:ale_floating_preview = 1
 "let g:ale_hover_to_floating_preview  = 1
 let g:ale_floating_window_border = []
-let g:ale_linters = {'rust': ['rustc', 'analyzer']}
+let g:ale_linters = {'rust': [ 'analyzer']}
+
+highlight ALEWarning cterm=underline,italic ctermfg=yellow
+highlight ALEError cterm=underline,italic ctermfg=red
 
 "All things cursor
 set guicursor+=a:blinkon0 "disable blinking
@@ -72,7 +74,7 @@ let mapleader = "-"
 let leader = "-"
 let maplocalleader = "-"
 
-syntax on
+syntax enable
 filetype plugin indent on
 
 "Line number Highlight
@@ -91,9 +93,13 @@ highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE gui
 "nmap <silent> <C-w-h> :wincmd h<CR>
 "nmap <silent> <C-w-l> :wincmd l<CR>
 
+" Completion
+inoremap <expr> <Tab> Tab_Or_Complete()
+
 nmap <silent> <C-s> :vsplit<CR>:e .<CR>
 nmap <silent> <C-e> :e .<CR>
 
+" Fold
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
 
@@ -172,4 +178,16 @@ function Run_in_terminal(prog)
 	tabnew
 	execute "terminal " . l:args . " " . a:prog
 	startinsert
+endfunction
+
+" if we are in the middle of typing, complete,
+" otherwise just type TAB
+function! Tab_Or_Complete() abort
+  if pumvisible()
+    return "\<C-N>"
+  elseif col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^[[:keyword:][:ident:]]'
+    return "\<C-N>"
+  else
+    return "\<Tab>"
+  endif
 endfunction
