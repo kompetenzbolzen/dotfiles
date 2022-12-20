@@ -92,7 +92,7 @@
 	"format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
     },
     "memory": {
-        "format": "{icon} {percentage:3d}% ",
+        "format": "{icon} {percentage:3d}% ",
 	"format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
     },
     "temperature": {
