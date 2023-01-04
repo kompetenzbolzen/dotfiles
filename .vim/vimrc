@@ -52,6 +52,9 @@ let g:ale_linters = {'rust': [ 'analyzer']}
 highlight ALEWarning cterm=underline,italic ctermfg=yellow
 highlight ALEError cterm=underline,italic ctermfg=red
 
+"
+let g:zig_fmt_autosave = 0
+
 "All things cursor
 set guicursor+=a:blinkon0 "disable blinking
 if &term =~ "xterm\\|rxvt"
