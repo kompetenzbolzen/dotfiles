@@ -23,3 +23,4 @@ sway;.config
 gpg-agent.conf;.gnupg
 .vuescan;.
 waybar;.config
+.screenrc;.
