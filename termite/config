@@ -1,6 +1,6 @@
 [colors]
 foreground = #ffffff
-background  = rgba (0,0,0,0.8)
+background  = rgba (0,0,0,0.9)
 # Blue
 color4  = #FF1493
 color12 = #FF1493
