@@ -28,3 +28,5 @@ export GRADLE_USER_HOME=~/.gradle
 
 export HISTTIMEFORMAT="%y-%m-%d %T "
 export HISTSIZE=1000
+
+export QT_QPA_PLATFORMTHEME=qt6ct

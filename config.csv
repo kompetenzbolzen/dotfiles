@@ -24,3 +24,4 @@ gpg-agent.conf;.gnupg
 .vuescan;.
 waybar;.config
 .screenrc;.
+qt5ct;.config
