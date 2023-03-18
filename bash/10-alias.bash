@@ -35,3 +35,18 @@ alias vybld='docker pull vyos/vyos-build:equuleus && docker run --rm -it \
     -w /vyos --privileged --sysctl net.ipv6.conf.lo.disable_ipv6=0 \
     -e GOSU_UID=$(id -u) -e GOSU_GID=$(id -g) \
     vyos/vyos-build:equuleus bash'
+
+for i in $(seq 10); do
+	DOTS='.'
+	for _ in $(seq $i); do
+		DOTS+="."
+	done
+
+	PTH=''
+	for _ in $(seq $i); do
+		PTH+="../"
+	done
+
+	alias $DOTS="cd $PTH"
+	unset DOTS PTH
+done
