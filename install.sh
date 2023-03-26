@@ -9,8 +9,6 @@ function fail(){
 
 WORKDIR=$(realpath "$(dirname "$0")")
 cd "$WORKDIR" || fail 1 "The working directory could not be determined."
-echo "Working in $WORKDIR"
-echo "Homedir is $HOME"
 
 # For hooks
 export WORKDIR
@@ -20,6 +18,9 @@ export WORKDIR
 for f in lib/*.sh; do
 	source "$f" || fail 1 "Failed to load $f"
 done
+
+debug "Working in $WORKDIR"
+debug "Homedir is $HOME"
 
 if [ ! -f "config.csv" ] || [ ! -f "sets.csv" ]; then
 	# TODO Create them
@@ -41,17 +42,7 @@ done < sets.csv
 unset SET PKGS
 
 if [ $# -eq 0 ]; then
-	cat << EOF
-USAGE: $0 COMMAND [ARGS]
-COMMANDS
-	install [CONFIG ...]
-		install configurations. if none are provided,
-		a selection menu is showm.
-	add	PATH
-		Add PATH to managed configs
-	hook	HOOK
-		manually call a hook
-EOF
+	print_help "$0"
 	exit 1
 fi
 
@@ -84,10 +75,10 @@ case $CMD in
 
 		cp -r "$1" ./ || fail 1 "Failed to copy configuration"
 		echo "$NAME;$RELPATH" >> config.csv
-		# This would need a reload
-		#choose_target "$NAME"
 
-		echo "Config was isntalled successfully."
+		call_hook post_add "$NAME" "$TARGET"
+
+		echo "Config was installed successfully."
 		echo "It can now be installed with $0 install $NAME"
 		echo "The following files were changed: config.csv $NAME"
 		;;

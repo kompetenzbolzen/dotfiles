@@ -114,3 +114,17 @@ debug() {
 warning() {
 	echo "[WARNING] $@"
 }
+
+print_help() {
+	cat << EOF
+USAGE: $1 COMMAND [ARGS]
+COMMANDS
+	install [CONFIG ...]
+		install configurations. if none are provided,
+		a selection menu is showm.
+	add	PATH
+		Add PATH to managed configs
+	hook	HOOK
+		manually call a hook
+EOF
+}
