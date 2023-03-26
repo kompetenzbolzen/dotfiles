@@ -1,2 +1,3 @@
-base;.vim .bashrc .bash_profile
-desktop;base termite picom i3 deadd polybar .xinitrc .Xresources
+base;.vim .bashrc .bash_profile .screenrc
+i3;base termite picom i3 deadd polybar .xinitrc .Xresources
+sway;base sway waybar alacritty
