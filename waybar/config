@@ -21,6 +21,7 @@
             //"5": "",
             "urgent": "",
             "focused": "",
+            "visible": "",
             "default": ""
         }
     },
