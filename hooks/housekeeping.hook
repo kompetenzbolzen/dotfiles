@@ -5,10 +5,12 @@ git submodule update
 
 #.files is used to tell scripts where to look for the dotfiles
 [ -f "$HOME/.files" ] && source "$HOME/.files"
-if [ "$DOTFILEBASE" != "$(pwd)" ] && yes_no "'.files' out of date. Regenerate?"; then
+if [ "$DOTFILEBASE" != "$(pwd)" ]; then
+	echo "\~/.files is our of date. Updating."
 	echo "DOTFILEBASE=\"$(pwd)\"" > $HOME/.files
 fi
 
-if [ ! -f "$HOME/.files.config" ] && yes_no ".files.config does not exist. Populate with defaults?"; then
+if [ ! -f "$HOME/.files.config" ]; then
+	echo "Installing default configuration in ~/.files.config"
 	cp "config.default" "$HOME/.files.config"
 fi
