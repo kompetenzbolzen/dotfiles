@@ -6,6 +6,9 @@ backtick 1 3600 3600 uname -m
 caption always "%?%{Wk}%-Lw%?%{Rk}%n*%f %t%?(%u)%?%?%{Wk}%+Lw%?%=%{Gk}%c %H/%1`"
 hardstatus alwayslastline
 
+vbell off
+term screen-256color
+
 bindkey "^[[1;5D" prev # gnome-terminal ctrl-left
 bindkey "^[[1;5C" next # gnome-temrinal ctrl-right
 bindkey "^[[1;3D" prev # gnome-terminal alt-left
