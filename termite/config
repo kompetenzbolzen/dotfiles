@@ -2,8 +2,8 @@
 foreground = #ffffff
 background  = rgba (0,0,0,0.9)
 # Blue
-color4  = #FF1493
-color12 = #FF1493
+#color4  = #FF1493
+#color12 = #FF1493
 
 [options]
 #font = DejaVu Sans Mono for Powerline 10
