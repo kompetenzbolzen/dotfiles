@@ -51,8 +51,8 @@ Hooks have to be named `<Name>.hook` and be executable.
 
 Currently supported hooks:
 
-| Name | Arguments | Called when | Notes
-| --- | --- | --- |
+| Name | Arguments | Called when | Notes |
+| --- | --- | --- | --- |
 | `housekeeping` | | before the script quits | Used to ensure everything is in order. |
 | `installed.<target>` | Full target path | After successful install of <target> | For specific targets |
 | `installed` | Full target path | After successful install of any config | For all targets |
