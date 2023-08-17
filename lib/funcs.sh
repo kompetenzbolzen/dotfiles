@@ -90,6 +90,9 @@ link() {
 	fi
 
 	ln -s "$1" "$2"
+
+	call_hook "installed.$(basename $2)" "$2"
+	call_hook "installed" "$2"
 }
 
 choose_target() {

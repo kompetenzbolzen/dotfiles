@@ -12,7 +12,7 @@ call_hook() {
 
 	debug "Running hook $HOOK"
 
-	hooks/$HOOK.hook 2>&1 | (while read line; do echo [hook: $HOOK] $line; done)
+	hooks/$HOOK.hook "$@" 2>&1 | (while read line; do echo [hook: $HOOK] $line; done)
 	RET=${PIPESTATUS[0]}
 
 	if [ $RET -ne 0 ]; then
