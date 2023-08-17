@@ -1,0 +1,22 @@
+#!/bin/bash
+
+cd "$1" || exit 1
+mkdir -p bundle-active/  || exit 1
+cd bundle-active/ || exit 1
+
+DEFS=(
+	'vim-pathogen'
+	'vim-airline'
+	'vim-airline-themes'
+	'vim-fugitive'
+	'rainbow'
+)
+
+pwd
+
+echo Activating default vim plugins: "${DEFS[@]}"
+
+for f in "${DEFS[@]}"; do
+	[ -L "$f" ] && continue
+	ln -s "../bundle/$f" "$f"
+done
