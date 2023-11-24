@@ -1,9 +1,19 @@
 # vi:filetype=sh
 
+function is_not_in_path() {
+	local regex="(:|^)${1//'/'/'\/*'}(:|$)"
+	[[ ! ${PATH} =~ $regex ]]
+}
+
 function appendpath() {
-	local regex="[:^]${1//'/'/'\/'}[:$]"
-	if [[ ! ${PATH} =~ $regex ]]; then
-		PATH=$PATH:$1
+	if is_not_in_path "$1"; then
+		PATH="$PATH:$1"
+	fi
+}
+
+function prependpath() {
+	if is_not_in_path "$1"; then
+		PATH="$1:$PATH"
 	fi
 }
 
@@ -12,10 +22,9 @@ appendpath "$DOTFILEBASE/scripts"
 appendpath "$HOME/.local/bin"
 appendpath "$HOME/go/bin"
 appendpath "$HOME/.cabal/bin"
-appendpath "$HOME/.ghcup/bin"
+prependpath "$HOME/.ghcup/bin"
 
 export PATH
-unset appendpath
 
 if which nvim > /dev/null 2>&1 && [ ! "$FORCE_VANILLA_VIM" = "yes" ] ; then
 	export EDITOR=nvim
