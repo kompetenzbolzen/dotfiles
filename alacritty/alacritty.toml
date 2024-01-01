@@ -1,0 +1,14 @@
+[font]
+size = 12.0
+
+[font.bold]
+family = "Comic Shanns"
+
+[font.bold_italic]
+family = "Comic Shanns"
+
+[font.italic]
+family = "Comic Shanns"
+
+[font.normal]
+family = "Comic Shanns"
