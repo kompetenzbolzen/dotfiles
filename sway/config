@@ -4,4 +4,6 @@ set $mod Mod1
 set $term alacritty
 floating_modifier $mod
 
+include "systems/$SYSTEM_NAME.conf"
+
 include config.d/*.conf

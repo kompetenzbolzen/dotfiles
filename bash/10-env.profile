@@ -39,3 +39,6 @@ export HISTTIMEFORMAT="%y-%m-%d %T "
 export HISTSIZE=1000
 
 export QT_QPA_PLATFORMTHEME=qt6ct
+
+# Make the system name usable by other stuff too
+export SYSTEM_NAME

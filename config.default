@@ -25,3 +25,6 @@ FORCE_VANILLA_VIM="no"
 WM_AUTO_START="no"
 WM_TTY="/dev/tty1"
 WM_WM="sway"
+
+# Set a name for the host. Can be hostname, can be something else.
+SYSTEM_NAME=$(hostname)
