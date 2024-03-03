@@ -25,3 +25,4 @@ gpg-agent.conf;.gnupg
 waybar;.config
 .screenrc;.
 qt5ct;.config
+tmux;.config
