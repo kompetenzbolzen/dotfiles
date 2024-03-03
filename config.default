@@ -28,3 +28,6 @@ WM_WM="sway"
 
 # Set a name for the host. Can be hostname, can be something else.
 SYSTEM_NAME=$(hostname)
+
+# ZOXIDE
+FORCE_NORMAL_CD="no"
