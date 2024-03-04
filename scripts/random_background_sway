@@ -13,4 +13,4 @@ ran=$(($RANDOM % len))
 
 echo  ${pics[$ran]}
 killall swaybg
-swaybg -i ${pics[$ran]} &
+swaybg -m fill -i ${pics[$ran]} &
