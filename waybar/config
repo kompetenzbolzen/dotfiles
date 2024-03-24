@@ -8,7 +8,7 @@
     // Choose the order of the modules
     "modules-left": ["sway/workspaces", "sway/mode", "sway/scratchpad"],
     "modules-center": ["sway/window"],
-    "modules-right": ["idle_inhibitor", "pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "sway/language", "battery", "clock", "tray"],
+    "modules-right": ["idle_inhibitor","custom/wifiice", "pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "sway/language", "battery", "clock", "tray"],
     "sway/workspaces": {
         "disable-scroll": true,
         "all-outputs": false,
@@ -163,6 +163,13 @@
         "escape": true,
         "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
         // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+    },
+    "custom/wifiice": {
+	    "format": "{} {percentage} km/h",
+	    "interval":10,
+	    "return-type": "json",
+	    "exec": "icewifi.py",
+	    "exec-if": "test \"$(iwgetid -r)\" = \"WIFIonICE\""
     }
 }
 

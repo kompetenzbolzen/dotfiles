@@ -305,3 +305,10 @@ label:focus {
 #privacy-item.audio-out {
     background-color: #0069d4;
 }
+
+#custom-wifiice {
+    color: #000000;
+    background-color: #ffffff;
+    box-shadow: inset 0 -5px #ff0000;
+    padding: 0 10px;
+}
