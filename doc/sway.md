@@ -1,7 +1,7 @@
 # Sway
 
 Packages:
-`ttf-font-awesome ttf-dejavu sway waybar alacritty wofi swaybg xorg-xwayland j4-dmenu-desktop bemenu bemenu-wayland`
+`ttf-font-awesome ttf-dejavu sway waybar alacritty wofi swaybg xorg-xwayland j4-dmenu-desktop bemenu bemenu-wayland swayidle`
 
 
 ## Screenshot
@@ -10,4 +10,4 @@ Packages:
 
 Packages:
 
-`slurp` `grim` `wl-clipboard`
+`slurp` `grim` `wl-clipboard` `sway-contrib`
