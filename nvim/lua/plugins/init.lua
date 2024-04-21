@@ -4,5 +4,8 @@ return {
 		init = function()
 			vim.g.rainbow_active = 1
 		end
+	},
+	{
+		"jamessan/vim-gnupg"
 	}
 }
