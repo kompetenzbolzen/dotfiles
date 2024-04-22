@@ -1,5 +1,9 @@
 return {
 	{
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		config = true
+	},{
 		"hrsh7th/nvim-cmp",
 		dependencies = {
 			'hrsh7th/cmp-nvim-lsp',
@@ -10,6 +14,7 @@ return {
 			'hrsh7th/vim-vsnip'
 		},
 		config = function()
+			local cmp_autopairs = require'nvim-autopairs.completion.cmp'
 			local cmp = require'cmp'
 			cmp.setup {
 				snippet = {
@@ -33,6 +38,11 @@ return {
 					{ name = 'buffer' },
 				})
 			}
+
+			cmp.event:on(
+				'confirm_done',
+				cmp_autopairs.on_confirm_done()
+			)
 		end,
 	},{
 		'neovim/nvim-lspconfig',
