@@ -6,3 +6,6 @@ nmap <silent> gn :$tabnew +edit\ .<CR>
 
 " fix for stuck No Name buffers after file open (neovim #17841)
 set nohidden
+
+set background=dark
+colorscheme neofusion
