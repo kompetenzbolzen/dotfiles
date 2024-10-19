@@ -1,14 +1,12 @@
 // vi: ft=json
 {
-    // "layer": "top", // Waybar at top layer
     "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 30, // Waybar height (to be removed for auto height)
-    // "width": 1280, // Waybar width
-    "spacing": 4, // Gaps between modules (4px)
-    // Choose the order of the modules
-    "modules-left": ["sway/workspaces", "sway/mode", "sway/scratchpad"],
-    "modules-center": ["sway/window"],
-    "modules-right": ["idle_inhibitor","custom/wifiice", "pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "sway/language", "battery", "clock", "tray"],
+    "height": 30,
+    "spacing": 4,
+    "modules-left": ["sway/workspaces", "sway/mode", "sway/scratchpad", "sway/window"],
+    "modules-center": ["clock"],
+    "modules-right": ["idle_inhibitor","custom/wifiice", "pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "sway/language", "battery", "tray"],
+
     "sway/workspaces": {
         "disable-scroll": true,
         "all-outputs": false,
@@ -118,11 +116,8 @@
         "format": "{time} {capacity}% {icon}",
         "format-charging": "{capacity}% ",
         "format-plugged": "{capacity}% ",
-        "format-alt": "{time} {icon}",
+        "format-alt": "{capacity}% {icon}",
         "format-icons": ["", "", "", "", ""]
-    },
-    "battery#bat2": {
-        "bat": "BAT2"
     },
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
@@ -130,7 +125,7 @@
         "format-ethernet": "{ipaddr}/{cidr} ",
         "tooltip-format": "{ifname} via {gwaddr} ",
         "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected ⚠",
+        "format-disconnected": "⚠ ",
         "format-alt": "{ifname}: {ipaddr}/{cidr}"
     },
     "pulseaudio": {

@@ -1,7 +1,8 @@
 * {
     /* `otf-font-awesome` is required to be installed for icons */
-    font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
-    font-size: 13px;
+    /* font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif; */
+    font-family: FontAwesome, Comic Shanns;
+    font-size: 14px;
 }
 
 window#waybar {
@@ -113,7 +114,7 @@ button:hover {
 }
 
 #clock {
-    background-color: #64727D;
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 #battery {
@@ -142,6 +143,10 @@ button:hover {
     animation-timing-function: steps(12);
     animation-iteration-count: infinite;
     animation-direction: alternate;
+}
+
+#battery.warning:not(.charging) {
+    background-color: #f0932b;
 }
 
 label:focus {
