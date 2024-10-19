@@ -117,7 +117,8 @@
         "format-charging": "{capacity}% ",
         "format-plugged": "{capacity}% ",
         "format-alt": "{capacity}% {icon}",
-        "format-icons": ["", "", "", "", ""]
+        "format-icons": ["", "", "", "", ""],
+	"format-time": "{H:02d}:{M:02d}",
     },
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
