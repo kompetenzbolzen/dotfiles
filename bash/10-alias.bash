@@ -16,7 +16,7 @@ if which nvim > /dev/null 2>&1 && [ ! "$FORCE_VANILLA_VIM" = "yes" ] ; then
 	alias vim="nvim"
 fi
 
-# Termite compat
+# TMUX compat
 alias ssh="TERM=xterm-256color ssh"
 
 alias gradle="./gradlew"
