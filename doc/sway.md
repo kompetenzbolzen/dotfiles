@@ -6,6 +6,12 @@ Packages:
 For screencast:
 `xdg-desktop-portal-wlr`
 
+and
+```sh
+systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+```
+
 Notification: `swaync` (AUR0
 
 ## Pipewire
