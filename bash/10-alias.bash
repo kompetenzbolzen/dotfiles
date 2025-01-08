@@ -12,6 +12,8 @@ alias la="ls -a"
 alias ll="ls -lh"
 alias lla="ls -lha"
 
+alias df="df -x tmpfs -h"
+
 if which nvim > /dev/null 2>&1 && [ ! "$FORCE_VANILLA_VIM" = "yes" ] ; then
 	alias vim="nvim"
 fi
