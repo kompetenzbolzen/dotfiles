@@ -31,3 +31,9 @@ SYSTEM_NAME=$(hostname)
 
 # ZOXIDE
 FORCE_NORMAL_CD="no"
+
+# Collect exectime for process
+PROMPT_EXECTIME="no"
+
+# Cheatsheet
+CHEATSHEET_ENABLE="no"

@@ -1,4 +1,5 @@
 # vi:syntax=sh
+#PROMPT_EXECTIME="no"
 
 function prompt_command () {
 	local EXIT="$?"
@@ -6,7 +7,10 @@ function prompt_command () {
 	local VENV=""
 	local EXECTIME=""
 
-	local NOW=$(date +%s)
+	local NOW
+	if [ "$PROMPT_EXECTIME" = "yes" ]; then
+		NOW=$(date +%s)
+	fi
 
 	[ $EXIT -eq 0 ] && EXIT=""
 	[ ! -z "$SSH_CONNECTION" ] && REMOTE="${orange}[R] "
@@ -17,7 +21,8 @@ function prompt_command () {
 	fi
 	
 	PS1="\n${yellow}\t${EXECTIME}${reset_color}\n${REMOTE}${white}\u@${cyan}\h: ${reset_color} ${yellow}\w ${green}${VENV}\n${red}${EXIT} ${reset_color}→ "
-	__LAST_PROMPT="$(date +%s)"
+
+	__LAST_PROMPT="$NOW"
 }
 
 function preexec() {
@@ -30,6 +35,9 @@ preexec_invoke_exec () {
     local this_command=`HISTTIMEFORMAT= history 1 | sed -e "s/^[ ]*[0-9]*[ ]*//"`;
     preexec "$this_command"
 }
-trap 'preexec_invoke_exec' DEBUG
+
+if [ "$PROMPT_EXECTIME" = "yes" ]; then
+	trap 'preexec_invoke_exec' DEBUG
+fi
 
 PROMPT_COMMAND=prompt_command
