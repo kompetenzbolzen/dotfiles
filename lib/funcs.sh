@@ -129,5 +129,9 @@ COMMANDS
 		Add PATH to managed configs
 	hook	HOOK
 		manually call a hook
+	sysconf
+		install sysconf configuration
+	add_sysconf
+		Add PATH to managed sysconfigs
 EOF
 }
