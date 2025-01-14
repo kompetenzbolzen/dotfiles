@@ -12,7 +12,7 @@ function __cheatsheat_print() {
 }
 
 function __cheatsheet() {
-	local COLS COL_L COL_R SINGLE_COLUMN CNT CP CS
+	local COLS COL_L COL_R SINGLE_COLUMN CNT CP CS LOCAL_CS
 	COLS=$(tput cols)
 	SINGLE_COLUMN=$(bc <<< "$COLS/$CHEATSHEAT_COLUMNS")
 	COL_L=$(bc <<< "$SINGLE_COLUMN * $CHEATSHEAT_PART_LEFT")
@@ -23,6 +23,11 @@ function __cheatsheet() {
 	CP=$CHEATSHEAT_COLOR_PRIMARY
 	CS=$CHEATSHEAT_COLOR_SECONDARY
 
+	LOCAL_CS=""
+	if [ -f .cheatsheet ]; then
+		LOCAL_CS=".cheatsheet"
+	fi
+
 	CNT=0
 	# TODO CSV nur einmal einlesen
 	while IFS=";" read -r A B; do
@@ -30,7 +35,7 @@ function __cheatsheet() {
 			"$A" "$B"
 		CNT=$(((CNT+1)%3))
 		test $CNT -eq 0 && echo
-	done < $CHEATSHEAT_CONF_FILE
+	done <<< $(cat $LOCAL_CS $CHEATSHEAT_CONF_FILE)
 }
 
 function __clear() {
