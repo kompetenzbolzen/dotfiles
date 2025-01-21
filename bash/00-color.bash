@@ -41,5 +41,5 @@ background_white="\e[47;1m"
 background_orange="\e[101m"
 
 normal="\e[0m"
-white="\e[0m"
-reset_color="\e[39m"
+white="\e[0;97m"
+reset_color="\e[39m\e[49m"
