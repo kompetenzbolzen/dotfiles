@@ -20,7 +20,7 @@ function prompt_command () {
 		EXECTIME=" ($(( NOW - __LAST_PROMPT ))s)"
 	fi
 	
-	PS1="\n${yellow}\t${EXECTIME}${reset_color}\n${REMOTE}${white}\u@${cyan}\h: ${reset_color} ${yellow}\w ${green}${VENV}\n${red}${EXIT} \[${reset_color}\]→ "
+	PS1="\n${yellow}\t${EXECTIME}${reset_color}\n${REMOTE}${white}\u@${cyan}\h: ${reset_color} ${yellow}\w ${green}${VENV}\n\[${red}\]${EXIT} \[${reset_color}\]→ "
 
 	__LAST_PROMPT="$NOW"
 }

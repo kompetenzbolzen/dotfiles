@@ -317,3 +317,10 @@ label:focus {
     box-shadow: inset 0 -5px #ff0000;
     padding: 0 10px;
 }
+
+#custom-wifioebb {
+    color: #ffffff;
+    background-color: #a4343a;
+    box-shadow: inset 0 -5px #606467;
+    padding: 0 10px;
+}
