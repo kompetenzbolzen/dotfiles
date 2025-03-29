@@ -1,0 +1,15 @@
+#!/bin/bash
+
+PYTHON="/usr/bin/env python3"
+
+test -d ./venv/ && rm -r ./venv/
+
+$PYTHON -m virtualenv venv
+
+cat >> venv/bin/activate << EOF
+export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
+export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+EOF
+
+source venv/bin/activate
+pip install -r requirements.txt
