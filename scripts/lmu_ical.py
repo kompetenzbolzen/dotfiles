@@ -17,3 +17,5 @@ for component in cal.walk():
 f = open('fixed.ics', 'wb')
 f.write(cal.to_ical())
 f.close()
+
+print("Fixed file written to 'fixed.ics'")
