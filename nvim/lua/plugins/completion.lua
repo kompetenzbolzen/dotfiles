@@ -53,6 +53,13 @@ return {
 			lspconfig.pyright.setup {}
 			lspconfig.clangd.setup {}
 			lspconfig.texlab.setup {}
+
+			vim.o.updatetime = 250
+			vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+				callback = function()
+					vim.diagnostic.open_float(nil, { focus = false })
+				end
+			})
 		end,
 
 	},
