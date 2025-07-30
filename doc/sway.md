@@ -1,7 +1,7 @@
 # Sway
 
 Packages:
-`ttf-font-awesome ttf-dejavu sway waybar alacritty wofi swaybg xorg-xwayland j4-dmenu-desktop bemenu bemenu-wayland swayidle`
+`ttf-font-awesome otf-font-awesome ttf-dejavu sway waybar alacritty wofi swaybg xorg-xwayland j4-dmenu-desktop bemenu bemenu-wayland swayidle`
 
 For screencast:
 `xdg-desktop-portal-wlr`
