@@ -46,4 +46,5 @@ function __clear() {
 if [ "$CHEATSHEAT_ENABLE" = "yes" ]; then
 	alias clear="__clear"
 	__cheatsheet
+	alias ?='__cheatsheet'
 fi
