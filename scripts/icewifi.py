@@ -17,7 +17,7 @@ if trip.status_code != 200:
 t_info = data.json()
 t_trip = trip.json()
 
-future_stops = [ e for e in t_trip['trip']['stops'] if not e['info']['passed'] ]
+#future_stops = [ e for e in t_trip['trip']['stops'] if not e['info']['passed'] ]
 
 return_info={
         'text':f"{t_trip['trip']['trainType']} {t_trip['trip']['vzn']}",
