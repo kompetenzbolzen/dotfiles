@@ -1,0 +1,48 @@
+# https://blog.flaport.net/configuring-neomutt-for-email.html
+set folder = ~/.local/share/email
+set mbox_type = Maildir
+
+macro index S "<shell-escape>mbsync -a<enter>" "sync email"
+
+set use_envelope_from
+set sendmail = "msmtp"
+
+source `find ~/.config/neomutt/accounts.d/*.conf -type f -not -name .gitignore | xargs`
+
+set sort = 'reverse-date'
+set use_threads
+
+set date_format = "%d.%m.%Y %H:%M"
+
+#
+# Shortcuts
+#
+
+# j,k in pager unbinden, ich mag nicht durch mails scrollen
+bind index,pager \Ck sidebar-prev
+bind index,pager \Cj sidebar-next
+bind index,pager \Cl sidebar-open
+
+macro index \Ch "<enter-command> toggle sidebar_new_mail_only<enter>"
+
+#
+# Sidebar
+#
+unmailboxes *
+mailboxes `find ~/.local/share/email \
+	-mindepth 2 -type d -not -name 'new' -not -name 'cur' -not -name 'tmp' \
+	-exec realpath --relative-to ~/.local/share/email {} + \
+	| sed -e "s/^\(.*\)$/-label \1 +\1/" \
+	| xargs`
+
+#set sidebar_component_depth = 8
+#set sidebar_folder_indent
+set sidebar_visible = yes
+set sidebar_short_path
+set sidebar_sort_method=alpha
+set sidebar_format = '%D%<F? [%F]>%* %<N?%N/>%S'
+set sidebar_divider_char = '|'
+set sidebar_delim_chars = './'
+set mail_check_stats
+
+source style

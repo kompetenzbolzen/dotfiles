@@ -1,0 +1,7 @@
+# vi: ft=neomuttrc
+
+set postponed = +account/Drafts
+set record = +account/Sent
+set trash = +account/Trash
+set from = "mail@example.com"
+set realname = "Example Name"
