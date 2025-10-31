@@ -26,3 +26,4 @@ waybar;.config
 .screenrc;.
 qt5ct;.config
 tmux;.config
+neomutt;.config
