@@ -9,6 +9,9 @@ else
 	DOTFILEBASE="/home/jonas/dotfiles"
 fi
 
+export DOTFILEBASE
+export DOTFILE_SYNCDIR=${DOTFILE_SYNCDIR:-$HOME/.files.sync}
+
 source "$DOTFILEBASE/config.default"
 if [ -f "$HOME/.files.config" ]; then
 	source "$HOME/.files.config"
