@@ -1,0 +1,14 @@
+#!/bin/bash
+
+cd "$1" || exit 1
+
+if [ -z "$DOTFILE_SYNCDIR" ]; then
+	echo DOTFILE_SYNCDIR is yet unknown. Rerun this hook manually after reloading!
+	exit 1
+fi
+
+mkdir -p $DOTFILE_SYNCDIR/qutebrowser/bookmarks
+touch $DOTFILE_SYNCDIR/qutebrowser/quickmarks
+
+ln -sf $DOTFILE_SYNCDIR/qutebrowser/bookmarks bookmarks
+ln -sf $DOTFILE_SYNCDIR/qutebrowser/quickmarks quickmarks

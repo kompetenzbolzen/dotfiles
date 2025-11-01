@@ -37,3 +37,6 @@ PROMPT_EXECTIME="no"
 
 # Cheatsheet
 CHEATSHEET_ENABLE="no"
+
+# Synced Directory
+export DOTFILE_SYNCDIR="$HOME/.files.sync"
