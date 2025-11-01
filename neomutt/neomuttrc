@@ -7,7 +7,7 @@ macro index S "<shell-escape>mbsync -a<enter>" "sync email"
 set use_envelope_from
 set sendmail = "msmtp"
 
-source `find ~/.config/neomutt/accounts.d/*.conf -type f -not -name .gitignore | xargs`
+source `find $DOTFILE_SYNCDIR/mailaccounts.d/*.conf -type f -not -name .gitignore | xargs`
 
 set sort = 'reverse-date'
 set use_threads

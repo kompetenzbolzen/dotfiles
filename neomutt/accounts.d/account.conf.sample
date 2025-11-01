@@ -1,3 +1,0 @@
-# vi: ft=neomuttrc
-
-folder-hook +account/ "source account.hook"
