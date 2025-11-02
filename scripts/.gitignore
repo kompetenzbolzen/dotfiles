@@ -1,0 +1,6 @@
+__pycache__
+
+# pywikibot
+logs
+throttle.ctrl
+user-config.py
