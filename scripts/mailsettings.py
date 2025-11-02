@@ -29,9 +29,8 @@ TLSType {{ cfg.imap.tlstype }}
 CertificateFile /etc/ssl/certs/ca-certificates.crt
 
 MaildirStore {{ name }}-local
-Subfolders Verbatim
 Path {{maildir}}/{{ name }}/
-INBOX {{maildir}}{{ name }}/{{ cfg.imap.inbox }}
+Inbox {{maildir}}/{{ name }}/INBOX
 Flatten .
 
 Channel {{ name }}
