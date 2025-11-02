@@ -12,7 +12,7 @@
 
 ## This is here so configs done via the GUI are still loaded.
 ## Remove it to not load settings done via the GUI.
-# config.load_autoconfig(True)
+config.load_autoconfig(True)
 
 ## Aliases for commands. The keys of the given dictionary are the
 ## aliases, while the values are the commands they map to.
@@ -771,7 +771,7 @@
 ##   - no-3rdparty: Accept cookies from the same origin only. This is known to break some sites, such as GMail.
 ##   - no-unknown-3rdparty: Accept cookies from the same origin only, unless a cookie is already set for the domain. On QtWebEngine, this is the same as no-3rdparty.
 ##   - never: Don't accept cookies at all.
-# c.content.cookies.accept = 'all'
+c.content.cookies.accept = 'no-3rdparty'
 
 ## Store cookies.
 ## Type: Bool
@@ -815,7 +815,7 @@
 ##   - true
 ##   - false
 ##   - ask
-# c.content.geolocation = 'ask'
+c.content.geolocation = False
 
 ## Value to send in the `Accept-Language` header. Note that the value
 ## read from JavaScript is always the global value.
@@ -1202,7 +1202,7 @@
 ## Duration (in milliseconds) to wait before removing finished downloads.
 ## If set to -1, downloads are never removed.
 ## Type: Int
-# c.downloads.remove_finished = -1
+c.downloads.remove_finished = 5000
 
 ## Editor (and arguments) to use for the `edit-*` commands. The following
 ## placeholders are defined:  * `{file}`: Filename of the file to be
@@ -1476,22 +1476,22 @@
 
 ## Enter insert mode if an editable element is clicked.
 ## Type: Bool
-# c.input.insert_mode.auto_enter = True
+c.input.insert_mode.auto_enter = True
 
 ## Leave insert mode if a non-editable element is clicked.
 ## Type: Bool
-# c.input.insert_mode.auto_leave = True
+c.input.insert_mode.auto_leave = True
 
 ## Automatically enter insert mode if an editable element is focused
 ## after loading the page.
 ## Type: Bool
-# c.input.insert_mode.auto_load = False
+c.input.insert_mode.auto_load = True
 
 ## Leave insert mode when starting a new page load. Patterns may be
 ## unreliable on this setting, and they may match the url you are
 ## navigating to, or the URL you are navigating from.
 ## Type: Bool
-# c.input.insert_mode.leave_on_load = True
+c.input.insert_mode.leave_on_load = True
 
 ## Switch to insert mode when clicking flash and other plugins.
 ## Type: Bool
@@ -1853,7 +1853,7 @@
 ##   - tr-TR: Turkish (Turkey)
 ##   - uk-UA: Ukrainian (Ukraine)
 ##   - vi-VN: Vietnamese (Viet Nam)
-# c.spellcheck.languages = []
+# c.spellcheck.languages = ['en-US', 'de-DE']
 
 ## Padding (in pixels) for the statusbar.
 ## Type: Padding
@@ -2118,7 +2118,7 @@ c.tabs.position = 'left'
 ## Page to open if :open -t/-b/-w is used without URL. Use `about:blank`
 ## for a blank page.
 ## Type: FuzzyUrl
-# c.url.default_page = 'https://start.duckduckgo.com/'
+c.url.default_page = 'qute://bookmarks'
 
 ## URL segments where `:navigate increment/decrement` will search for a
 ## number.
@@ -2159,7 +2159,7 @@ c.tabs.position = 'left'
 
 ## Page(s) to open at the start.
 ## Type: List of FuzzyUrl, or FuzzyUrl
-# c.url.start_pages = ['https://start.duckduckgo.com']
+c.url.start_pages = ['qute://bookmarks']
 
 ## URL parameters to strip when yanking a URL.
 ## Type: List of String
