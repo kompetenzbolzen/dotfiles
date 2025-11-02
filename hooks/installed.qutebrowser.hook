@@ -9,6 +9,8 @@ fi
 
 mkdir -p $DOTFILE_SYNCDIR/qutebrowser/bookmarks
 touch $DOTFILE_SYNCDIR/qutebrowser/quickmarks
+touch $DOTFILE_SYNCDIR/qutebrowser/autoconfig.yml
 
 ln -sf $DOTFILE_SYNCDIR/qutebrowser/bookmarks bookmarks
 ln -sf $DOTFILE_SYNCDIR/qutebrowser/quickmarks quickmarks
+ln -sf $DOTFILE_SYNCDIR/qutebrowser/autoconfig.yml autoconfig.yml
