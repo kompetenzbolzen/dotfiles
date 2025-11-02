@@ -42,3 +42,6 @@ export QT_QPA_PLATFORMTHEME=qt6ct
 
 # Make the system name usable by other stuff too
 export SYSTEM_NAME
+
+export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
