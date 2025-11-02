@@ -15,7 +15,7 @@ AREAY=9500
 # END OF CONFIGURATION
 
 
-SCREEN="$1"
+export SCREEN="$1"
 
 if [ -z "$SCREEN" -o "$SCREEN" = "--help" -o "$SCREEN" = "-help" -o "$SCREEN" = "-h" ]; then
  echo 'This script configures a Wacom tablet to one specific monitor, or to '
@@ -43,6 +43,7 @@ else
  # HDMI1 connected 1920x1080+1366+0 (normal left inverted right x axis y axis) 509mm x 286mm
 
  LINE=`xrandr -q --current | sed -n "s/^${SCREEN}"' connected .* \([0-9]\+\)x\([0-9]\+\)+.*/\1 \2/p'`
+ echo $LINE
  read WIDTH HEIGHT <<< "$LINE"
 
  POSITION=`xrandr -q --current | sed -n "s/^${SCREEN}"' connected .* \([0-9]\+x[0-9]\++[0-9]\++[0-9]\+\) .*/\1/p'`
