@@ -10,7 +10,7 @@ set sendmail = "msmtp"
 source `find $DOTFILE_SYNCDIR/mailaccounts.d/*.conf -type f -not -name .gitignore | xargs`
 
 set sort = 'reverse-date'
-set use_threads
+set use_threads = 'threads'
 
 set date_format = "%d.%m.%Y %H:%M"
 
@@ -19,11 +19,22 @@ set date_format = "%d.%m.%Y %H:%M"
 #
 
 # j,k in pager unbinden, ich mag nicht durch mails scrollen
+unbind pager j
+unbind pager k
+unbind index,pager Cu
+unbind index,pager Cd
+
+bind pager j next-line
+bind pager k previous-line
+
 bind index,pager \Ck sidebar-prev
 bind index,pager \Cj sidebar-next
 bind index,pager \Cl sidebar-open
-
 macro index \Ch "<enter-command> toggle sidebar_new_mail_only<enter>"
+
+bind index,pager \Cd next-page
+bind index,pager \Cu previous-page
+
 
 #
 # Sidebar
