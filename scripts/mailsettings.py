@@ -29,6 +29,32 @@ MaxMessages 0
 {% endfor %}
 '''
 
+
+MSMTP_TEMPLATE='''
+defaults
+tls on
+tls_starttls off
+tls_trust_file /etc/ssl/certs/ca-certificates.crt
+logfile -
+set_from_header on
+auth on
+
+account undef
+host localhost
+account default: undef
+
+{%- for name, cfg in accounts.items() %}
+
+account {{ name }}
+host {{ cfg.smtp.host }}
+port {{ cfg.smtp.port }}
+user {{ cfg.smtp.user }}
+passwordeval secret-tool lookup app neomutt account {{ name }} proto smtp
+from {{ cfg.smtp.from }}
+
+{% endfor %}
+'''
+
 MUTT_ACCOUNT_TEMPLATE='''
 # vi: ft=neomuttrc
 
@@ -63,10 +89,27 @@ def check_dirs(*dirs) -> None:
     for dir in dirs:
         check_dir(dir)
 
+def check_creds(label, *args):
+    if subprocess.run(
+            ['secret-tool', 'lookup', *args],
+            stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL
+            ).returncode != 0:
+
+        pw = getpass.getpass(f'Input password for {label}: ')
+        subprocess.run(
+            ['secret-tool', 'store', '--label', label, *args],
+            input=pw, text=True
+        )
+
 with open(os.path.join(SYNCDIR,'mailaccounts.yaml')) as f:
     CONFIG = yaml.safe_load(f)
 
 # TODO maybe not hardcode .config
+
+check_dir(os.path.join(os.environ['HOME'], '.config', 'msmtp'))
+with open(os.path.join(os.environ['HOME'], '.config', 'msmtp', 'config'), 'w') as f:
+    f.write( Template(MSMTP_TEMPLATE).render(accounts=CONFIG) )
+
 with open(os.path.join(os.environ['HOME'], '.config', 'isyncrc'), 'w') as f:
     f.write( Template(ISYNC_TEMPLATE).render(accounts=CONFIG, maildir=MAIL_DIR) )
 
@@ -90,6 +133,7 @@ for name, cfg in CONFIG.items():
                 Template(MUTT_ACCOUNT_HOOK_TEMPLATE).render(name=name, cfg=cfg)
             )
 
+    check_creds(f'neomutt {name} smtp', 'app', 'neomutt', 'account', name, 'proto', 'smtp')
     if subprocess.run(
             ['secret-tool', 'lookup', 'app', 'neomutt', 'account', name, 'proto', 'imap'],
             stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL
