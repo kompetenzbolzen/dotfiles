@@ -1,4 +1,21 @@
 #!/usr/bin/env python3
+'''
+# EXAMPLE CONFIG:
+---
+mymail:
+  imap:
+    host: imap.example.com
+    port: 993
+    user: user@example.com
+    tlstype: IMAPS
+    inbox: INBOX
+  smtp:
+    host: smtp.example.com
+    port: 465
+    user: user@example.com
+    from: user@example.com
+
+'''
 
 ISYNC_TEMPLATE='''
 {% for name, cfg in accounts.items() %}
