@@ -1,5 +1,6 @@
 # vim: filetype=neomuttrc
 # Default index colors:
+# https://neomutt.org/guide/configuration#11-%C2%A0using-color-and-mono-video-attributes
 
 color index cyan default '.*'
 color index_author yellow default '.*'
@@ -18,6 +19,8 @@ color index_author brightyellow black "~O"
 color index_number brightblack blue "~O"
 color index_subject brightgreen black "~O"
 
+color index_subject red black "~F"
+
 # Header colors:
 color header blue default ".*"
 color header brightmagenta default "^(From)"
@@ -25,7 +28,7 @@ color header brightcyan default "^(Subject)"
 color header brightwhite default "^(CC|BCC)"
 
 mono bold bold
-mono underline underline
+#mono underline underline
 mono indicator reverse
 mono error bold
 
@@ -33,7 +36,7 @@ color normal default default
 
 color indicator white brightblack
 
-color sidebar_highlight red default
+color sidebar_highlight underline default default
 color sidebar_divider white brightblack
 set sidebar_divider_char = ' '
 color sidebar_flagged red black

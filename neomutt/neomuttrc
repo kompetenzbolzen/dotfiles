@@ -2,6 +2,8 @@
 set folder = ~/.local/share/email
 set mbox_type = Maildir
 
+set mailcap_path = $DOTFILEBASE/neomutt/mailcap
+
 macro index S "<shell-escape>mbsync -a<enter>" "sync email"
 
 set use_envelope_from
@@ -13,6 +15,8 @@ set sort = threads
 set sort_aux = last-date-received
 
 set date_format = "%d.%m.%Y %H:%M"
+
+auto_view text/html
 
 #
 # Shortcuts
