@@ -51,9 +51,12 @@ mailboxes `find ~/.local/share/email \
 set sidebar_visible = yes
 set sidebar_short_path
 set sidebar_sort_method=alpha
-set sidebar_format = '%D%<F? [%F]>%* %<N?%N/>%S'
+#set sidebar_format = '%D%<F? [%F]>%* %<N?%N/>%S'
+set sidebar_format = "%D %* [%?N?%N / ?%S]"
 set sidebar_divider_char = '|'
 set sidebar_delim_chars = './'
+# Sidebar show only new mail by default
+set sidebar_new_mail_only = yes
 set mail_check_stats
 
 source style
