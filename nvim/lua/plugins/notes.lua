@@ -5,7 +5,7 @@ return {
 			vim.g.vimwiki_list = {{
 				syntax="markdown",
 				ext=".md",
-				path="~/notes/",
+				path="$DOTFILE_SYNCDIR/notes/",
 				auto_toc=1,
 			}}
 		end
