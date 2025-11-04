@@ -2159,7 +2159,11 @@ c.url.default_page = 'qute://bookmarks'
 
 ## Page(s) to open at the start.
 ## Type: List of FuzzyUrl, or FuzzyUrl
-c.url.start_pages = ['qute://bookmarks']
+c.url.start_pages = [
+        'qute://bookmarks',
+        'https://wiki.muc.jag.re/',
+        'https://gitea.muc.jag.re'
+]
 
 ## URL parameters to strip when yanking a URL.
 ## Type: List of String
