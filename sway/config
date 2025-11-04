@@ -2,6 +2,7 @@
 
 set $mod Mod1
 set $term alacritty
+set $term_cmd alacritty -e
 floating_modifier $mod
 
 include "systems/$SYSTEM_NAME.conf"
