@@ -38,6 +38,9 @@ alias vybld='docker pull vyos/vyos-build:equuleus && docker run --rm -it \
     -e GOSU_UID=$(id -u) -e GOSU_GID=$(id -g) \
     vyos/vyos-build:equuleus bash'
 
+alias notes='vim +VimwikiIndex'
+alias diary='vim +VimwikiDiaryIndex'
+
 for i in $(seq 10); do
 	DOTS='.'
 	for _ in $(seq $i); do
