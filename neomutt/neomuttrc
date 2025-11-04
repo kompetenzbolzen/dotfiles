@@ -9,8 +9,8 @@ set sendmail = "msmtp"
 
 source `find $DOTFILE_SYNCDIR/mailaccounts.d/*.conf -type f -not -name .gitignore | xargs`
 
-set sort = 'reverse-date'
-set use_threads = 'threads'
+set sort = threads
+set sort_aux = last-date-received
 
 set date_format = "%d.%m.%Y %H:%M"
 
