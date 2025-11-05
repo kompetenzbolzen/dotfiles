@@ -9,9 +9,21 @@ if [ "$DOTFILEBASE" != "$(pwd)" -o -z "$DOTFILE_SYNCDIR" ]; then
 	echo "\~/.files is our of date. Updating."
 	echo "DOTFILEBASE=\"$(pwd)\"" > $HOME/.files
 	echo "DOTFILE_SYNCDIR=\"${DOTFILE_SYNCDIR:-$HOME/.files.sync}\"" >> $HOME/.files
+
+	DOTFILE_SYNCDIR="${DOTFILE_SYNCDIR:-$HOME/.files.sync}"
 fi
 
 if [ ! -f "$HOME/.files.config" ]; then
 	echo "Installing default configuration in ~/.files.config"
 	cp "config.default" "$HOME/.files.config"
+fi
+
+test -f "$DOTFILE_SYNCDIR/ssh_config" || touch "$DOTFILE_SYNCDIR/ssh_config"
+mkdir -p "$HOME/.ssh"
+
+if [ -e "$HOME/.ssh/config" ]; then
+	# NOTE location of link is not checked
+	[ ! -L "$HOME/.ssh/config" ] && echo WARNING: ssh config exists and is not linked
+else
+	ln -sf $DOTFILE_SYNCDIR/ssh_config "$HOME/.ssh/config"
 fi
