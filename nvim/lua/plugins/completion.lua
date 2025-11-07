@@ -47,12 +47,10 @@ return {
 	},{
 		'neovim/nvim-lspconfig',
 		config = function()
-			local lspconfig = require('lspconfig')
-
-			lspconfig.rust_analyzer.setup {}
-			lspconfig.pyright.setup {}
-			lspconfig.clangd.setup {}
-			lspconfig.texlab.setup {}
+			vim.lsp.enable('rust_analyzer')
+			vim.lsp.enable('pyright')
+			vim.lsp.enable('clangd')
+			vim.lsp.enable('texlab')
 
 			vim.o.updatetime = 250
 			vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
