@@ -18,5 +18,9 @@ return {
                                 }
                         }
                 end
-        }
+        },
+	{
+		"stevearc/oil.nvim",
+		opts = {},
+	}
 }
