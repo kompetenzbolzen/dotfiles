@@ -3,6 +3,7 @@ set folder = ~/.local/share/email
 set mbox_type = Maildir
 
 set mailcap_path = $DOTFILEBASE/neomutt/mailcap
+auto_view text/html
 
 macro index S "<shell-escape>mbsync -a<enter>" "sync email"
 
@@ -16,7 +17,8 @@ set sort_aux = last-date-received
 
 set date_format = "%d.%m.%Y %H:%M"
 
-auto_view text/html
+set ask_cc = yes
+set ask_followup_to = yes
 
 #
 # Shortcuts
@@ -39,6 +41,7 @@ macro index \Ch "<enter-command> toggle sidebar_new_mail_only<enter>"
 bind index,pager \Cd next-page
 bind index,pager \Cu previous-page
 
+bind index G group-chat-reply
 
 #
 # Sidebar
