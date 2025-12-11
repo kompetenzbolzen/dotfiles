@@ -28,3 +28,4 @@ qt5ct;.config
 tmux;.config
 neomutt;.config
 qutebrowser;.config
+userscripts;.local/share/qutebrowser
