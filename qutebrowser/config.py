@@ -1040,7 +1040,7 @@ c.content.geolocation = False
 ## `:prompt-open-download --pdfjs` command (bound to `<Ctrl-p>` by
 ## default) can be used in the download prompt.
 ## Type: Bool
-# c.content.pdfjs = False
+c.content.pdfjs = True
 
 ## Allow websites to request persistent storage quota via
 ## `navigator.webkitPersistentStorage.requestQuota`.
@@ -2203,6 +2203,8 @@ c.url.start_pages = [
 ## Apply the zoom factor on a frame only to the text or to all content.
 ## Type: Bool
 # c.zoom.text_only = False
+
+config.bind('pw', 'spawn --userscript keepassxc', mode='normal')
 
 ## Bindings for normal mode
 # config.bind("'", 'mode-enter jump_mark')
