@@ -21,15 +21,13 @@ Third, install the python module `pynacl`.
 
 Finally, adapt your qutebrowser config.
 You can e.g. add the following lines to your `~/.config/qutebrowser/config.py`
-Remember to replace `ABC1234` with your actual GPG key.
 
 ```python
-config.bind('<Alt-Shift-u>', 'spawn --userscript qute-keepassxc --key ABC1234', mode='insert')
-config.bind('pw', 'spawn --userscript qute-keepassxc --key ABC1234', mode='normal')
+config.bind('<Alt-Shift-u>', 'spawn --userscript qute-keepassxc', mode='insert')
+config.bind('pw', 'spawn --userscript keepassxc', mode='normal')
 ```
 
 To manage multiple accounts you also need [rofi](https://github.com/davatorium/rofi) installed.
-
 
 # Usage
 
@@ -42,7 +40,6 @@ Just provide a name of your choice and accept the request if nothing looks fishy
 # How it works
 
 This script will talk to KeepassXC using the native [KeepassXC-Browser protocol][4].
-
 
 This script needs to store the key used to associate with your KeepassXC instance somewhere.
 Unlike most browser extensions which only use plain local storage, this one attempts to do so in a safe way
@@ -87,7 +84,6 @@ import json
 import base64
 import subprocess
 import argparse
-import traceback
 
 import nacl.utils
 import nacl.public
@@ -102,9 +98,19 @@ def parse_args() -> argparse.Namespace:
                         help='Path to KeepassXC browser socket')
     return parser.parse_args()
 
+def qute(cmd):
+    with open(os.environ['QUTE_FIFO'], 'w') as fifo:
+        fifo.write(cmd)
+        fifo.write('\n')
+        fifo.flush()
+
 def error(msg):
     print(msg, file=sys.stderr)
     qute('message-error "{}"'.format(msg))
+
+def info(msg):
+    print(msg, file=sys.stderr)
+    qute('message-info "{}"'.format(msg))
 
 class KeepassError(Exception):
     def __init__(self, code, desc):
@@ -116,14 +122,15 @@ class KeepassError(Exception):
 
 class KeepassXCDatabase:
     def __init__(self, socket_path: str):
-        error(nacl.public.Box.NONCE_SIZE)
-        self._sock        = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
-        self._socket_path = socket_path
-        self._client_key  = nacl.public.PrivateKey.generate()
-        self._client_nonce    = base64.b64encode(nacl.utils.random(nacl.public.Box.NONCE_SIZE)).decode('utf-8')
+        self._sock         = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+        self._socket_path  = socket_path
+        self._client_key   = nacl.public.PrivateKey.generate()
+        self._client_nonce = base64.b64encode(
+                nacl.utils.random(nacl.public.Box.NONCE_SIZE)
+            ).decode('utf-8')
         self.cryptobox: nacl.public.Box
 
-    def connect(self,) -> None:
+    def connect(self) -> None:
         self._init_socket()
         self._perform_key_exchange()
 
@@ -164,7 +171,6 @@ class KeepassXCDatabase:
         ), triggerUnlock = 'true')
         return self.recv_msg()['success'] == 'true'
 
-    # TODO Error handling?
     def associate(self, key: nacl.public.PrivateKey) -> str:
         self.send_msg(dict(
             action = 'associate',
@@ -172,8 +178,6 @@ class KeepassXCDatabase:
             idKey  = base64.b64encode(key.public_key.encode()).decode('utf-8')
         ))
         resp = self.recv_msg()
-        #self.id = resp['id']
-        error(resp)
         return resp['id']
 
     def send_msg(self, msg: dict, **extra ) -> None:
@@ -200,7 +204,6 @@ class KeepassXCDatabase:
 
 
 class KeepassXC:
-    """ Wrapper around the KeepassXC socket API """
     def __init__(self, socket_path):
         self._db      = KeepassXCDatabase(socket_path)
         self._ass_man = SecretAssociationManager()
@@ -209,6 +212,7 @@ class KeepassXC:
         self._db.connect()
 
         if not self._ass_man.association_exists():
+            info("Client is not associated")
             self._ass_man.association_store(
                 self._db.associate( self._ass_man.key_get() )
             )
@@ -221,6 +225,7 @@ class KeepassXC:
         self._db.send_msg(dict(action='get-databasehash'))
         return self._db.recv_msg()['hash']
 
+    # TODO heck if we need this.
     def lock_database(self) -> bool:
         self._db.send_msg(dict(action='lock-database'))
         try:
@@ -231,7 +236,6 @@ class KeepassXC:
             raise
         return False
 
-    # TODO typehint
     def get_logins(self, url: str) -> dict:
         self._db.send_msg(dict(
             action = 'get-logins',
@@ -260,16 +264,19 @@ def secret_exists(*args: str) -> bool:
                 stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL
                 ).returncode == 0
 
+
 def secret_store(value: str, label: str, *args: str) -> None:
     subprocess.run(
         ['secret-tool', 'store', '--label', label, *args],
         input=value, text=True
     )
 
+
 def secret_get(*args: str) -> str:
     return subprocess.run(
               ['secret-tool', 'lookup', *args],
               capture_output=True, text=True).stdout
+
 
 class AssociationManager:
     def __init__(self):
@@ -295,6 +302,7 @@ class AssociationManager:
     def _key_store(self, key: bytes) -> None:
         raise Exception
 
+
 class SecretAssociationManager(AssociationManager):
     TAGS = ['app', 'qutebrowser', 'userscript', 'keepassxc']
     def association_exists(self) -> bool:
@@ -314,31 +322,6 @@ class SecretAssociationManager(AssociationManager):
 
     def _key_store(self, key: bytes) -> None:
         secret_store(base64.b64encode(key).decode('utf-8'), 'qutebrowser keepassxc key', *self.TAGS, 'type', 'key')
-
-
-# TODO generic dmenu provider?
-def select_account(creds):
-    try:
-        if len(creds) == 1:
-            return creds[0]
-        idx = subprocess.check_output(
-                ['rofi', '-dmenu', '-format', 'i', '-matching', 'fuzzy',
-                '-p', 'Search',
-                '-mesg', '<b>qute-keepassxc</b>: select an account, please!'],
-                input=b"\n".join(c['login'].encode('utf-8') for c in creds)
-        )
-        idx = int(idx)
-        if idx < 0:
-            return None
-        return creds[idx]
-    except subprocess.CalledProcessError:
-        return None
-    except FileNotFoundError:
-        error("rofi not found. Please install rofi to select from multiple credentials")
-        return creds[0]
-    except Exception as e:
-        error(f"Error while picking account: {e}")
-        return None
 
 
 def make_js_code(username, password):
@@ -416,50 +399,65 @@ def make_js_totp_code(totp):
         })();
     """.splitlines()) % (json.dumps(totp),)
 
-def qute(cmd):
-    with open(os.environ['QUTE_FIFO'], 'w') as fifo:
-        fifo.write(cmd)
-        fifo.write('\n')
-        fifo.flush()
-
+# TODO generic dmenu provider?
+def select_account(creds: dict) -> dict | None:
+    try:
+        if len(creds) == 1:
+            return creds[0]
+        idx = subprocess.check_output(
+                ['rofi', '-dmenu', '-format', 'i', '-matching', 'fuzzy',
+                '-p', 'Search',
+                '-mesg', '<b>qute-keepassxc</b>: select an account, please!'],
+                input=b"\n".join(c['login'].encode('utf-8') for c in creds)
+        )
+        idx = int(idx)
+        if idx < 0:
+            return None
+        return creds[idx]
+    except subprocess.CalledProcessError:
+        return None
+    except FileNotFoundError:
+        error("rofi not found. Please install rofi to select from multiple credentials")
+        return creds[0]
+    except Exception as e:
+        error(f"Error while picking account: {e}")
+        return None
 
 def main():
     if 'QUTE_FIFO' not in os.environ:
         print(f"No QUTE_FIFO found - {sys.argv[0]} must be run as a qutebrowser userscript")
         sys.exit(-1)
 
-    # TODO this try-except is hidous
-    try:
-        args = parse_args()
-        assert args.url, "Missing URL"
-        kp = KeepassXC(args.socket)
-        kp.connect()
+    args = parse_args()
+    assert args.url, "Missing URL"
 
-        creds = kp.get_logins(args.url)
-        if not creds:
-            error('No credentials found')
+    kp = KeepassXC(args.socket)
+    kp.connect()
+
+    creds = kp.get_logins(args.url)
+    if not creds:
+        error('No credentials found')
+        return
+
+    cred = select_account(creds)
+    if not cred:
+        error('No credentials selected')
+        return
+
+    if args.totp:
+        uuid = cred['uuid']
+        totp = kp.get_totp(uuid)
+        if not totp:
+            error('No TOTP key found')
             return
-        cred = select_account(creds)
-        if not cred:
-            error('No credentials selected')
-            return
-        if args.totp:
-            uuid = cred['uuid']
-            totp = kp.get_totp(uuid)
-            if not totp:
-                error('No TOTP key found')
-                return
-            qute('jseval -q ' + make_js_totp_code(totp))
-        else:
-            name, pw = cred['login'], cred['password']
-            if name and pw:
-                qute('jseval -q ' + make_js_code(name, pw))
-    except Exception:
-        for l in traceback.format_exc().split('\n'):
-            error(l)
-        #error(str(e))
+        qute('jseval -q ' + make_js_totp_code(totp))
+    else:
+        name, pw = cred['login'], cred['password']
+        if name and pw:
+            qute('jseval -q ' + make_js_code(name, pw))
 
 
 if __name__ == '__main__':
-    main()
+    try: main()
+    except Exception as e: error(str(e))
 
