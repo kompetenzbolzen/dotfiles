@@ -13,7 +13,8 @@ function attach_session() {
 
 function new_session() {
 	tmux new-session -s "$SESSIONNAME" -n 'neomutt' -d "bash -c 'while true; do neomutt; done'"
-	tmux new-window -n "mbsync" -t ${SESSIONNAME}: "bash -c 'while true; do mbsync -a; sleep $INTERVAL; done'"
+	tmux new-window -n "calendar" -t ${SESSIONNAME}: "bash -c 'while true; do khal interactive; done'"
+	tmux new-window -n "mbsync" -t ${SESSIONNAME}: "bash -c 'while true; do mbsync -a; vdirsyncer sync; sleep $INTERVAL; done'"
 }
 
 check_session || new_session
