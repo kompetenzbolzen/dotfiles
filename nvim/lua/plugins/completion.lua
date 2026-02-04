@@ -51,6 +51,9 @@ return {
 			vim.lsp.enable('pyright')
 			vim.lsp.enable('clangd')
 			vim.lsp.enable('texlab')
+			vim.lsp.enable('shellcheck')
+			vim.lsp.enable('hls')
+			vim.lsp.config('hls', {cmd = {'haskell-language-server-wrapper', '--lsp'}})
 
 			vim.o.updatetime = 250
 			vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
