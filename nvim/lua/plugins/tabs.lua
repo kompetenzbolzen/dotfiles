@@ -19,6 +19,10 @@ return {
 					tabwidth = 2,
 					expandtab = true
 				},
+				yaml = {
+					tabwidth = 2,
+					expandtab = true
+				},
 			},
 		}
 	}
