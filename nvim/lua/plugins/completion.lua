@@ -52,8 +52,13 @@ return {
 			vim.lsp.enable('clangd')
 			vim.lsp.enable('texlab')
 			vim.lsp.enable('shellcheck')
-			vim.lsp.enable('hls')
 			vim.lsp.config('hls', {cmd = {'haskell-language-server-wrapper', '--lsp'}})
+			vim.lsp.enable('hls')
+			vim.lsp.config('openscad', {
+				cmd = {'openscad-lsp', '--stdio'},
+				filetypes = {'openscad'}
+			})
+			vim.lsp.enable('openscad')
 
 			vim.o.updatetime = 250
 			vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {

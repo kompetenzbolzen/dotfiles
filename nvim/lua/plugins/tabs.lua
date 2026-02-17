@@ -23,6 +23,10 @@ return {
 					tabwidth = 2,
 					expandtab = true
 				},
+				json = {
+					tabwidth = 2,
+					expandtab = true
+				},
 			},
 		}
 	}
