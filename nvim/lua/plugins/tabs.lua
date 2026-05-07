@@ -13,7 +13,7 @@ return {
 				},
 				python = {
 					tabwidth = 4,
-					expandtab = false
+					expandtab = true
 				},
 				openscad = {
 					tabwidth = 2,
