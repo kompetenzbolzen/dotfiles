@@ -5,7 +5,7 @@
   "spacing": 4,
   "modules-left": ["sway/workspaces", "sway/mode", "sway/scratchpad", "sway/window"],
   "modules-center": ["clock"],
-  "modules-right": ["idle_inhibitor","custom/wifiice","custom/wifioebb", "pulseaudio", "network", "custom/wireguard", "bluetooth", "cpu", "memory", "temperature", "backlight", "battery", "tray"],
+  "modules-right": ["idle_inhibitor","custom/wifiice","custom/wifioebb", "custom/wifisncf",  "pulseaudio", "network", "custom/wireguard", "bluetooth", "cpu", "memory", "temperature", "backlight", "battery", "tray"],
 
   "sway/workspaces": {
     "disable-scroll": true,
@@ -180,6 +180,13 @@
     "return-type": "json",
     "exec": "oebbwifi.py",
     "exec-if": "test \"$(iwgetid -r)\" = \"OEBB\""
+  },
+  "custom/wifisncf": {
+    "format": "{} {percentage} km/h",
+    "interval":10,
+    "return-type": "json",
+    "exec": "sncfwifi.py",
+    "exec-if": "test \"$(iwgetid -r)\" = \"_SNCF_WIFI_INOUI\""
   },
   "custom/wireguard": {
     "format": "",
