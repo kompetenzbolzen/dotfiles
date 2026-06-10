@@ -1,16 +1,26 @@
 #!/bin/bash
+# vi: ft=bash
 
 . $HOME/.files
 
 #Screen background feh
 shopt -s nullglob
 
-pics=($DOTFILEBASE/pictures/b_*)
-#echo $pics
-len=${#pics[*]}
-ran=$(($RANDOM % len))
+function select_image() {
+	pics=($DOTFILEBASE/pictures/b_*)
+	len=${#pics[*]}
+	ran=$(($RANDOM % len))
 
+	echo  ${pics[$ran]}
+}
 
-echo  ${pics[$ran]}
-killall swaybg
-swaybg -m fill -i ${pics[$ran]} &
+function bg_on_screen() {
+	swaymsg output $1 bg $2 fill
+	#killall swaybg
+	#swaybg -m fill -i ${pics[$ran]} &
+}
+
+while read L; do
+	echo $L
+	bg_on_screen $L $(select_image)
+done <<< $(swaymsg -rt get_outputs | jq -r '[.[] | select(.active == true)  | .name] | .[]')
