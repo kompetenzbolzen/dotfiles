@@ -7,7 +7,7 @@
 shopt -s nullglob
 
 function select_image() {
-	pics=($DOTFILEBASE/pictures/b_*)
+	pics=($DOTFILE_SYNCDIR/backgrounds/*)
 	len=${#pics[*]}
 	ran=$(($RANDOM % len))
 
@@ -21,6 +21,5 @@ function bg_on_screen() {
 }
 
 while read L; do
-	echo $L
 	bg_on_screen $L $(select_image)
 done <<< $(swaymsg -rt get_outputs | jq -r '[.[] | select(.active == true)  | .name] | .[]')

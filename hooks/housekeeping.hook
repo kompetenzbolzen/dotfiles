@@ -27,3 +27,5 @@ if [ -e "$HOME/.ssh/config" ]; then
 else
 	ln -sf $DOTFILE_SYNCDIR/ssh_config "$HOME/.ssh/config"
 fi
+
+mkdir -p $DOTFILE_SYNCDIR/backgrounds
