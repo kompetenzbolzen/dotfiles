@@ -11,6 +11,9 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+vim.env.REQUESTS_CA_BUNDLE = "/etc/ssl/certs/ca-certificates.crt"
+vim.g.python3_host_prog = "/usr/bin/python"
+
 require("lazy").setup("plugins")
 
 -- load vim config
