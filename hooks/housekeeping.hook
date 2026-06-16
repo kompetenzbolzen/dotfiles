@@ -29,3 +29,9 @@ else
 fi
 
 mkdir -p $DOTFILE_SYNCDIR/backgrounds
+
+if [ ! -L "$DOTFILEBASE/.git/hooks/post-merge" ]; then
+	echo Installing git-hook
+	# NOTE location of link is not checked!
+	ln -sf "$DOTFILEBASE/install.sh" "$DOTFILEBASE/.git/hooks/post-merge"
+fi

@@ -7,17 +7,24 @@ function fail(){
 	exit "$EXCODE"
 }
 
-WORKDIR=$(realpath "$(dirname "$0")")
+
+# NOTE Detect when called as softlink
+REALEXEC="$0"
+if [ -L "$REALEXEC" ]; then
+	REALEXEC=$(realpath $REALEXEC)
+fi
+
+WORKDIR=$(realpath "$(dirname "$REALEXEC")")
 cd "$WORKDIR" || fail 1 "The working directory could not be determined."
 
 # For hooks
 export WORKDIR
 
-# === CODE BELOW HERE ===
-
 for f in lib/*.sh; do
 	source "$f" || fail 1 "Failed to load $f"
 done
+
+# === CODE BELOW HERE ===
 
 debug "Working in $WORKDIR"
 debug "Homedir is $HOME"
@@ -50,6 +57,13 @@ while IFS=";" read -r CFG DEST _; do
 	SYSCONFIGS[$CFG]="$DEST"
 done < sysconf.csv
 unset SET PKGS
+
+# TODO we maybe want a more flexible softlink-detection system here
+if [ $(basename $0) = 'post-merge' ]; then
+	debug "running as post-merge git hook"
+	call_hook housekeeping
+	exit 0
+fi
 
 if [ $# -eq 0 ]; then
 	print_help "$0"
