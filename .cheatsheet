@@ -1,0 +1,2 @@
+./install.sh install [cfg];
+./install.sh add $HOME/.config/<asdf>
