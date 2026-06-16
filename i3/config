@@ -1,6 +1,0 @@
-# vi: ft=i3config
-
-set $mod Mod1
-floating_modifier $mod
-
-include config.d/*.conf

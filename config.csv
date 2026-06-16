@@ -4,7 +4,6 @@ autoload.cfg;.local/share/Steam/steamapps/common/Counter-Strike Global Offensive
 deadd;.config
 nvim;.config
 .xinitrc;.
-i3;.config
 .bash_profile;.
 termux.properties;.termux
 rofi;.config
