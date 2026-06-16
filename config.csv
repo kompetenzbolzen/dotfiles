@@ -13,7 +13,6 @@ alacritty;.config
 twmn;.config
 sxhkd;.config
 .radare2rc;.
-polybar;.config
 .Xresources;.
 bspwm;.config
 picom;.config
