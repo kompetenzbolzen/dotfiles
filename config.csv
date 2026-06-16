@@ -11,7 +11,6 @@ termux.properties;.termux
 rofi;.config
 alacritty;.config
 twmn;.config
-powerline;.config
 sxhkd;.config
 .radare2rc;.
 polybar;.config
