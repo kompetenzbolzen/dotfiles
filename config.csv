@@ -14,7 +14,6 @@ twmn;.config
 sxhkd;.config
 .radare2rc;.
 .Xresources;.
-bspwm;.config
 picom;.config
 .stack;.
 sway;.config
