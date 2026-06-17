@@ -1,0 +1,5 @@
+image=$DOTFILE_SYNCDIR/backgrounds/r001-004.jpg
+scaling=fill
+show-keyboard-layout
+show-failed-attempts
+ignore-empty-password

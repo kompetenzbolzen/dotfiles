@@ -25,3 +25,4 @@ neomutt;.config
 qutebrowser;.config
 userscripts;.local/share/qutebrowser
 zellij;.config
+.swaylock;.
