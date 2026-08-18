@@ -68,3 +68,8 @@ An external configuration to allow host specific settings, without tainting the 
 It is populated from `config.default` if it does not exist.
 Scripts in `bash/` use its variables as configuration.
 If the variables do not exist in `.files.config`, the default values from `config.default` are used.
+
+## Externally synced files
+
+Files, which should not end up in a git repository can be put in `$DOTFILE_SYNCDIR`,
+`$HOME/.files.sync` by default.
