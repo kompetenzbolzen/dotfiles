@@ -2,7 +2,7 @@ CHEATSHEAT_COLUMNS=3
 CHEATSHEAT_PART_LEFT=0.4
 CHEATSHEAT_CONF_FILE="$DOTFILEBASE/cheatsheet"
 
-CHEATSHEAT_COLOR_PRIMARY=$purple
+CHEATSHEAT_COLOR_PRIMARY=$underline_purple
 CHEATSHEAT_COLOR_SECONDARY=$white
 
 #CHEATSHEAT_ENABLE defaults to no
@@ -35,7 +35,7 @@ function __cheatsheet() {
 			"$A" "$B"
 		CNT=$(((CNT+1)%3))
 		test $CNT -eq 0 && echo
-	done <<< $(cat $LOCAL_CS $CHEATSHEAT_CONF_FILE)
+	done <<< $(cat $LOCAL_CS $CHEATSHEAT_CONF_FILE; __cheatsheet_construct_dynamic_entries)
 }
 
 function __clear() {

@@ -98,4 +98,7 @@ function bb_prune {
 	mv "$BB_HIST_DIR/history.new" "$BB_HIST_DIR/history"
 }
 
+cheatsheet_add "bb [n]" "cd n"
+cheatsheet_add bb_prune "prune entries"
+
 bashboard

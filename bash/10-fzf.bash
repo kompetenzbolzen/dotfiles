@@ -9,3 +9,4 @@ if [ -f /usr/share/fzf/key-bindings.bash ]; then
 fi
 
 export FZF_COMPLETION_TRIGGER='++'
+cheatsheet_add "fzf trigger" "show, arg goto"
