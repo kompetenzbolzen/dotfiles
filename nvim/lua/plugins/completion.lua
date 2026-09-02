@@ -51,7 +51,6 @@ return {
 			vim.lsp.enable('pyright')
 			vim.lsp.enable('clangd')
 			vim.lsp.enable('texlab')
-			vim.lsp.enable('shellcheck')
 			vim.lsp.config('hls', {cmd = {'haskell-language-server-wrapper', '--lsp'}})
 			vim.lsp.enable('hls')
 			vim.lsp.config('openscad', {
@@ -68,5 +67,8 @@ return {
 			})
 		end,
 
-	},
+	},{
+		'pablos123/shellcheck.nvim',
+		config = function () require 'shellcheck-nvim'.setup {} end
+	}
 }
