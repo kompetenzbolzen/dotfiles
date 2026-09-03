@@ -7,6 +7,24 @@ Dotfiles or config folders are symlinked to their normal spot from this reposito
 This allows choosing a subset of files to install.
 Groups are also supported, allowing for quick installation of often used together configurations.
 
+## Bash manager
+
+in `bash/`
+
+### Hooks
+
+* CD
+* CLEAR
+* ENTRY
+* LOGIN
+
+```bash
+function foo() {
+	echo bar
+}
+HOOK_CD+=(foo)
+```
+
 ## Installation
 
 ```
