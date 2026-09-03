@@ -102,5 +102,5 @@ function bb_prune {
 cheatsheet_add "bb [n]" "cd n"
 cheatsheet_add bb_prune "prune entries"
 
-HOOK_ENTRY+=(bashboard)
+HOOK_ENTRY+=(bb)
 HOOK_CLEAR+=(bb)
