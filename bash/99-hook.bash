@@ -29,7 +29,7 @@ function __hook_entry() {
 }
 
 function hooks() {
-	for e in CD CLEAR ENTRY; do
+	for e in CD CLEAR ENTRY LOGIN; do
 		echo -n $e
 		printf "\t| "
 		eval echo "\${HOOK_${e}[@]}"
