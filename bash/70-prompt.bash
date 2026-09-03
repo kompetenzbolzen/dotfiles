@@ -1,7 +1,7 @@
 # vi:syntax=sh
 #PROMPT_EXECTIME="no"
 
-function prompt_command () {
+function _prompt_command () {
 	local EXIT="$?"
 	local MOD_PREFIX=""
 	local VENV=""
@@ -26,19 +26,19 @@ function prompt_command () {
 	__LAST_PROMPT="$NOW"
 }
 
-function preexec() {
+function _preexec() {
 	__LAST_PROMPT="$(date +%s)"
 }
 
-preexec_invoke_exec () {
+_preexec_invoke_exec () {
     [ -n "$COMP_LINE" ] && return  # do nothing if completing
     [ "$BASH_COMMAND" = "$PROMPT_COMMAND" ] && return # don't cause a preexec for $PROMPT_COMMAND
     local this_command=`HISTTIMEFORMAT= history 1 | sed -e "s/^[ ]*[0-9]*[ ]*//"`;
-    preexec "$this_command"
+    _preexec "$this_command"
 }
 
 if [ "$PROMPT_EXECTIME" = "yes" ]; then
-	trap 'preexec_invoke_exec' DEBUG
+	trap '_preexec_invoke_exec' DEBUG
 fi
 
-PROMPT_COMMAND=prompt_command
+HOOK_PROMPT+=(_prompt_command)

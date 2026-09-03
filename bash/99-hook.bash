@@ -28,8 +28,15 @@ function __hook_entry() {
 	done
 }
 
+function __hook_prompt() {
+	for f in "${HOOK_PROMPT[@]}"; do
+		"$f"
+	done
+}
+PROMPT_COMMAND=__hook_prompt
+
 function hooks() {
-	for e in CD CLEAR ENTRY LOGIN; do
+	for e in CD CLEAR ENTRY LOGIN PROMPT; do
 		echo -n $e
 		printf "\t| "
 		eval echo "\${HOOK_${e}[@]}"
