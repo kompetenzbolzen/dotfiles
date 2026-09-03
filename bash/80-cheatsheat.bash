@@ -38,13 +38,8 @@ function __cheatsheet() {
 	done <<< $(cat $LOCAL_CS $CHEATSHEAT_CONF_FILE; __cheatsheet_construct_dynamic_entries)
 }
 
-function __clear() {
-	\clear
-	__cheatsheet
-}
-
 if [ "$CHEATSHEAT_ENABLE" = "yes" ]; then
-	alias clear="__clear"
-	__cheatsheet
+	HOOK_ENTRY+=(__cheatsheet)
+	HOOK_CLEAR+=(__cheatsheet)
 	alias ?='__cheatsheet'
 fi

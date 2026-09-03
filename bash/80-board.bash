@@ -16,7 +16,7 @@ BB_SHORTCUT=()
 
 # add ssh targets
 
-function cd {
+function _bb_hook_cd {
 	local BB_PWD
 	local BB_GREP_RET
 	local BB_NUM BB_DATE BB_DIR
@@ -37,6 +37,7 @@ function cd {
 		echo "1 $(date +%s) $BB_PWD" >> "$BB_HIST_DIR/history"
 	fi
 }
+HOOK_CD+=(_bb_hook_cd)
 
 function bashboard {
 	local BB_NUM BB_DATE BB_DIR
@@ -101,4 +102,5 @@ function bb_prune {
 cheatsheet_add "bb [n]" "cd n"
 cheatsheet_add bb_prune "prune entries"
 
-bashboard
+HOOK_ENTRY+=(bashboard)
+HOOK_CLEAR+=(bb)
