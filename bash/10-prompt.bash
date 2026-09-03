@@ -3,7 +3,7 @@
 
 function prompt_command () {
 	local EXIT="$?"
-	local REMOTE=""
+	local MOD_PREFIX=""
 	local VENV=""
 	local EXECTIME=""
 
@@ -13,14 +13,15 @@ function prompt_command () {
 	fi
 
 	[ $EXIT -eq 0 ] && EXIT=""
-	[ ! -z "$SSH_CONNECTION" ] && REMOTE="${orange}[R] "
+	[ ! -z "$SSH_CONNECTION" ] && MOD_PREFIX+="${orange}[R] "
+	[ ! -z "$PADHOME" ] && MOD_PREFIX+="${orange}[PAD $(basename "$PADHOME")] "
 	[ -z "$VIRTUAL_ENV" ] || VENV="$(basename "$VIRTUAL_ENV")"
 
 	if [ -n "$__LAST_PROMPT" ]; then
 		EXECTIME=" ($(( NOW - __LAST_PROMPT ))s)"
 	fi
 	
-	PS1="\n${yellow}\t${EXECTIME}${reset_color}\n${REMOTE}${white}\u@${cyan}\h: ${reset_color} ${yellow}\w ${green}${VENV}\n\[${red}\]${EXIT} \[${reset_color}\]→ "
+	PS1="\n${yellow}\t${EXECTIME}${reset_color}\n${MOD_PREFIX}${white}\u@${cyan}\h: ${reset_color} ${yellow}\w ${green}${VENV}\n\[${red}\]${EXIT} \[${reset_color}\]→ "
 
 	__LAST_PROMPT="$NOW"
 }
