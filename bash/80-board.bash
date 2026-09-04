@@ -21,7 +21,6 @@ function _bb_hook_cd {
 	local BB_GREP_RET
 	local BB_NUM BB_DATE BB_DIR
 
-	builtin cd "$@" || return $?
 	[ -f "$BB_DIR/history" ] || touch "$BB_HIST_DIR/history"
 	BB_PWD="$(pwd)"
 

@@ -7,10 +7,14 @@ function __hook_login() {
 }
 
 function __hook_cd() {
+	local oldpwd
+	oldpwd=$(pwd)
+
+	\cd "$@" || return $?
 	for f in "${HOOK_CD[@]}"; do
-		"$f" "$@"
+		# 1: old pwd n: args
+		"$f" "$oldpwd" "$@"
 	done
-	\cd "$@"
 }
 alias cd=__hook_cd
 
