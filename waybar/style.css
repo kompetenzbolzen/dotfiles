@@ -3,14 +3,15 @@
     /* font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif; */
     font-family: FontAwesome, Comic Shanns;
     font-size: 14px;
+    transition-duration: 0s;
 }
 
 window#waybar {
-    background-color: rgba(43, 48, 59, 0.5);
-    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
-    color: #ffffff;
+    background-color: #c0c0c0;
+    /*border-bottom: 3px solid rgba(100, 114, 125, 0.5);*/
+    color: #000000;
     transition-property: background-color;
-    transition-duration: .5s;
+    transition-duration: 0s;
 }
 
 window#waybar.hidden {
@@ -36,37 +37,30 @@ window#waybar.chromium {
 }
 
 button {
-    /* Use box-shadow instead of border so the text isn't offset */
-    box-shadow: inset 0 -3px transparent;
-    /* Avoid rounded borders under each button name */
-    border: none;
-    border-radius: 0;
+	color: #000000;
+	background: #c0c0c0;
+	border-radius:0;
+	/* Border in bg color, to not change size on hover */
+	border: 1px solid #c0c0c0;
+	box-shadow: inset 2px 2px #ffffff, inset -2px -2px #858585;
+	margin: 2px;
+	padding: 0 10px 0 5px;
 }
 
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 button:hover {
-    background: inherit;
-    box-shadow: inset 0 -3px #ffffff;
+	border: 1px solid #0a0a0a;
 }
 
-#workspaces button {
-    padding: 0 10px 0 5px;
-    background-color: transparent;
-    color: #ffffff;
-}
-
-#workspaces button:hover {
-    background: rgba(0, 0, 0, 0.2);
-}
-
-#workspaces button.focused {
-    background-color: #64727D;
-    box-shadow: inset 0 -3px #ffffff;
-}
+/*#workspaces button.focused {
+	color: #ffffff;
+	background-color: #000181;
+	box-shadow: inset 0 -3px #ffffff;
+}*/
 
 #workspaces button.visible {
-    background-color: #64727D;
-    box-shadow: inset 0 -3px #ffffff;
+	background: #e0e0e0;
+	box-shadow: inset 2px 2px #858585;
 }
 
 #workspaces button.urgent {
@@ -95,15 +89,20 @@ button:hover {
 #mode,
 #idle_inhibitor,
 #scratchpad,
+#window,
 #mpd {
-    padding: 0 10px;
-    color: #ffffff;
+    /*padding: 0 10px;
+    color: #ffffff;*/
+	color: #000000;
+	background: #c0c0c0;
+	border-radius:0;
+	/* Border in bg color, to not change size on hover */
+	border: 1px solid #c0c0c0;
+	box-shadow: inset -2px -2px #ffffff, inset 2px 2px #858585;
+	margin: 2px;
+	padding: 0 10px 0 5px;
 }
 
-#window,
-#workspaces {
-    margin: 0 4px;
-}
 
 /* If workspaces is the leftmost module, omit left margin */
 .modules-left > widget:first-child > #workspaces {
@@ -116,12 +115,12 @@ button:hover {
 }
 
 #clock {
-    background-color: rgba(0, 0, 0, 0.2);
+    /*background-color: rgba(0, 0, 0, 0.2);*/
 }
 
 #battery {
-    background-color: #ffffff;
-    color: #000000;
+    /*background-color: #ffffff;
+    color: #000000;*/
 }
 
 #battery.charging, #battery.plugged {
@@ -230,7 +229,7 @@ label:focus {
 }
 
 #tray {
-    background-color: #2980b9;
+    /*background-color: #2980b9;*/
 }
 
 #tray > .passive {
@@ -243,12 +242,12 @@ label:focus {
 }
 
 #idle_inhibitor {
-    background-color: #2d3436;
+	box-shadow: inset 2px 2px #ffffff, inset -2px -2px #858585;
 }
 
 #idle_inhibitor.activated {
-    background-color: #ecf0f1;
-    color: #2d3436;
+	background: #e0e0e0;
+	box-shadow: inset 2px 2px #858585;
 }
 
 #mpd {
@@ -341,4 +340,14 @@ label:focus {
     background-color: #a1006b;
     box-shadow: inset 0 -5px #6e1e78;
     padding: 0 10px;
+}
+#custom-launcher {
+	color: #000000;
+	background: #c0c0c0;
+	border: 2px solid #0a0a0a;
+	box-shadow: inset 2px 2px #ffffff, inset -2px -2px #858585;
+	margin: 2px;
+}
+#custom-launcher:hover {
+	box-shadow: inset 2px 2px #858585;
 }
