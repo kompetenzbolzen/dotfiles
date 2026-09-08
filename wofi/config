@@ -1,0 +1,14 @@
+stylesheet=classic.css
+
+hide_scroll=true
+
+
+width=15%
+height=40%
+# bottom left
+location=7
+# weirdly, we need this offset. wofi is not exactly bottom left
+y=-14
+
+use_search_box=false
+prompt=search

@@ -26,3 +26,5 @@ qutebrowser;.config
 userscripts;.local/share/qutebrowser
 zellij;.config
 .swaylock;.
+qt6ct;.config
+wofi;.config

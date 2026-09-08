@@ -1,3 +1,18 @@
+/* NOTE.
+ * Retro style colors
+ * background     #c0c0c0    grey-ish
+ * foreground     #ffffff    white
+ * highlight      #000181    blue
+ * dark border    #858585    darker grey
+ * bright border  #ffffff    white
+ * bright bg      #e0e0e0    light grey
+ */
+
+/* NOTE.
+ * waybar CSS documentation
+ * https://github.com/Alexays/Waybar/wiki/Styling
+ */
+
 * {
     /* `otf-font-awesome` is required to be installed for icons */
     /* font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif; */
@@ -7,9 +22,8 @@
 }
 
 window#waybar {
-    background-color: #c0c0c0;
-    /*border-bottom: 3px solid rgba(100, 114, 125, 0.5);*/
     color: #000000;
+    background-color: #c0c0c0;
     transition-property: background-color;
     transition-duration: 0s;
 }
@@ -18,22 +32,28 @@ window#waybar.hidden {
     opacity: 0.2;
 }
 
-/*
-window#waybar.empty {
-    background-color: transparent;
+menu {
+	border-radius: 0px;
+	background-color: #c0c0c0;
+	color: #000000;
+	box-shadow: inset 20px 0px #000181, inset 2px 2px #ffffff, inset -2px -2px #858585;
+	margin: 0px;
 }
-window#waybar.solo {
-    background-color: #FFFFFF;
+menuitem {
+	border-radius: 0px;
+	margin: 2px;
 }
-*/
+menuitem:hover {
+	background-color: #000181;
+}
 
-window#waybar.termite {
-    background-color: #3F3F3F;
+tooltip {
+	background-color: #c0c0c0;
+	box-shadow: inset 2px 2px #ffffff, inset -2px -2px #858585;
+	border-radius:0;
 }
-
-window#waybar.chromium {
-    background-color: #000000;
-    border: none;
+tooltip label {
+	color: #000000;
 }
 
 button {
@@ -102,7 +122,6 @@ button:hover {
 	margin: 2px;
 	padding: 0 10px 0 5px;
 }
-
 
 /* If workspaces is the leftmost module, omit left margin */
 .modules-left > widget:first-child > #workspaces {

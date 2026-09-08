@@ -3,9 +3,9 @@
   "position": "bottom", // Waybar position (top|bottom|left|right)
   "height": 30,
   "spacing": 4,
-  "modules-left": ["sway/workspaces", "sway/mode", "sway/scratchpad", "sway/window"],
+  "modules-left": ["custom/launcher","sway/workspaces", "sway/mode", "sway/scratchpad", "sway/window"],
   "modules-center": ["clock"],
-  "modules-right": ["idle_inhibitor","custom/wifiice","custom/wifioebb", "custom/wifisncf",  "pulseaudio", "network", "custom/wireguard", "bluetooth", "cpu", "memory", "temperature", "backlight", "battery", "tray"],
+  "modules-right": ["idle_inhibitor","custom/wifiice","custom/wifioebb", "custom/wifisncf", "pulseaudio", "network", "custom/wireguard", "bluetooth", "cpu", "memory", "temperature", "backlight", "battery", "tray"],
 
   "sway/workspaces": {
     "disable-scroll": true,
@@ -194,6 +194,22 @@
     "hide-empty-text": true,
     "interval": 10,
     "exec-if": "ip link show wg_muc"
+  },
+  "custom/launcher": {
+    "format": "  Start ",
+    "on-click": "wofi --show drun",
+    "tooltip": false
+  },
+  "custom/launcher_old": {
+    "format": " Start ",
+    "menu": "on-click",
+    "menu-file": "~/.config/waybar/power_menu.xml",
+    "menu-actions": {
+        "shutdown": "shutdown",
+        "reboot": "reboot",
+        "suspend": "systemctl suspend",
+        "hibernate": "systemctl hibernate"
+    }
   }
 }
 
