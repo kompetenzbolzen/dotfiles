@@ -37,3 +37,6 @@ PROMPT_EXECTIME="no"
 
 # Cheatsheet
 CHEATSHEET_ENABLE="no"
+
+SCRATCHPAD_ENABLE="yes"
+SCRATCHPAD_STORAGE_DIR="$HOME/.local/share/scratchpad"
