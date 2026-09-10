@@ -1,4 +1,5 @@
-nq; Queue management
+nq;Queue management
 sc-im;Spreadsheet
 neomutt;Mail
-notes; VimWiki Notes
+notes;VimWiki Notes
+dotfile;df manager
