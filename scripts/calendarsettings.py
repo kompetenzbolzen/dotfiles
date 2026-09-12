@@ -24,6 +24,7 @@ status_path = "~/.config/vdirsyncer/status/"
 [pair {{ name }}]
 a = "{{ name }}_remote"
 b = "{{ name }}_local"
+conflict_resolution = ["command", "nvim", "-d"]
 collections = ["from a", "from b"]
 {% if cfg.type == "caldav" %}
 metadata = ["color"]
