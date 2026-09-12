@@ -2,8 +2,9 @@
 set folder = ~/.local/share/email
 set mbox_type = Maildir
 
-set mailcap_path = $DOTFILEBASE/neomutt/mailcap
+set mailcap_path = ~/.config/neomutt/mailcap
 auto_view text/html
+auto_view text/plain
 
 macro index S "<shell-escape>mbsync -a<enter>" "sync email"
 
