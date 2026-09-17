@@ -1,0 +1,22 @@
+#!/bin/bash
+
+for b in /sys/class/power_supply/BAT*; do
+	BATNAME=$(basename "$b")
+	MANUFACTURER="$(cat "$b/manufacturer")"
+	SERIAL="$(cat "$b/serial_number")"
+	MODEL="$(cat "$b/model_name")"
+	E_FULL="$(cat "$b/energy_full")"
+	E_DESIGN="$(cat "$b/energy_full_design")"
+	E_NOW="$(cat "$b/energy_now")"
+	CYCLES="$(cat "$b/cycle_count")"
+	STATUS="$(cat "$b/status")"
+
+	echo "$BATNAME:"
+
+	BAT_HEALTH=$((E_FULL*100/E_DESIGN))
+	echo "$MANUFACTURER $MODEL (S.Nr. $SERIAL)"
+	echo FULL "$E_FULL" DESIGN "$E_DESIGN" CYCLES "$CYCLES"
+	echo HEALTH $BAT_HEALTH
+
+	echo NOW $((E_NOW*100/E_FULL)) "$STATUS"
+done
