@@ -1,0 +1,15 @@
+sway;sway ttf-font-awesome otf-font-awesome ttf-dejavu xorg-xwayland j4-dmenu-desktop bemenu bemenu-wayland swayidle xdg-desktop-portal-wlr slurp grim wl-clipboard sway-contrib
+.swaylock;swaylock
+waybar;waybar
+alacritty;alacritty
+wofi;wofi
+qutebrowser;qutebrowser
+nvim;neovim
+tmux;tmux
+khal;khal vdirsyncer
+khard;khard vdirsyncer
+neomutt;neomutt isync msmtp lynx
+qt5ct;qt5ct
+qt6ct;qt6ct
+.bashrc;bash bash-completion fzf
+.screenrc;screen

@@ -1,0 +1,20 @@
+# shellcheck shell=bash disable=SC2034
+# Maintainer: Jonas Gunz <arch at jonasgunz dot de>
+
+pkgname=dotfile-meta
+pkgver=placeholder
+pkgrel=1
+pkgdesc="dotfile sway meta package"
+arch=('any')
+url="https://git.jonasgunz.de/dotfiles"
+license=('NONE')
+makedepends=()
+
+pkgver() {
+	# NOTE use UNIX time as version
+	date +%s
+}
+
+package() {
+	depends=( "$(dotfile list_installed_deps)" )
+}

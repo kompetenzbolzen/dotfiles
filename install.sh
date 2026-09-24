@@ -56,10 +56,17 @@ declare -A SYSCONFIGS
 while IFS=";" read -r CFG DEST _; do
 	SYSCONFIGS[$CFG]="$DEST"
 done < sysconf.csv
-unset SET PKGS
+unset CFG DEST
+
+# NOTE ['name']='install location relative to $HOME'
+declare -A DEPENDENCIES
+while IFS=";" read -r CFG DEPS _; do
+	DEPENDENCIES[$CFG]="$DEPS"
+done < dependencies.csv
+unset CFG DEPS
 
 # TODO we maybe want a more flexible softlink-detection system here
-if [ $(basename $0) = 'post-merge' ]; then
+if [ "$(basename "$0")" = 'post-merge' ]; then
 	debug "running as post-merge git hook"
 	call_hook housekeeping
 	exit 0
@@ -81,7 +88,7 @@ case $CMD in
 			selected=( $(multiselector "${!CONFIGS[@]}" "${!SETS[@]}" ) )
 		fi
 		for cnf in "${selected[@]}"; do
-			choose_target "$cnf"
+			install_target "$cnf"
 		done
 
 		call_hook housekeeping;;
@@ -138,6 +145,16 @@ case $CMD in
 		echo "Config was installed successfully."
 		echo "It can now be installed with $0 sysconf $NAME"
 		echo "The following files were changed: sysconf.csv $NAME"
+		;;
+	list_installed)
+		list_installed
+		;;
+	list_installed_deps)
+		for i in $(list_installed); do
+			if [ ! -z "${DEPENDENCIES[$i]}" ]; then
+				echo "${DEPENDENCIES[$i]}" | tr ' ' '\n'
+			fi
+		done
 		;;
 	*)
 		echo Invalid command: "$CMD"

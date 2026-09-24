@@ -70,43 +70,6 @@ selector() {
 	fi
 }
 
-#1: source 2: destination
-link() {
-	if [ -e "$2" ]; then
-		if yes_no "$(basename $2) exists. Overwrite?"; then
-			if [ -d "$2" ]; then
-				rm -R "$2"
-			else
-				rm "$2"
-			fi
-		else
-			return
-		fi
-	fi
-
-	if [ ! -d "$(dirname $2)" ]; then
-		debug "$(dirname $2) does not exit. Creating it."
-		mkdir -p "$(dirname $2)"
-	fi
-
-	ln -s "$1" "$2"
-
-	call_hook "installed.$(basename $2)" "$2"
-	call_hook "installed" "$2"
-}
-
-choose_target() {
-	if [ ! -z "${CONFIGS[$1]}" ]; then
-		echo "Install $(pwd)/$1 to $HOME/${CONFIGS[$1]}/$1"
-		link "$(pwd)/$1" "$HOME/${CONFIGS[$1]}/$1"
-	elif [ ! -z "${SETS[$1]}" ]; then
-		for f in ${SETS[$1]}; do
-			choose_target $f
-		done
-	else
-		echo Target $1 not found. skipping.
-	fi
-}
 
 debug() {
 	if [ "$DEBUG" = "yes" ]; then
