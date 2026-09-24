@@ -2,7 +2,7 @@
 # Maintainer: Jonas Gunz <arch at jonasgunz dot de>
 
 pkgname=dotfile-meta
-pkgver=placeholder
+pkgver=1790284247
 pkgrel=1
 pkgdesc="dotfile sway meta package"
 arch=('any')
@@ -16,5 +16,5 @@ pkgver() {
 }
 
 package() {
-	depends=( "$(dotfile list_installed_deps)" )
+	IFS=$'\n' depends=( "$(dotfile list_installed_deps)" )
 }
