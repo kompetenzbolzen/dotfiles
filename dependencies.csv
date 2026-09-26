@@ -4,7 +4,7 @@ waybar;waybar
 alacritty;alacritty
 wofi;wofi
 qutebrowser;qutebrowser
-nvim;neovim
+nvim;neovim ty tree-sitter-cli curl
 tmux;tmux
 khal;khal vdirsyncer
 khard;khard vdirsyncer
