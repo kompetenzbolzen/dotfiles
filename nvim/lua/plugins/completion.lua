@@ -48,7 +48,11 @@ return {
 		'neovim/nvim-lspconfig',
 		config = function()
 			vim.lsp.enable('rust_analyzer')
-			vim.lsp.enable('pyright')
+			vim.lsp.config('ty', {
+				cmd = {'ty', 'server'},
+				filetypes = {'python'}
+			})
+			vim.lsp.enable('ty')
 			vim.lsp.enable('clangd')
 			vim.lsp.enable('texlab')
 			vim.lsp.config('hls', {cmd = {'haskell-language-server-wrapper', '--lsp'}})

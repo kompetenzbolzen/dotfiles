@@ -9,15 +9,17 @@ return {
 		"jamessan/vim-gnupg"
 	},
 	{
-                "nvim-treesitter/nvim-treesitter",
-                config = function()
-                        require'nvim-treesitter.configs'.setup{
-                                ensure_installed = {"c", "cpp", "lua", "vim", "bash", "make", "rust", "python", "haskell"},
-                                highlight = {
-                                        enable = true
-                                }
-                        }
-                end
+		"nvim-treesitter/nvim-treesitter",
+		lazy = false,
+		build = ':TSUpdate',
+		config = function()
+			local fts = {"c", "cpp", "lua", "vim", "bash", "make", "rust", "python", "haskell"}
+			require('nvim-treesitter').install(fts)
+			vim.api.nvim_create_autocmd('FileType', {
+ 				pattern = fts,
+ 				callback = function() vim.treesitter.start() end,
+			})
+                end,
         },
 	{
 		"stevearc/oil.nvim",

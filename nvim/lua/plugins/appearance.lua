@@ -6,7 +6,7 @@ return {
 		opts = {},
 	},
 	{
-		"folke/todo-comments.nvim",
+		url="https://gitea.muc.jag.re/jonas/todo-comments.nvim.git",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		opts = {
 			signs = false,
