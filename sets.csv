@@ -1,3 +1,4 @@
 base;.bashrc .bash_profile .screenrc neovim tmux
 browser;qutebrowser userscripts
 desktop;sway waybar alacritty wofi qt5ct qt6ct .swaylock
+mail;neomutt khard khal tmux
