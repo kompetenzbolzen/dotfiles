@@ -1,10 +1,10 @@
-sway;sway ttf-font-awesome otf-font-awesome ttf-dejavu xorg-xwayland j4-dmenu-desktop bemenu bemenu-wayland swayidle xdg-desktop-portal-wlr slurp grim wl-clipboard sway-contrib
+sway;sway ttf-font-awesome otf-font-awesome ttf-dejavu xorg-xwayland j4-dmenu-desktop bemenu bemenu-wayland swayidle xdg-desktop-portal-wlr slurp grim wl-clipboard sway-contrib swaybg qt5-wayland qt6-wayland
 .swaylock;swaylock
 waybar;waybar
 alacritty;alacritty
 wofi;wofi
 qutebrowser;qutebrowser
-nvim;neovim ty tree-sitter-cli curl
+nvim;neovim ty tree-sitter-cli curl shellcheck
 tmux;tmux
 khal;khal vdirsyncer
 khard;khard vdirsyncer
