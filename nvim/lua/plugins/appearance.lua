@@ -6,7 +6,9 @@ return {
 		opts = {},
 	},
 	{
-		url="https://gitea.muc.jag.re/jonas/todo-comments.nvim.git",
+		url="https://git.jonasgunz.de/todo-comments-nvim",
+		branch='main',
+		name='todo-comments.nvim',
 		dependencies = { "nvim-lua/plenary.nvim" },
 		opts = {
 			signs = false,
