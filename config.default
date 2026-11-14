@@ -40,3 +40,6 @@ CHEATSHEET_ENABLE="no"
 
 SCRATCHPAD_ENABLE="yes"
 SCRATCHPAD_STORAGE_DIR="$HOME/.local/share/scratchpad"
+
+# Enable auto vim split screen
+TMUX_VIM_ENABLE="yes"
